@@ -1,16 +1,21 @@
 """
-A script for downloading books from iprbookshop.ru, an e-books distribution website, using selenium and FireFox
+<<<<<<< HEAD
+A script for downloading books.
+
+from iprbookshop.ru an e-books distribution website, using selenium and FireFox
 """
 
 from time import sleep
 
 from selenium import webdriver
 
-from config import PATH_TO_DRIVER, IPRBOOK_LOGIN, IPRBOOK_PASSWORD, IPRBOOK_LINKS
+from config import PATH_TO_DRIVER, IPRBOOK_LOGIN, IPRBOOK_PASSWORD, \
+    IPRBOOK_LINKS
 
 
 class TorBrowser(object):
-    """ A base class that prepares webdriver and holds methods for getting book's description and downloading it"""
+    """Prepares webdriver and holds methods for getting book's description
+    and downloading it"""
 
     def __init__(self):
         """"""
@@ -20,7 +25,9 @@ class TorBrowser(object):
         profile.set_preference("network.proxy.socks_port", 9150)
         profile.set_preference("network.proxy.socks_remote_dns", False)
         # Disable download dialogue
-        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+        profile.set_preference(
+            "browser.helperApps.neverAsk.saveToDisk",
+            "application/octet-stream")
         profile.update_preferences()
         self.dr = webdriver.Firefox(firefox_profile=profile,
                                     executable_path=PATH_TO_DRIVER)
@@ -50,7 +57,8 @@ class TorBrowser(object):
         sleep(5)  # FIXME:
 
         # While "next" link exists
-        while len(self.dr.find_elements_by_css_selector("a.page-link.next")) > 0:
+        while len(
+                self.dr.find_elements_by_css_selector("a.page-link.next")) > 0:
             last_window = self.dr.window_handles[-1]
             self.dr.switch_to.window(last_window)
             els = self.dr.find_elements_by_css_selector("a.pub-title")
@@ -100,7 +108,8 @@ class TorBrowser(object):
         self.dr.find_element_by_css_selector("li.rb:nth-child(8)").click()
         sleep(5)  # FIXME:
 
-        while len(self.dr.find_elements_by_css_selector("a.page-link.next")) > 0:
+        while len(
+                self.dr.find_elements_by_css_selector("a.page-link.next")) > 0:
             els = self.dr.find_elements_by_css_selector("a.pub-title")
             for el in els:
                 self.links.append(el.get_property("href"))
@@ -118,7 +127,7 @@ class TorBrowser(object):
 
         with open(IPRBOOK_LINKS, "w") as f1:
             for link in self.links:
-                f1.write(link+"\n")
+                f1.write(link + "\n")
 
     def load_from_file(self):
         """"""

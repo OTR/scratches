@@ -1,5 +1,7 @@
 """
-A script for downloading books from lanbook.com, an e-books distribution website, using selenium and FireFox
+A script for downloading books.
+
+from `lanbook.com` an e-books distribution website, using selenium and FireFox
 """
 
 import os
@@ -11,10 +13,12 @@ from config import PATH_TO_DRIVER, DOWNLOAD_DIR
 
 
 class TorBrowser(object):
-    """ A base class that prepares webdriver and holds methods for getting book's description and downloading it"""
+    """A base class that prepares webdriver and holds methods
+    for getting book's description and downloading it"""
 
     def __init__(self, use_proxy=True):
-        """If use_proxy parameter is given set up FireFox to use a SOCK5 proxy on ip 127.0.0.1 and port 9150
+        """If use_proxy parameter is given set up FireFox to use
+        a SOCK5 proxy on ip 127.0.0.1 and port 9150
         A TOR's daemon should be running. It listens to port 9050 by default"""
         profile = webdriver.FirefoxProfile()
 
@@ -25,8 +29,10 @@ class TorBrowser(object):
             profile.set_preference("network.proxy.socks_remote_dns", False)
 
         # Disable download dialogue
-        # This setting prevents a browser from popping up a "Would you like to save this file" window
-        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+        # This setting prevents a browser from
+        # popping up a "Would you like to save this file" window
+        profile.set_preference("browser.helperApps.neverAsk.saveToDisk",
+                               "application/octet-stream")
 
         profile.update_preferences()
         self.dr = webdriver.Firefox(firefox_profile=profile,
@@ -39,8 +45,9 @@ class TorBrowser(object):
         self.dr.implicitly_wait(10)
 
     def dump_book(self, book_id):
-        """Get on book's page and go through each page which is represented as separated SVG files
-        then save them one by one on a disk"""
+        """Get on book's page and go through each page
+        which is represented as separated SVG file
+        """
         result = self.get_book_info(book_id)
         pages = result["pages"]
         title = result["title"]
@@ -50,7 +57,9 @@ class TorBrowser(object):
 
         for i in range(1, pages + 1):
             print(f"Going on page number {i}")
-            self.dr.get(f"https://fs1.e.lanbook.com/api/book/{book_id}/page/{i}/img")
+            self.dr.get(
+                f"https://fs1.e.lanbook.com/api/book/{book_id}/page/{i}/img"
+            )
             data = self.dr.page_source
             with open(f"{i}.svg", "w") as f1:
                 f1.write(data)
@@ -59,13 +68,19 @@ class TorBrowser(object):
         print("Done")
 
     def get_book_info(self, book_id):
-        """Go to a details page of a book to take a data such as an amount of pages and book's title"""
+        """Go to a details page of a book to take a data
+        such as an amount of pages and book's title"""
         cur_book_id = book_id
         self.dr.get(f"https://e.lanbook.com/book/{cur_book_id}")
-        pages_tag = Bot.dr.find_element_by_xpath("//dt[text()='Страниц']/following-sibling::dd[1]")
-        title_tag = Bot.dr.find_element_by_css_selector("div.card-content.ng-star-inserted > h1")
+        pages_tag = Bot.dr.find_element_by_xpath(
+            "//dt[text()='Страниц']/following-sibling::dd[1]"
+        )
+        title_tag = Bot.dr.find_element_by_css_selector(
+            "div.card-content.ng-star-inserted > h1"
+        )
         title = title_tag.text
-        # get rid of non alphabetic or numeric symbols for using this title as correct filename
+        # get rid of non alphabetic or numeric symbols
+        # for using this title as correct filename
         title = "".join(x for x in title if x.isalnum() or ord(x) == 32)
         pages = int(pages_tag.text)
 
@@ -77,7 +92,7 @@ class TorBrowser(object):
         dir_name = f"{book_id}_{title}"
         try:
             os.mkdir(dir_name)
-        except Exception as err:  # FIXME: mention exact error not the common one
+        except OSError as err:
             print(err)
         os.chdir(os.path.join(os.getcwd(), dir_name))
 
@@ -94,7 +109,8 @@ if __name__ == "__main__":
            "121464"]
     try:
         for book_id in lst:
-            # book_id = input("Введите ID книги: ") # FIXME: add argument parsing for running in an interactive mode
+            # FIXME: add argument parsing for running in an interactive mode
+            # book_id = input("Введите ID книги: ")
             Bot.dump_book(book_id)
     except KeyboardInterrupt:
         exit()
