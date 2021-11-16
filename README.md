@@ -34,3 +34,9 @@ Tested with following Chrome version:
 * When first run check for Chrome, Chromedriver, selenium
 
 * Check config.ini . If it's blank ask for credentials
+
+* Catch an Exception that occurs when running tests:
+  
+      Python39\lib\unittest\suite.py:84: ResourceWarning: unclosed <socket.socket fd=316, family=AddressFamily.AF_INET6, type=SocketKind.SOCK_STREAM, proto=0, laddr=('::1', 50447, 0, 0), raddr=('::1', 50444, 0, 0)>
+        return self.run(*args, **kwds)
+      ResourceWarning: Enable tracemalloc to get the object allocation traceback
