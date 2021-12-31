@@ -9,7 +9,7 @@ from time import sleep
 
 from selenium import webdriver
 
-from config import PATH_TO_DRIVER, DOWNLOAD_DIR
+from python.selenium.download_student_books.lanbook.lanbook import PATH_TO_DRIVER, DOWNLOAD_DIR
 
 
 class TorBrowser(object):

@@ -1,4 +1,10 @@
-"""Fill up your credentials and path to geckodriver.exe here."""
+"""
+Fill up your credentials and path to geckodriver.exe here.
+"""
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).parent
 
 # A path to executable webdriver for FireFox
 # FIXME: Do not use absolute and OS dependent paths
