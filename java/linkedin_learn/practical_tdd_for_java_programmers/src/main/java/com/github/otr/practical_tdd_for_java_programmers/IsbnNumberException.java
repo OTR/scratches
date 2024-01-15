@@ -5,14 +5,14 @@ package com.github.otr.practical_tdd_for_java_programmers;
  */
 public class IsbnNumberException extends RuntimeException {
 
-    static class IsNotTenDigitsLong extends IsbnNumberException {
+    static class IsNotTenOrThirteenDigitsLong extends IsbnNumberException {
 
-        private static final String message = "an ISBN number must be 10 digits long";
+        private static final String message = "an ISBN number must be 10 or 13 digits long";
 
         /**
-         * Throws an exception when ISBN number length is not equal to 10 digits
+         * Throws an exception when ISBN number length is not equal to 10 or 13 digits
          */
-        public IsNotTenDigitsLong() {
+        public IsNotTenOrThirteenDigitsLong() {
             super(message);
         }
 
