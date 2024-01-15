@@ -11,7 +11,7 @@ import unittest
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-from main import GameBot
+from python.selenium.rageclub.main import GameBot
 
 BASE_DIR = Path(__file__).resolve().parent
 

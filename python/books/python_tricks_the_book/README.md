@@ -1,6 +1,6 @@
 # Description
 
-Here stored examples from th book:
+Here stored examples from the book:
 
 `Python Tricks: The Book` by Dan Bader
 

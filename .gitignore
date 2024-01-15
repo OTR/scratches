@@ -1,6 +1,13 @@
+# IntelliJ IDEA / PyCharm config files
 /.idea/
+
+# Python files
 /venv/
 __pycache__/
-chromedriver.exe
-.env
 *.py[cod]
+
+# User config files
+.env
+
+# A binary for Web Driver when working with Selenium
+chromedriver.exe
