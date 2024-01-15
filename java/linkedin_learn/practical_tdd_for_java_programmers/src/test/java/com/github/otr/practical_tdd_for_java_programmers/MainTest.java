@@ -1,6 +1,4 @@
-package com.github.otr.practical_ttd_for_java_programmers;
-
-import static org.junit.Assert.assertTrue;
+package com.github.otr.practical_tdd_for_java_programmers;
 
 import org.junit.Test;
 
@@ -9,11 +7,21 @@ import org.junit.Test;
  */
 public class MainTest {
     /**
-     * Rigorous Test :-)
+     *
      */
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void shouldAnswerWithTrue() {
+        ISBNValidator validator = new ISBNValidator();
+        validator.checkISBN("helloworld!");
     }
+
+    /**
+     *
+     */
+    @Test
+    public void shouldThrowAnException() {
+        ISBNValidator validator = new ISBNValidator();
+        validator.checkISBN("helloworld");
+    }
+
 }

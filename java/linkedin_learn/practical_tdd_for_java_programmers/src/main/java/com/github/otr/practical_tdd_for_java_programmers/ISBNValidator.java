@@ -1,13 +1,9 @@
 package com.github.otr.practical_tdd_for_java_programmers;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-
 /**
  *
  */
-class ISBNValidator {
+public class ISBNValidator {
 
     public boolean checkISBN(String isbnNumber) {
         // Check for String length
