@@ -1,0 +1,8 @@
+# PyCharm's config files
+.idea/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Working directories for test cases

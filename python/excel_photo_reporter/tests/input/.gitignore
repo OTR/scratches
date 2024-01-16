@@ -1,0 +1,10 @@
+!.gitignore
+!3rd_test_case/data.xlsx
+!3rd_test_case/parcel.jpg
+!3rd_test_case/
+book_covers/
+real_world_examples/
+amazon.html
+handmade_books_from_amazon.xlsx
+2nd_test_case/*.csv
+

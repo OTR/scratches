@@ -1,0 +1,5 @@
+openpyxl==3.0.9
+
+# For development purpose only
+lxml==4.6.3
+Pillow==8.4.0
