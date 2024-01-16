@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- *
+ * Has stopped at `Using setUp and tearDown` lesson
  */
 public class StockManagementTest {
 
