@@ -19,10 +19,16 @@ public class StockManager {
         this.externalDatabaseService = externalDatabaseService;
     }
 
+    /**
+     * FIXME: SRP violated, the method gets data from external services
+     *  and calculates  check sum number at once. Too much responsibility
+     *  for a single method
+     */
     public String getLocatorCode(String input) {
+        // Retrieve a book from external services
         Book book = externalDatabaseService.lookup(input);
         if (book == null) book = externalWebService.lookup(input);
-        //
+        // Calculate Locator Code
         String locator = "";
         String isbnNumber = book.getIsbnNumber();
         locator += book.getIsbnNumber().substring(isbnNumber.length() - 4);

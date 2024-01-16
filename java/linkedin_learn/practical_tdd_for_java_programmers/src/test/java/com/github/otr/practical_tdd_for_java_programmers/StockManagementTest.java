@@ -20,39 +20,42 @@ import static org.mockito.Mockito.when;
  */
 public class StockManagementTest {
 
-    private static final String CORRECT_BOOK_LOCATION = "";
-    private static final String CORRECT_13_ISBN_NUMBER = "9781801816489";
-
-    private final ExternalService externalWebService = new ExternalService() {
-        @Override
-        public Book lookup(String isbnNumber) {
-            return new Book(
-                    "9781801816489",
-                    "Davi Vieira",
-                    "esigning Hexagonal Architecture with Java"
-            );
-        }
-    };
-    private final ExternalService externalDatabaseService = new ExternalService() {
-        @Override
-        public Book lookup(String isbnNumber) {
-            return null;
-        }
-    };
+    private static final String VALID_13_ISBN_NUMBER = "9781801816489";
+    private static final String VALID_LOCATOR_CODE = "6489" + "D" + "5";
 
     /**
-     *
+     * A positive test case that ensures that stock manager makes lookup in
+     * a database service and retrieves a valid book
      */
     @Test
     public void testCorrectLocationCodeFromBookFields() {
 
         // GIVEN
+        // Create a stub for a web service
+        ExternalService externalWebService = new ExternalService() {
+            @Override
+            public Book lookup(String isbnNumber) {
+                return new Book(
+                        "9781801816489",
+                        "Davi Vieira",
+                        "Designing Hexagonal Architecture with Java"
+                );
+            }
+        };
+        // Create a stub for a database service
+        ExternalService externalDatabaseService = new ExternalService() {
+            @Override
+            public Book lookup(String isbnNumber) {
+                return null;
+            }
+        };
+        // Set up stock manager
         StockManager stockManager = new StockManager();
         stockManager.setWebService(externalWebService);
         stockManager.setDatabaseService(externalDatabaseService);
 
-        String expected = "6489" + "D" + "5";
-        String input = CORRECT_13_ISBN_NUMBER;
+        String expected = VALID_LOCATOR_CODE;
+        String input = VALID_13_ISBN_NUMBER;
 
         // WHEN
         String actual = stockManager.getLocatorCode(input);
@@ -62,7 +65,28 @@ public class StockManagementTest {
     }
 
     /**
-     *
+     * The same as the previous test case but using Mockito stubs
+     */
+    @Test
+    public void testCorrectLocationCodeFromBookFieldsWithMockito() {
+
+        // GIVEN
+        String input = VALID_13_ISBN_NUMBER;
+        String expected = VALID_LOCATOR_CODE;
+
+        StockManager mockStockManager = mock(StockManager.class);
+        when(mockStockManager.getLocatorCode(input)).thenReturn(expected);
+
+        // WHEN
+        String actual = mockStockManager.getLocatorCode(input);
+
+        // THEN
+        assertThat(expected, equalTo(actual));
+    }
+
+    /**
+     * A positive test case ensures that database service was called only once
+     * and web service was never called
      */
     @Test
     public void testDatabaseIsUsedIfDataIsPresent() {
@@ -72,12 +96,11 @@ public class StockManagementTest {
         ExternalService mockedDatabaseService = mock(ExternalService.class);
         ExternalService mockedWebService = mock(ExternalService.class);
 
-        String expected = "6489" + "D" + "5";
-        String input = CORRECT_13_ISBN_NUMBER;
+        String input = VALID_13_ISBN_NUMBER;
 
-        Book invalidBook = new Book(input, "Abc", "Abc");
+        Book someFakeBook = new Book(input, "Abc", "Abc");
 
-        when(mockedDatabaseService.lookup(input)).thenReturn(invalidBook);
+        when(mockedDatabaseService.lookup(input)).thenReturn(someFakeBook);
 
         StockManager stockManager = new StockManager();
         stockManager.setWebService(mockedWebService);
@@ -93,7 +116,8 @@ public class StockManagementTest {
     }
 
     /**
-     *
+     * A positive test case ensures that database service was called only once
+     * and web service was called once, because database didn't return any value
      */
     @Test
     public void webServiceIsUsedIfDataIsNotPresentInDatabase() {
@@ -103,12 +127,11 @@ public class StockManagementTest {
         ExternalService mockedDatabaseService = mock(ExternalService.class);
         ExternalService mockedWebService = mock(ExternalService.class);
 
-        String expected = "6489" + "D" + "5";
-        String input = CORRECT_13_ISBN_NUMBER;
-        Book someInvalidBook = new Book(input, "Abc", "Abc");
+        String input = VALID_13_ISBN_NUMBER;
+        Book someFakeBook = new Book(input, "Abc", "Abc");
 
         when(mockedDatabaseService.lookup(input)).thenReturn(null);
-        when(mockedWebService.lookup(input)).thenReturn(someInvalidBook);
+        when(mockedWebService.lookup(input)).thenReturn(someFakeBook);
 
         StockManager stockManager = new StockManager();
         stockManager.setWebService(mockedWebService);
