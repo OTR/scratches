@@ -1,4 +1,6 @@
-package com.github.otr.home_lib.presentation;
+package com.github.otr.home_lib;
+
+import com.github.otr.home_lib.presentation.ConsoleInterface;
 
 /**
  *
