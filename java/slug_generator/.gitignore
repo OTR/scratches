@@ -6,6 +6,3 @@ out/
 
 # Internal application data
 .app_data
-
-# Google Drive Quick Start files & directories
-tokens/

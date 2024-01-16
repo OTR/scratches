@@ -10,14 +10,15 @@ import java.util.Collection;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-/*
-
-
-
+/**
+ *
  */
 @RunWith(Parameterized.class)
 public class NormalizerTest {
 
+    /**
+     * A suit of test data pairs "input" -> "output"
+     */
     @Parameterized.Parameters(name = "Filename #{index} should be {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -70,6 +71,11 @@ public class NormalizerTest {
     @Parameterized.Parameter(1)
     public String expected;
 
+    /**
+     * A positive test case, provide unstructured noizy filename
+     * as an input to the method and check actual result with expected
+     * "input" to "expected" pairs provided via Parametrized static member
+     */
     @Test
     public void testPositiveTranslateToNormalized() {
         // GIVEN
