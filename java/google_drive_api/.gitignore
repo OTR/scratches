@@ -1,0 +1,7 @@
+# Maven build & config files
+.idea/
+target/
+src/main/resources/
+
+# Google OAuth2 credentials
+tokens/

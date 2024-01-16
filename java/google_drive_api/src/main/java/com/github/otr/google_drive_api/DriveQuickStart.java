@@ -1,4 +1,4 @@
-package com.github.otr;
+package com.github.otr.google_drive_api;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 /* class to demonstrate use of Drive files list API */
-public class DriveQuickstart {
+public class DriveQuickStart {
     /**
      * Application name.
      */
@@ -60,7 +60,7 @@ public class DriveQuickstart {
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT)
             throws IOException {
         // Load client secrets.
-        InputStream in = DriveQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = DriveQuickStart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
