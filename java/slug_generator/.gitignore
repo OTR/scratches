@@ -1,0 +1,12 @@
+# Idea / Android Studio config files
+.idea/
+target/
+out/
+*.iml
+
+# Internal application data
+.app_data
+
+# Google Drive Quick Start files & directories
+tokens/
+src/main/resources/credentials.json

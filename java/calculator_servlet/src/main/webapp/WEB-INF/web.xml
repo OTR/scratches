@@ -1,0 +1,11 @@
+<web-app>
+    <servlet>
+        <servlet-name>CalculatorServlet</servlet-name>
+        <servlet-class>com.github.otr</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CalculatorServlet</servlet-name>
+        <url-pattern>/calculator</url-pattern>
+    </servlet-mapping>
+</web-app>

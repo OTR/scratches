@@ -1,3 +1,4 @@
+# Maven build directory
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
