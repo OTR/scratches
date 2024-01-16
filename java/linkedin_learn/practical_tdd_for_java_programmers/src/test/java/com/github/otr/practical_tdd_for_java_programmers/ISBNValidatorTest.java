@@ -15,7 +15,8 @@ public class ISBNValidatorTest {
     private final String VALID_10_ISBN_NUMBER_ENDING_WITH_X = "180323623X";
     private final String INVALID_10_ISBN_NUMBER = "1801816474";
     private final String NINE_DIGIT_ISBN_NUMBER = "123456789";
-    private final String NOT_ALL_DIGITS_ISBN_NUMBER = "012345678X"; // "helloword"
+    private final String NOT_ALL_DIGITS_ISBN_NUMBER = "012345678X";
+    private final String NON_NUMERICAL_ISBN_NUMBER = "helloworld";
 
     // 13 Digit ISBN related
     private final String VALID_13_ISBN_NUMBER = "9781803236230";
