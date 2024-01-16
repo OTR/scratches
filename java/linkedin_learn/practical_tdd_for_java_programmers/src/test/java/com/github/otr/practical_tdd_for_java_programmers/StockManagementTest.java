@@ -36,7 +36,7 @@ public class StockManagementTest {
      *
      */
     @Test
-    public void testCorrectBookLocationFromBookFields() {
+    public void testCorrectLocationCodeFromBookFields() {
 
         // GIVEN
         StockManager stockManager = new StockManager();
@@ -51,6 +51,22 @@ public class StockManagementTest {
 
         // THEN
         assertThat(expected, equalTo(actual));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testDatabaseIsUsedIfDataIsPresent() {
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void webServiceIsUsedIfDataIsNotPresentInDatabase() {
+
     }
 
 }
