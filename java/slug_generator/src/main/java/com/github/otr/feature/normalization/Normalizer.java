@@ -13,7 +13,7 @@ public class Normalizer {
         return fileName;
     }
 
-    public String normalize(String input) {
+    public static String normalize(String input) {
         // 0. Remove extension
         input = removeExtension(input);
         // 1. To lower case

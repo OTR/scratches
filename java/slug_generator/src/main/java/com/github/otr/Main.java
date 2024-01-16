@@ -1,5 +1,13 @@
 package com.github.otr;
 
+import com.github.otr.feature.options.Argument;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
 /**
  * An entry point to a console program that executes
  * a text processing over supplied string
@@ -10,8 +18,34 @@ package com.github.otr;
  */
 public class Main {
 
+    public static final Options OPTIONS = configureOptions();
+
     public static void main(String[] args) {
+
+        CommandLineParser parser = new DefaultParser();
+
+        try {
+            CommandLine cmd = parser.parse(OPTIONS, args);
+            parseOptions(cmd);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println("Hello World!");
+    }
+
+    private static Options configureOptions() {
+        Options options = new Options();
+        options.addOption(Argument.HELP);
+
+        return options;
+    }
+
+    private static void parseOptions(CommandLine cmd) {
+        if (cmd.hasOption(Argument.HELP.getOpt())) {
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("slug_generator", OPTIONS);
+        }
     }
 
 }
