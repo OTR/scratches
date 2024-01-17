@@ -1,15 +1,14 @@
-package com.github.otr.home_lib.presentation;
+package com.github.otr.home_lib.framework.presentation;
 
-import com.github.otr.home_lib.data.CommentService;
-import com.github.otr.home_lib.data.builder.CommentBuilder;
+import com.github.otr.home_lib.domain.service.CommentService;
+import com.github.otr.home_lib.domain.builder.CommentBuilder;
 
-import com.github.otr.home_lib.di.Component;
+import com.github.otr.home_lib.framework.di.Component;
 
 import com.github.otr.home_lib.domain.entity.Comment;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 import java.util.Scanner;
 

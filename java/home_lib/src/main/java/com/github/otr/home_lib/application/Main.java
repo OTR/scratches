@@ -1,6 +1,6 @@
-package com.github.otr.home_lib;
+package com.github.otr.home_lib.application;
 
-import com.github.otr.home_lib.presentation.ConsoleInterface;
+import com.github.otr.home_lib.framework.presentation.ConsoleInterface;
 
 /**
  *

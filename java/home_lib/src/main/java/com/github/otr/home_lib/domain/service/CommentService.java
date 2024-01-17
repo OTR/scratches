@@ -1,4 +1,4 @@
-package com.github.otr.home_lib.data;
+package com.github.otr.home_lib.domain.service;
 
 import com.github.otr.home_lib.domain.entity.Comment;
 

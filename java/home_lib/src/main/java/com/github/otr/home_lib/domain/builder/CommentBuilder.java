@@ -1,4 +1,4 @@
-package com.github.otr.home_lib.data.builder;
+package com.github.otr.home_lib.domain.builder;
 
 import com.github.otr.home_lib.domain.entity.Comment;
 

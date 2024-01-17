@@ -1,4 +1,4 @@
-package com.github.otr.home_lib.data;
+package com.github.otr.home_lib.framework.persistence;
 
 import com.github.otr.home_lib.domain.entity.Comment;
 import com.github.otr.home_lib.domain.repository.CommentRepository;
@@ -9,11 +9,11 @@ import java.util.List;
 /**
  *
  */
-public class InMemoryCommentRepository implements CommentRepository {
+public class InMemoryCommentRepositoryImpl implements CommentRepository {
 
     private List<Comment> dataSource;
 
-    public InMemoryCommentRepository() {
+    public InMemoryCommentRepositoryImpl() {
         this.dataSource = new ArrayList<Comment>();
     }
 

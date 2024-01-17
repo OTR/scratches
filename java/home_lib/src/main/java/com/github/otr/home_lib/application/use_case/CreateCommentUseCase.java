@@ -1,4 +1,4 @@
-package com.github.otr.home_lib.domain.use_case;
+package com.github.otr.home_lib.application.use_case;
 
 import com.github.otr.home_lib.domain.entity.Comment;
 import com.github.otr.home_lib.domain.repository.CommentRepository;
