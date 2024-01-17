@@ -47,6 +47,7 @@ public class ConsoleInterface {
         }
 
         scanner.close();
+        System.exit(0);
     }
 
     private String getIntroBlock() {
@@ -69,7 +70,7 @@ public class ConsoleInterface {
     }
 
     private void handleExitCommand() {
-        // TODO
+        // TODO: Implement me
     }
 
     private String getCommentsBlock() {

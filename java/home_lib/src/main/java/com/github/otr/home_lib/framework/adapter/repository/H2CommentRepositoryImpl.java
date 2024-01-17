@@ -12,8 +12,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import java.sql.Statement;
 import java.sql.Timestamp;
 
 import java.time.LocalDateTime;
@@ -24,37 +22,33 @@ import java.util.List;
 /**
  *
  */
-@Deprecated(since = "Derby sucks")
-public class ApacheDerbyCommentRepositoryImpl implements CommentRepository {
+public class H2CommentRepositoryImpl implements CommentRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(
-            ApacheDerbyCommentRepositoryImpl.class
+            H2CommentRepositoryImpl.class
     );
-    private static final String DEFAULT_DB_URL = "jdbc:derby:.app_data/comments.db;create=true";
+    private static final String DEFAULT_DB_URL = "jdbc:h2:file:./.app_data/comments.db";
     private static final String INSERT_STATEMENT = "INSERT INTO comments (created, text) VALUES (?, ?)";
-    private static final String SELECT_LAST_10_STATEMENT = "SELECT * FROM comments ORDER BY id DESC FETCH FIRST 10 ROWS ONLY";
+    private static final String SELECT_LAST_10_STATEMENT = "SELECT * FROM comments ORDER BY id DESC LIMIT 10";
     private static final String SELECT_ALL_STATEMENT = "SELECT * FROM comments";
-    public static final String SELECT_TABLE_WITH_NAME_COMMENTS = "SELECT COUNT(*) FROM SYS.SYSTABLES WHERE TABLENAME = 'COMMENTS'";
-
-    private static final String CREATE_TABLE_STATEMENT = ("CREATE TABLE comments (\n" +
-                                                          "    id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), \n" +
-                                                          "    created TIMESTAMP NOT NULL, \n" +
-                                                          "    text VARCHAR(255), \n" +
-                                                          "    PRIMARY KEY (id)\n" +
-                                                          ")");
+    private static final String CREATE_TABLE_STATEMENT = ("""
+            CREATE TABLE IF NOT EXISTS comments (
+                id INTEGER AUTO_INCREMENT PRIMARY KEY,\s
+                created TIMESTAMP NOT NULL,
+                text VARCHAR(255)
+            )""");
     private static final int FIRST_PARAM = 1;
     private static final int SECOND_PARAM = 2;
     private static final int EXACTLY_ONE = 1;
-    private static final int FIRST_COLUMN = 1;
 
     private final String dbUrl;
 
-    public ApacheDerbyCommentRepositoryImpl() {
+    public H2CommentRepositoryImpl() {
         this.dbUrl = DEFAULT_DB_URL;
         createSchemaIfNeeded();
     }
 
-    public ApacheDerbyCommentRepositoryImpl(String dbUrl) {
+    public H2CommentRepositoryImpl(String dbUrl) {
         this.dbUrl = dbUrl == null ? DEFAULT_DB_URL : dbUrl;
         createSchemaIfNeeded();
     }
@@ -62,17 +56,11 @@ public class ApacheDerbyCommentRepositoryImpl implements CommentRepository {
     private void createSchemaIfNeeded() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(dbUrl);
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(SELECT_TABLE_WITH_NAME_COMMENTS);
-            rs.next();
-            int tablesCount = rs.getInt(FIRST_COLUMN);
-            if (tablesCount == 0) {
-                PreparedStatement createStatement = conn.prepareStatement(
-                        CREATE_TABLE_STATEMENT
-                );
-                createStatement.execute();
-            }
+        conn = DriverManager.getConnection(dbUrl);
+        PreparedStatement createStatement = conn.prepareStatement(
+                CREATE_TABLE_STATEMENT
+        );
+        createStatement.execute();
         } catch (SQLException e) {
             throw new RepositoryException(
                     "Failed to create database schema", e

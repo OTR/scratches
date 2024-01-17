@@ -4,3 +4,6 @@ target/
 
 # Application data
 .app_data/*
+
+# Derby log
+derby.log
