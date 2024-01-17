@@ -1,11 +1,12 @@
 package com.github.otr.home_lib.framework.di;
 
+import com.github.otr.home_lib.application.validation.CommentValidator;
 import com.github.otr.home_lib.domain.service.CommentService;
 import com.github.otr.home_lib.domain.repository.CommentRepository;
 
 import com.github.otr.home_lib.framework.adapter.repository.ApacheDerbyCommentRepositoryImpl;
 import com.github.otr.home_lib.framework.adapter.repository.H2CommentRepositoryImpl;
-import com.github.otr.home_lib.framework.adapter.service.CommentServiceImpl;
+import com.github.otr.home_lib.application.service.CommentServiceImpl;
 import com.github.otr.home_lib.framework.persistence.InMemoryListCommentRepositoryImpl;
 
 /**
@@ -18,7 +19,8 @@ public class Component {
 
     public static CommentService getCommentService() {
         CommentRepository repository = getCommentRepository();
-        return new CommentServiceImpl(repository);
+        CommentValidator validator = getCommentValidator();
+        return new CommentServiceImpl(repository, validator);
     }
 
     public static CommentRepository getCommentRepository() {
@@ -28,6 +30,10 @@ public class Component {
             default -> new InMemoryListCommentRepositoryImpl();
         };
         return repository;
+    }
+
+    private static CommentValidator getCommentValidator() {
+        return new CommentValidator();
     }
 
 }
