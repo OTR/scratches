@@ -24,7 +24,7 @@ public class ConsoleInterface {
     private final CommentService service;
 
     public ConsoleInterface() {
-        this.service = Component.getCommentService();
+        this.service = Component.getCommentService(); // TODO: Replace with DI
     }
 
     public void run() {

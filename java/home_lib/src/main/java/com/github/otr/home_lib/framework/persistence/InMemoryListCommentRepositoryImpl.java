@@ -9,11 +9,11 @@ import java.util.List;
 /**
  *
  */
-public class InMemoryCommentRepositoryImpl implements CommentRepository {
+public class InMemoryListCommentRepositoryImpl implements CommentRepository {
 
     private List<Comment> dataSource;
 
-    public InMemoryCommentRepositoryImpl() {
+    public InMemoryListCommentRepositoryImpl() {
         this.dataSource = new ArrayList<Comment>();
     }
 
