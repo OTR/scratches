@@ -26,14 +26,13 @@ public class Main {
 
         CommandLineParser parser = new DefaultParser();
 
-//        try {
-//            CommandLine cmd = parser.parse(OPTIONS, args);
-//            parseOptions(cmd);
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            CommandLine cmd = parser.parse(OPTIONS, args);
+            parseOptions(cmd);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
-        System.out.println("Hello World!");
     }
 
     private static Options configureOptions() {
