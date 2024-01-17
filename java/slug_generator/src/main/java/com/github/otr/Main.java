@@ -1,5 +1,6 @@
 package com.github.otr;
 
+import com.github.otr.feature.normalization.Normalizer;
 import com.github.otr.feature.options.Argument;
 
 import org.apache.commons.cli.CommandLine;
@@ -25,12 +26,12 @@ public class Main {
 
         CommandLineParser parser = new DefaultParser();
 
-        try {
-            CommandLine cmd = parser.parse(OPTIONS, args);
-            parseOptions(cmd);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            CommandLine cmd = parser.parse(OPTIONS, args);
+//            parseOptions(cmd);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
 
         System.out.println("Hello World!");
     }
@@ -46,6 +47,12 @@ public class Main {
         if (cmd.hasOption(Argument.HELP.getOpt())) {
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp("slug_generator", OPTIONS);
+        // When no special option has applied
+        // Then trigger this `default` branch
+        } else if (cmd.getArgs().length > 0) {
+            String argsTogether = String.join(" ", cmd.getArgList());
+            String result = Normalizer.normalize(argsTogether);
+            System.out.println(result);
         }
     }
 
