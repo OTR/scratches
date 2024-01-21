@@ -1,5 +1,6 @@
 package com.github.otr.home_lib.upload_management.framework.adapter.output.postres;
 
+import com.github.otr.home_lib.upload_management.application.port.out.BinaryFileOutputPort;
 import com.github.otr.home_lib.upload_management.domain.entity.BinaryFile;
 
 import com.github.otr.home_lib.upload_management.framework.adapter.output.postres.data.BinaryFileDbo;
@@ -12,7 +13,7 @@ import jakarta.persistence.PersistenceContext;
 /**
  *
  */
-public class BinaryFilePostgresAdapter implements BinaryFilePostgresOutputPort {
+public class BinaryFilePostgresAdapter implements BinaryFileOutputPort {
 
     private static BinaryFilePostgresAdapter instance;
 
@@ -24,13 +25,13 @@ public class BinaryFilePostgresAdapter implements BinaryFilePostgresOutputPort {
     }
 
     @Override
-    public BinaryFile fetchBinaryFileById(String uuId) {
+    public BinaryFile retrieveBinaryFileById(String uuId) {
         var binaryFileDbo = em.getReference(BinaryFileDbo.class, uuId);
         return BinaryFileMapper.toDomain(binaryFileDbo);
     }
 
     @Override
-    public boolean persistBinaryFile(BinaryFile binaryFile) {
+    public boolean storeBinaryFile(BinaryFile binaryFile) {
         var binaryFileDbo = BinaryFileMapper.toDbo(binaryFile);
         em.persist(binaryFileDbo);
         return true;
