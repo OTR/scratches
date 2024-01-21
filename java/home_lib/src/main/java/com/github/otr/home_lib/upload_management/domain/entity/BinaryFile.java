@@ -34,6 +34,20 @@ public class BinaryFile {
         this.fileContent = fileContent;
     }
 
+    private BinaryFile(String id, String filename, byte[] fileContent) {
+        this.id = id;
+        this.filename = filename;
+        this.fileContent = fileContent;
+    }
+
+    public static BinaryFile fromDbo(
+            String id,
+            String filename,
+            byte[] fileContent
+    ) {
+        return new BinaryFile(id, filename, fileContent);
+    }
+
     public String getId() {
         return id;
     }

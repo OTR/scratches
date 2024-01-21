@@ -33,7 +33,7 @@ public class BinaryFileDbo implements Serializable {
             updatable = false
     )
     @Convert("uuidConverter")
-    private UUID binaryFileId;
+    private UUID uuId;
 
     @Column(
             name="filename",
