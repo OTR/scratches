@@ -1,4 +1,4 @@
-package com.github.otr.home_lib.domain.entity;
+package com.github.otr.home_lib.comment.domain.entity;
 
 import java.time.LocalDateTime;
 

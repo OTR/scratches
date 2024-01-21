@@ -1,7 +1,7 @@
-package com.github.otr.home_lib.application.validation;
+package com.github.otr.home_lib.comment.application.validation;
 
-import com.github.otr.home_lib.domain.builder.CommentBuilder;
-import com.github.otr.home_lib.domain.entity.Comment;
+import com.github.otr.home_lib.comment.domain.builder.CommentBuilder;
+import com.github.otr.home_lib.comment.domain.entity.Comment;
 
 /**
  *

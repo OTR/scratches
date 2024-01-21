@@ -1,6 +1,6 @@
-package com.github.otr.home_lib.domain.builder;
+package com.github.otr.home_lib.comment.domain.builder;
 
-import com.github.otr.home_lib.domain.entity.Comment;
+import com.github.otr.home_lib.comment.domain.entity.Comment;
 
 import java.time.LocalDateTime;
 /**

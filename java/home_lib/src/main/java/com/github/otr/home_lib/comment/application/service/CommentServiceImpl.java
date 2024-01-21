@@ -1,10 +1,9 @@
-package com.github.otr.home_lib.application.service;
+package com.github.otr.home_lib.comment.application.service;
 
-import com.github.otr.home_lib.application.validation.CommentValidator;
-import com.github.otr.home_lib.domain.entity.Comment;
-import com.github.otr.home_lib.domain.repository.CommentRepository;
-import com.github.otr.home_lib.domain.service.CommentService;
-import com.github.otr.home_lib.framework.di.Component;
+import com.github.otr.home_lib.comment.application.validation.CommentValidator;
+import com.github.otr.home_lib.comment.domain.entity.Comment;
+import com.github.otr.home_lib.comment.domain.repository.CommentRepository;
+import com.github.otr.home_lib.comment.domain.service.CommentService;
 
 import java.util.List;
 

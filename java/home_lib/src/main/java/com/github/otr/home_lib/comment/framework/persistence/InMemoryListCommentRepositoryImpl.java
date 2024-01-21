@@ -1,7 +1,7 @@
-package com.github.otr.home_lib.framework.persistence;
+package com.github.otr.home_lib.comment.framework.persistence;
 
-import com.github.otr.home_lib.domain.entity.Comment;
-import com.github.otr.home_lib.domain.repository.CommentRepository;
+import com.github.otr.home_lib.comment.domain.entity.Comment;
+import com.github.otr.home_lib.comment.domain.repository.CommentRepository;
 
 import java.util.ArrayList;
 import java.util.List;

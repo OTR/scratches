@@ -1,6 +1,6 @@
-package com.github.otr.home_lib.domain.service;
+package com.github.otr.home_lib.comment.domain.service;
 
-import com.github.otr.home_lib.domain.entity.Comment;
+import com.github.otr.home_lib.comment.domain.entity.Comment;
 
 import java.util.List;
 

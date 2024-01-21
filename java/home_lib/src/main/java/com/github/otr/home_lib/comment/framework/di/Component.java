@@ -1,13 +1,13 @@
-package com.github.otr.home_lib.framework.di;
+package com.github.otr.home_lib.comment.framework.di;
 
-import com.github.otr.home_lib.application.validation.CommentValidator;
-import com.github.otr.home_lib.domain.service.CommentService;
-import com.github.otr.home_lib.domain.repository.CommentRepository;
+import com.github.otr.home_lib.comment.application.validation.CommentValidator;
+import com.github.otr.home_lib.comment.domain.service.CommentService;
+import com.github.otr.home_lib.comment.domain.repository.CommentRepository;
 
-import com.github.otr.home_lib.framework.adapter.repository.ApacheDerbyCommentRepositoryImpl;
-import com.github.otr.home_lib.framework.adapter.repository.H2CommentRepositoryImpl;
-import com.github.otr.home_lib.application.service.CommentServiceImpl;
-import com.github.otr.home_lib.framework.persistence.InMemoryListCommentRepositoryImpl;
+import com.github.otr.home_lib.comment.framework.adapter.repository.ApacheDerbyCommentRepositoryImpl;
+import com.github.otr.home_lib.comment.framework.adapter.repository.H2CommentRepositoryImpl;
+import com.github.otr.home_lib.comment.application.service.CommentServiceImpl;
+import com.github.otr.home_lib.comment.framework.persistence.InMemoryListCommentRepositoryImpl;
 
 /**
  *

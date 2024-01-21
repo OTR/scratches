@@ -1,7 +1,7 @@
-package com.github.otr.home_lib.application.use_case;
+package com.github.otr.home_lib.comment.application.use_case;
 
-import com.github.otr.home_lib.domain.entity.Comment;
-import com.github.otr.home_lib.domain.repository.CommentRepository;
+import com.github.otr.home_lib.comment.domain.entity.Comment;
+import com.github.otr.home_lib.comment.domain.repository.CommentRepository;
 
 import java.util.List;
 
