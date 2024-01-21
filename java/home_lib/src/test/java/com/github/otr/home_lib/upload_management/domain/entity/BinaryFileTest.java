@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThrows;
 public class BinaryFileTest {
 
     /**
-     *
+     * test #1
      */
     @Test
     public void constructor_setsFilenameAndFileContentCorrectly() {
@@ -26,7 +26,7 @@ public class BinaryFileTest {
     }
 
     /**
-     *
+     * test #2
      */
     @Test
     public void constructor_generatesUUIDBasedOnFileContent() {
@@ -45,7 +45,7 @@ public class BinaryFileTest {
     }
 
     /**
-     *
+     * test #3
      */
     @Test
     public void constructor_throwsExceptionForEmptyFilename() {
@@ -56,7 +56,7 @@ public class BinaryFileTest {
     }
 
     /**
-     *
+     * test #4
      */
     @Test
     public void constructor_throwsExceptionForNullFileContent() {
@@ -67,7 +67,7 @@ public class BinaryFileTest {
     }
 
     /**
-     *
+     * test #5
      */
     @Test
     public void getters_returnExpectedValues() {
