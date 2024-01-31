@@ -69,7 +69,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.otr.Main</mainClass>
+                            <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -87,7 +87,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.github.otr.Main</mainClass>
+                            <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -26,31 +26,31 @@ Change `<maven.comiler.source>1.7</...>` to appropriate Java version, e.g. `17` 
 
 <project>
 
-  <!--...-->
+    <!--...-->
 
-  <build>
-    <pluginManagement>
-      <plugins>
-          
-        <!--...-->
+    <build>
+        <pluginManagement>
+            <plugins>
 
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <mainClass>com.github.otr.Main</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
+                <!--...-->
 
-      <!--...-->
-          
-      </plugins>
-    </pluginManagement>
-  </build>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+                <!--...-->
+
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
 ```
 
@@ -79,7 +79,7 @@ Change `<maven.comiler.source>1.7</...>` to appropriate Java version, e.g. `17` 
   * Run the `mvn clean compile` command to clean the build directory and compile your Java source code (there are actually two commands in one)
     This command will compile the project's code, creating the necessary .class files in the target directory
   * Run the project: To run the project as a standalone application, use the following command: `mvn exec:java`
-    This Maven goal directly runs a specified class from your project: `mvn exec:java -Dexec.mainClass="com.github.otr.Main"`
+    This Maven goal directly runs a specified class from your project: `mvn exec:java -Dexec.mainClass="com.github.otr.slug.Main"`
   * Creating a JAR file. Package your code into a JAR file using mvn package: `mvn package`
     Then Execute the JAR using the java -jar command: `java -jar target/slug_generator-0.0.1.jar`
   * Additional goals like `mvn test` will execute unit tests.
@@ -123,7 +123,7 @@ This command uses the find utility to recursively locate all the Java files with
 If you want to specify a main class or other metadata for the JAR, create a manifest file in `target` directory named `MANIFEST.MF` with contents:
 
 ```
-Main-Class: com.github.otr.Main
+Main-Class: com.github.otr.slug.Main
 ```
 
 ### Create the JAR File:

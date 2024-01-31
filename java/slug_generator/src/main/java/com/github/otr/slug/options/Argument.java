@@ -1,4 +1,4 @@
-package com.github.otr.feature.options;
+package com.github.otr.slug.options;
 
 import org.apache.commons.cli.Option;
 

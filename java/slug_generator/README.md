@@ -8,7 +8,7 @@ To compile java sources and run
 
 ```bash
 mvn clean compile
-mvn exec:java -Dexec.mainClass=com.github.otr.Main
+mvn exec:java -Dexec.mainClass=com.github.otr.slug.Main
 ```
 
 To build a `fat jar`

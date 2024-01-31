@@ -10,7 +10,7 @@
 
     <groupId>com.github.otr</groupId>
     <artifactId>slug_generator</artifactId>
-        <packaging>war</packaging>
+    <packaging>war</packaging>
     <version>0.0.1</version>
 
     <name>slug_generator</name>
@@ -96,7 +96,7 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>com.github.otr.Main</mainClass>
+                                <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
                             </manifest>
                         </archive>
                         <!--                        <classifier>best-version</classifier>-->
@@ -159,7 +159,7 @@
                                 <transformers>
                                     <transformer
                                             implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                        <mainClass>com.github.otr.Main</mainClass>
+                                        <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
                                     </transformer>
                                 </transformers>
                             </configuration>
@@ -204,7 +204,7 @@
                             <configuration>
                                 <archive>
                                     <manifest>
-                                        <mainClass>com.github.otr.Main</mainClass>
+                                        <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
                                     </manifest>
                                 </archive>
                                 <descriptorRefs>

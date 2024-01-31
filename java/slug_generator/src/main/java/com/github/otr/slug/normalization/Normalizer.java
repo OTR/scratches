@@ -1,4 +1,4 @@
-package com.github.otr.feature.normalization;
+package com.github.otr.slug.normalization;
 
 /*
 

@@ -1,7 +1,7 @@
-package com.github.otr;
+package com.github.otr.slug;
 
-import com.github.otr.feature.normalization.Normalizer;
-import com.github.otr.feature.options.Argument;
+import com.github.otr.slug.normalization.Normalizer;
+import com.github.otr.slug.options.Argument;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;

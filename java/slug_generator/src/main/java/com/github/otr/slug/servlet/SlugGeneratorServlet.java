@@ -1,4 +1,4 @@
-package com.github.otr.feature.servlet;
+package com.github.otr.slug.servlet;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

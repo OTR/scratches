@@ -1,5 +1,6 @@
-package com.github.otr.feature.normalization;
+package com.github.otr.normalization;
 
+import com.github.otr.slug.normalization.Normalizer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
