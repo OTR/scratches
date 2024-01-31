@@ -1,18 +1,31 @@
 package com.github.otr.slug.domain.entity;
 
+import com.github.otr.slug.domain.policy.FilterStringPolicy;
+
 /**
  *
  */
 public class Slug {
-    private String value;
+    private final String value;
+    private final FilterStringPolicy[] policies = {
+            String::toLowerCase,
+            String::trim,
+    };
 
-    public Slug(String value) {
-
+    private Slug(String value) {
         this.value = value;
     }
 
+    public Slug valueOf(String unparsed) {
+        String output = unparsed;
+        for (FilterStringPolicy policy : policies) {
+            output = policy.filter(output);
+        }
+        return new Slug(output);
+    }
+
     public String getValue() {
-        return value;
+        return this.value;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.github.otr.slug.domain.spec;
+package com.github.otr.slug.domain.spec.shared;
 
 /**
  *
