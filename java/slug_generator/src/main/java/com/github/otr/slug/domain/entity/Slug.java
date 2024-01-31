@@ -7,7 +7,7 @@ import com.github.otr.slug.domain.policy.FilterStringPolicy;
  */
 public class Slug {
     private final String value;
-    private final FilterStringPolicy[] policies = {
+    private static final FilterStringPolicy[] policies = {
             String::toLowerCase,
             String::trim,
     };
@@ -16,7 +16,7 @@ public class Slug {
         this.value = value;
     }
 
-    public Slug valueOf(String unparsed) {
+    public static Slug valueOf(String unparsed) {
         String output = unparsed;
         for (FilterStringPolicy policy : policies) {
             output = policy.filter(output);

@@ -1,6 +1,5 @@
 package com.github.otr.slug;
 
-import com.github.otr.slug.normalization.Normalizer;
 import com.github.otr.slug.options.Argument;
 
 import org.apache.commons.cli.CommandLine;
@@ -23,7 +22,6 @@ public class Main {
     public static final Options OPTIONS = configureOptions();
 
     public static void main(String[] args) {
-
         CommandLineParser parser = new DefaultParser();
 
         try {
@@ -50,8 +48,9 @@ public class Main {
         // Then trigger this `default` branch
         } else if (cmd.getArgs().length > 0) {
             String argsTogether = String.join(" ", cmd.getArgList());
-            String result = Normalizer.normalize(argsTogether);
-            System.out.println(result);
+//            String result = Normalizer.normalize(argsTogether);
+            App app = App.getCliApp();
+            app.run();
         }
     }
 
