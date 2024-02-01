@@ -1,8 +1,11 @@
 package design.hexagonal.architecture.domain.entity;
 
+import design.hexagonal.architecture.domain.exception.NotImplementedYet;
+import design.hexagonal.architecture.domain.vo.Network;
 import design.hexagonal.architecture.domain.vo.RouterId;
 import design.hexagonal.architecture.domain.vo.RouterType;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class Router {
@@ -37,6 +40,10 @@ public class Router {
                 "routerType=" + routerType +
                 ", routerId=" + routerId +
                 "}";
+    }
+
+    public List<Network> retrieveNetworks() {
+        throw new NotImplementedYet();
     }
 
 }
