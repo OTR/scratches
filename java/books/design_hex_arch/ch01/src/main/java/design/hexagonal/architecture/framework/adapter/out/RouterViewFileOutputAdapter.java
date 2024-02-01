@@ -16,9 +16,7 @@ import java.io.InputStreamReader;
 
 public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
 
-    public static RouterViewOutputPort getInstance() {
-        throw new NotImplementedYet();
-    }
+    private static RouterViewFileOutputAdapter instance;
 
     @Override
     public List<Router> fetchRouters() {
@@ -33,17 +31,17 @@ public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
                 new InputStreamReader(
                     Objects.requireNonNull(
                         RouterViewFileOutputAdapter
-                                .class
-                                .getClassLoader()
-                                .getResourceAsStream("routers")
+                            .class
+                            .getClassLoader()
+                            .getResourceAsStream("routers.txt")
                     )
                 )
             ).lines()
         ) {
             stream.forEach(line -> {
                 String[] routerEntry = line.split(";");
-                var id = routerEntry[0];
-                var type = routerEntry[1];
+                String id = routerEntry[0];
+                String type = routerEntry[1];
                 Router router = new Router(
                     RouterType.valueOf(type), RouterId.of(id)
                 );
@@ -54,6 +52,15 @@ public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
         }
 
         return routers;
+    }
+
+    private RouterViewFileOutputAdapter() {}
+
+    public static RouterViewOutputPort getInstance() {
+        if (instance == null) {
+            instance = new RouterViewFileOutputAdapter();
+        }
+        return instance;
     }
 
 }
