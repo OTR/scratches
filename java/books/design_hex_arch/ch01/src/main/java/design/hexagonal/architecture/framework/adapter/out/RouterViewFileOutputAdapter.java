@@ -1,8 +1,24 @@
 package design.hexagonal.architecture.framework.adapter.out;
 
 import design.hexagonal.architecture.application.port.out.RouterViewOutputPort;
+import design.hexagonal.architecture.domain.entity.Router;
+import design.hexagonal.architecture.domain.exception.NotImplementedYet;
+import design.hexagonal.architecture.domain.vo.RouterId;
+import design.hexagonal.architecture.domain.vo.RouterType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
+
+    public static RouterViewOutputPort getInstance() {
+        throw new NotImplementedYet();
+    }
 
     @Override
     public List<Router> fetchRouters() {
@@ -19,8 +35,7 @@ public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
                         RouterViewFileOutputAdapter
                                 .class
                                 .getClassLoader()
-                                .getResourceAsStream
-                                .get("routers")
+                                .getResourceAsStream("routers")
                     )
                 )
             ).lines()

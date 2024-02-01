@@ -1,6 +1,12 @@
 package design.hexagonal.architecture.framework.adapter.in;
 
 import design.hexagonal.architecture.application.use_case.RouterViewUseCase;
+import design.hexagonal.architecture.application.port.in.RouterViewInputPort;
+import design.hexagonal.architecture.domain.vo.RelatedRoutersCommand;
+import design.hexagonal.architecture.domain.entity.Router;
+import design.hexagonal.architecture.framework.adapter.out.RouterViewFileOutputAdapter;
+
+import java.util.List;
 
 public class RouterViewCliInputAdapter {
 
