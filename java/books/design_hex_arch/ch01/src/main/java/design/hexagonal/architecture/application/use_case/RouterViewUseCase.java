@@ -9,6 +9,4 @@ public interface RouterViewUseCase {
 
     List<Router> getRouters(Predicate<Router> filter);
 
-    List<Router> getRelatedRouters(RelatedRoutersCommand relatedRoutersCommand);
-
 }
