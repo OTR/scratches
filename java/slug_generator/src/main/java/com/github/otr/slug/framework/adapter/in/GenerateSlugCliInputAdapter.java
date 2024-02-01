@@ -3,8 +3,6 @@ package com.github.otr.slug.framework.adapter.in;
 import com.github.otr.slug.application.use_case.GenerateSlugUseCase;
 import com.github.otr.slug.domain.entity.Slug;
 
-import java.util.Scanner;
-
 /**
  *
  */

@@ -1,6 +1,7 @@
 package com.github.otr.slug.domain.entity;
 
 import com.github.otr.slug.domain.policy.FilterStringPolicy;
+import com.github.otr.slug.domain.policy.RemainYearPolicy;
 
 /**
  *
@@ -11,6 +12,7 @@ public class Slug {
     private static final FilterStringPolicy[] policies = {
             String::toLowerCase,
             String::trim,
+            new RemainYearPolicy()
     };
 
     private Slug(String value) {
