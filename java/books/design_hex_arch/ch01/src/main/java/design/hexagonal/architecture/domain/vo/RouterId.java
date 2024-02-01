@@ -1,11 +1,22 @@
 package design.hexagonal.architecture.domain.vo;
 
-import design.hexagonal.architecture.domain.exception.NotImplementedYet;
-
 public class RouterId {
 
-    public static RouterId of(String value) {
-        throw new NotImplementedYet();
+    private String id;
+
+    private RouterId(String id) {
+        this.id = id;
+    }
+
+    public static RouterId of(String id) {
+        return new RouterId(id);
+    }
+
+    @Override
+    public String toString() {
+        return "RouterId{" +
+                "id=" + id +
+                "}";
     }
 
 }
