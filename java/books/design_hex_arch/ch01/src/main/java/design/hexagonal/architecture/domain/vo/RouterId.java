@@ -1,15 +1,23 @@
 package design.hexagonal.architecture.domain.vo;
 
+import design.hexagonal.architecture.domain.exception.NotImplementedYet;
+
+import java.util.UUID;
+
 public class RouterId {
 
-    private String id;
+    private final UUID id;
 
-    private RouterId(String id) {
+    private RouterId(UUID id) {
         this.id = id;
     }
 
-    public static RouterId of(String id) {
-        return new RouterId(id);
+    public static RouterId withId(String id) {
+        return new RouterId(UUID.fromString(id));
+    }
+
+    public static RouterId withoutId() {
+        return new RouterId(UUID.randomUUID());
     }
 
     @Override
