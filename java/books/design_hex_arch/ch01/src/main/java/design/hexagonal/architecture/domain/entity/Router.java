@@ -1,10 +1,8 @@
 package design.hexagonal.architecture.domain.entity;
 
-import design.hexagonal.architecture.domain.exception.NotImplementedYet;
 import design.hexagonal.architecture.domain.vo.RouterId;
 import design.hexagonal.architecture.domain.vo.RouterType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -51,19 +49,5 @@ public class Router {
                 ", routerId=" + routerId +
                 "}";
     }
-
-//      DEPRECATED
-//    public static List<Router> checkRouter(
-//            RouterType type, List<Router> routers
-//    ) {
-//        var routersList = new ArrayList<Router>();
-//        routers.forEach(router -> {
-//            if (router.routerType.equals(type)) {
-//                routersList.add(router);
-//            }
-//        });
-//
-//        return routersList;
-//    }
 
 }
