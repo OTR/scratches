@@ -4,7 +4,6 @@ import design.hexagonal.architecture.application.use_case.RouterViewUseCase;
 import design.hexagonal.architecture.application.port.out.RouterViewOutputPort;
 import design.hexagonal.architecture.domain.entity.Router;
 import design.hexagonal.architecture.domain.exception.NotImplementedYet;
-import design.hexagonal.architecture.domain.vo.RelatedRoutersCommand;
 
 import java.util.List;
 import java.util.function.Predicate;
