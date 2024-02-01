@@ -3,9 +3,7 @@ package design.hexagonal.architecture.domain.entity;
 import design.hexagonal.architecture.domain.vo.RouterId;
 import design.hexagonal.architecture.domain.vo.RouterType;
 
-import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Router {
 
@@ -27,15 +25,6 @@ public class Router {
 
     private static Predicate<Router> isEdge() {
         return p -> p.getRouterType() == RouterType.EDGE;
-    }
-
-    public static List<Router> retrieveRouter(
-            List<Router> routers,
-            Predicate<Router> predicate
-    ) {
-        return routers.stream()
-                .filter(predicate)
-                .collect(Collectors.<Router>toList());
     }
 
     private RouterType getRouterType() {
