@@ -1,8 +1,9 @@
 package com.github.otr.slug.framework.adapter.in;
 
-import com.github.otr.slug.application.port.in.GenerateSlugInputPort;
 import com.github.otr.slug.application.use_case.GenerateSlugUseCase;
 import com.github.otr.slug.domain.entity.Slug;
+
+import java.util.Scanner;
 
 /**
  *
@@ -16,5 +17,10 @@ public class GenerateSlugCliInputAdapter extends BaseInputAdapter {
     }
 
 
+    @Override
+    public void invoke(String commandLineArgs) {
+        Slug resultSlug = useCase.invoke(commandLineArgs);
+        System.out.println(resultSlug.getValue());
+    }
 
 }

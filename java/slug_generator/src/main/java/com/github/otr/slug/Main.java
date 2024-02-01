@@ -47,10 +47,9 @@ public class Main {
         // When no special option has applied
         // Then trigger this `default` branch
         } else if (cmd.getArgs().length > 0) {
-            String argsTogether = String.join(" ", cmd.getArgList());
-//            String result = Normalizer.normalize(argsTogether);
+            String commandLineArgs = String.join(" ", cmd.getArgList());
             App app = App.getCliApp();
-            app.run();
+            app.runWithArgs(commandLineArgs);
         }
     }
 

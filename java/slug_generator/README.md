@@ -11,6 +11,15 @@ mvn clean compile
 mvn exec:java -Dexec.mainClass=com.github.otr.slug.Main
 ```
 
+## Run CLI mode with args
+
+```bash
+mvn clean compile
+mvn exec:java -Dexec.mainClass=com.github.otr.slug.Main "SDSDqw12rwfefe&$%#&^*$dsf dsf sdfew"
+```
+
+## Build the fat JAR
+
 To build a `fat jar`
 
 ```shell

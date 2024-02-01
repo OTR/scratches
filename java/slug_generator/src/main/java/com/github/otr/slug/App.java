@@ -21,9 +21,8 @@ public class App {
         return app;
     }
 
-
-    void run() {
-        this.inputAdapter.invoke();
+    public void runWithArgs(String commandLineArgs) {
+        this.inputAdapter.invoke(commandLineArgs);
     }
 
 }
