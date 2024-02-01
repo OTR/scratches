@@ -16,11 +16,14 @@ public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
             Stream<String> stream = new BufferedReader(
                 new InputStreamReader(
                     Objects.requireNonNull(
-                        RouterViewFileOutputAdapter.class.getClassLoader()
-                            .("routers").lines()
+                        RouterViewFileOutputAdapter
+                                .class
+                                .getClassLoader()
+                                .getResourceAsStream
+                                .get("routers")
                     )
                 )
-            )
+            ).lines()
         ) {
             stream.forEach(line -> {
                 String[] routerEntry = line.split(";");

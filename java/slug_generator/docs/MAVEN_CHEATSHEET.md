@@ -40,7 +40,7 @@ Change `<maven.comiler.source>1.7</...>` to appropriate Java version, e.g. `17` 
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                                <mainClass>com.github.otr.slug.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
@@ -183,4 +183,15 @@ In your project's `pom.xml`, add the Tomcat plugin:
         <path>/get-slug</path>
     </configuration>
 </plugin>
+```
+
+## Create a `build.sh` Shell script
+
+Place in within your projects root directory
+
+```shell
+mkdir -p target
+find src -name "*.java" -print | xargs javac -d target
+MAIN_CLASS=com.github.otr.slug.Main
+jar cfe ./target/slug_generator.jar $MAIN_CLASS -C target . -C src/main/resources/ .
 ```
