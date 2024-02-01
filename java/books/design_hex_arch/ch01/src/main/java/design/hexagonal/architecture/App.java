@@ -4,9 +4,7 @@ import design.hexagonal.architecture.domain.entity.Router;
 import design.hexagonal.architecture.framework.adapter.in.RouterViewCliInputAdapter;
 
 import java.util.List;
-import java.util.Collections;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class App {
 
