@@ -12,8 +12,6 @@ import java.util.Map;
 
 public class RouterNetworkRestInputAdapter extends RouterNetworkInputAdapter {
 
-    private final RouterNetworkUseCase routerNetworkUseCase;
-
     public RouterNetworkRestInputAdapter(RouterNetworkUseCase useCase) {
         this.routerNetworkUseCase = useCase;
     }
@@ -29,7 +27,7 @@ public class RouterNetworkRestInputAdapter extends RouterNetworkInputAdapter {
                 if ("GET".equals(exchange.getRequestMethod())) {
                     var query = exchange.getRequestURI().getRawQuery();
                     httpParams(query, params);
-                    router = this.addNetworkToRouter(params);
+                    this.router = this.addNetworkToRouter(params);
                     ObjectMapper mapper = new ObjectMapper();
                     Json routerJson = mapper.writeValueAsString(
                         RouterJsonFileMapper.toJson(router)
@@ -52,7 +50,8 @@ public class RouterNetworkRestInputAdapter extends RouterNetworkInputAdapter {
             httpserver.setExecutor(null);
             httpserver.start();
         }
-        return router;
+
+        return this.router;
     }
 
 }
