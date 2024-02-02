@@ -8,12 +8,13 @@ import design.hexagonal.architecture.domain.vo.EventId;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexEventParser implements EventParser {
+public final class RegexEventParser implements EventParser {
 
     @Override
     public Event parseEvent(String event) {

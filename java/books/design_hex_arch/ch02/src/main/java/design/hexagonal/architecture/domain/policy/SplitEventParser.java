@@ -11,7 +11,7 @@ import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
 
-public class SplitEventParser implements EventParser {
+public final class SplitEventParser implements EventParser {
 
     @Override
     public Event parseEvent(String event) {
