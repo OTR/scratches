@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import org.eclipse.persistence.annotations.Convert;
 import org.eclipse.persistence.annotations.Converter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -24,7 +25,7 @@ import java.util.UUID;
 @Table(name = "networks")
 @MappedSuperclass
 @Converter(name = "uuidConverter", converterClass = UUIDTypeConverter.class)
-public class NetworkData {
+public class NetworkData implements Serializable {
 
     @Id
     @Column(name = "network_id")
@@ -47,5 +48,17 @@ public class NetworkData {
     })
     private IPData ip;
 
+    @Column(name = "network_name")
+    String name;
+
+    @Column(name = "network_cidr")
+    Integer cidr;
+
+    public NetworkData(UUID switchId, IPData ip, String name, Integer cidr) {
+        this.switchId = switchId;
+        this.ip = ip;
+        this.name = name;
+        this.cidr = cidr;
+    }
 
 }
