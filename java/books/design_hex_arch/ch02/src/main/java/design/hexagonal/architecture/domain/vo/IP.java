@@ -5,7 +5,7 @@ public class IP {
     private final String address;
     private final Protocol protocol;
 
-    public IP(String address, String protocol) {
+    public IP(String address) {
         if (address == null) {
             throw new IllegalArgumentException("Null IP address");
         }
@@ -15,6 +15,14 @@ public class IP {
             this.protocol = Protocol.IPV6;
         }
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "IP{" +
+                "address='" + address + '\'' +
+                ", protocol=" + protocol +
+                '}';
     }
 
 }

@@ -1,7 +1,5 @@
 package design.hexagonal.architecture.domain.vo;
 
-import design.hexagonal.architecture.domain.exception.NotImplementedYet;
-
 import java.util.UUID;
 
 public class RouterId {
@@ -24,7 +22,7 @@ public class RouterId {
     public String toString() {
         return "RouterId{" +
                 "id=" + id +
-                "}";
+                '}';
     }
 
 }

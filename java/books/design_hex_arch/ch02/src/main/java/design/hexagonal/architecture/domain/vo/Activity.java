@@ -10,12 +10,12 @@ public class Activity {
         this.dstHost = dstHost;
     }
 
-    public String getSrcHost() {
-        return srcHost;
-    }
-
-    public String getDstHost() {
-        return dstHost;
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "srcHost='" + srcHost + '\'' +
+                ", dstHost='" + dstHost + '\'' +
+                '}';
     }
 
 }

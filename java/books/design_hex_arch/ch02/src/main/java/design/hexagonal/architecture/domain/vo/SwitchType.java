@@ -1,6 +1,6 @@
 package design.hexagonal.architecture.domain.vo;
 
 public enum SwitchType {
-    CORE,
-    EDGE;
+    LAYER2,
+    LAYER3;
 }

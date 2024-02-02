@@ -2,7 +2,6 @@ package design.hexagonal.architecture.framework.adapter.out;
 
 import design.hexagonal.architecture.application.port.out.RouterViewOutputPort;
 import design.hexagonal.architecture.domain.entity.Router;
-import design.hexagonal.architecture.domain.exception.NotImplementedYet;
 import design.hexagonal.architecture.domain.vo.RouterId;
 import design.hexagonal.architecture.domain.vo.RouterType;
 
