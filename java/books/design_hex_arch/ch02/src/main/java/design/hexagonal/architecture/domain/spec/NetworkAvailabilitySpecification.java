@@ -3,7 +3,8 @@ package design.hexagonal.architecture.domain.spec;
 import design.hexagonal.architecture.domain.entity.Router;
 import design.hexagonal.architecture.domain.vo.IP;
 
-public final class NetworkAvailabilitySpecification extends AbstractSpecification<Router> {
+public final class NetworkAvailabilitySpecification
+    extends AbstractSpecification<Router> {
 
     private final IP address;
     private final String name;

@@ -13,7 +13,7 @@ public abstract sealed class AbstractSpecification<T>
     public abstract boolean isSatisfiedBy(T t);
 
     @Override
-    public Specification<T> and(Specification<T> specification) {
+    public Specification<T> and(final Specification<T> specification) {
         return new AndSpecification<T>(this, specification);
     }
 
