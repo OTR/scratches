@@ -9,6 +9,7 @@ import design.hexagonal.architecture.domain.vo.Protocol;
 import design.hexagonal.architecture.domain.vo.ParsePolicyType;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 public class Event implements Comparable<Event> {
 
@@ -38,8 +39,28 @@ public class Event implements Comparable<Event> {
     }
 
     @Override
-    public int compareTo(Event o) {
-        throw new NotImplementedYet();
+    public int compareTo(Event event) {
+        return this.timestamp.compareTo(event.timestamp);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event event = (Event) obj;
+            return (
+                event.timestamp.equals(this.timestamp)
+                && event.id.equals(this.id)
+                && event.protocol.equals(this.protocol)
+                && event.activity.equals(this.activity)
+            );
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timestamp, id, protocol, activity) + 31;
     }
 
 }
