@@ -57,7 +57,7 @@ public class SwitchData implements Serializable {
     private List<NetworkData> networks;
 
     @Embedded
-    @AttributeOverrides(
+    @AttributeOverrides({
         @AttributeOverride(
             name = "address",
             column = @Column(name = "switch_ip_address")
@@ -66,7 +66,13 @@ public class SwitchData implements Serializable {
             name = "protocol",
             column = @Column(name = "switch_ip_protocol")
         )
-    )
-    private IPData ip;
+    })
+    IPData ip;
+
+    @Column(name = "network_name")
+    String name;
+
+    @Column(name = "network_cidr")
+    Integer cidr;
 
 }
