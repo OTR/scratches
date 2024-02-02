@@ -1,19 +1,18 @@
 package design.hexagonal.architecture.domain.entity;
 
 import design.hexagonal.architecture.domain.exception.NotImplementedYet;
-import design.hexagonal.architecture.domain.vo.IP;
-import design.hexagonal.architecture.domain.vo.Network;
 import design.hexagonal.architecture.domain.vo.RouterId;
 import design.hexagonal.architecture.domain.vo.RouterType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Router {
 
-    private final RouterType routerType;
     private final RouterId routerId;
-    private Switch networkSwitch;
+    private final RouterType routerType;
 
     public Router(RouterType routerType, RouterId routerId) {
         this.routerType = routerType;
@@ -24,27 +23,24 @@ public class Router {
         return routerType.equals(RouterType.CORE) ? isCore() : isEdge();
     }
 
-    public static Predicate<Router> isCore() {
+    private static Predicate<Router> isCore() {
         return p -> p.getRouterType() == RouterType.CORE;
     }
 
-    public static Predicate<Router> isEdge() {
+    private static Predicate<Router> isEdge() {
         return p -> p.getRouterType() == RouterType.EDGE;
     }
 
-    public void addNetworkToSwitch(Network network) {
-        this.networkSwitch = networkSwitch.addNetwork(network, this);
+    public static List<Router> retrieveRouter(
+            List<Router> routers,
+            Predicate<Router> predicate
+    ) {
+        return routers.stream()
+                .filter(predicate)
+                .collect(Collectors.<Router>toList());
     }
 
-    public Network createNetwork(IP address, String name, int cidr) {
-        return new Network(address, name, cidr);
-    }
-
-    public List<Network> retrieveNetworks() {
-        return this.networkSwitch.getNetworks();
-    }
-
-    public RouterType getRouterType() {
+    private RouterType getRouterType() {
         return this.routerType;
     }
 
@@ -55,5 +51,19 @@ public class Router {
                 ", routerId=" + routerId +
                 "}";
     }
+
+//      DEPRECATED
+//    public static List<Router> checkRouter(
+//            RouterType type, List<Router> routers
+//    ) {
+//        var routersList = new ArrayList<Router>();
+//        routers.forEach(router -> {
+//            if (router.routerType.equals(type)) {
+//                routersList.add(router);
+//            }
+//        });
+//
+//        return routersList;
+//    }
 
 }
