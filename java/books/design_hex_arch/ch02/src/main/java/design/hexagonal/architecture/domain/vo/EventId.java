@@ -8,4 +8,7 @@ public class EventId {
         throw new NotImplementedYet();
     }
 
+    public static EventId of(String group) {
+        throw new NotImplementedYet();
+    }
 }
