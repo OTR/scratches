@@ -25,7 +25,7 @@ public final class NetworkAvailabilitySpecification extends AbstractSpecificatio
             .noneMatch(network ->
                 network.address().equals(address) &&
                 network.name().equals(name) &&
-                network.cird() == cidr
+                network.cidr() == cidr
             );
     }
 
