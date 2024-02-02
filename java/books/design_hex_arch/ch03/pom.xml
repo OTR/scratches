@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>design.hexagonal.architecture</groupId>
+    <groupId>hexagonal.architecture</groupId>
     <artifactId>ch03</artifactId>
     <version>0.0.3</version>
 
@@ -23,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>design.hexagonal.architecture.App</mainClass>
+                            <mainClass>hexagonal.architecture.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
