@@ -1,5 +1,7 @@
 package hexagonal.architecture.domain.vo;
 
+import hexagonal.architecture.domain.exception.NotImplementedYet;
+
 public class IP {
 
     private final String address;
@@ -15,6 +17,14 @@ public class IP {
             this.protocol = Protocol.IPV6;
         }
         this.address = address;
+    }
+
+    public static IP fromAddress(String address) {
+        return new IP(address);
+    }
+
+    public String getIPAddress() {
+        return address;
     }
 
     @Override
