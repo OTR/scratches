@@ -1,4 +1,4 @@
-package hexagonal.architecture.framework.adapter.out;
+package hexagonal.architecture.framework.adapter.out.file;
 
 import hexagonal.architecture.application.port.out.RouterViewOutputPort;
 import hexagonal.architecture.domain.entity.Router;

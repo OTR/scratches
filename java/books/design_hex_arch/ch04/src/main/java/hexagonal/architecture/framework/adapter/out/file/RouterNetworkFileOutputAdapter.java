@@ -1,4 +1,4 @@
-package hexagonal.architecture.framework.adapter.out;
+package hexagonal.architecture.framework.adapter.out.file;
 
 import hexagonal.architecture.application.port.out.RouterNetworkOutputPort;
 import hexagonal.architecture.domain.entity.Router;
@@ -22,7 +22,7 @@ public class RouterNetworkFileOutputAdapter implements RouterNetworkOutputPort {
     public Router fetchRouterById(RouterId routerId) {
         Router retrievedRouter = null;
         for (Router router : routers) {
-            if (router.getRouterId().getId().equals(routerId.getId())) {
+            if (router.getRouterId().getUUID().equals(routerId.getUUID())) {
                 retrievedRouter = router;
                 break;
             }

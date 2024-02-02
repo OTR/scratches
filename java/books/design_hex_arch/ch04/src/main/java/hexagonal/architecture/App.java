@@ -10,8 +10,8 @@ import hexagonal.architecture.framework.adapter.in.RouterNetworkCliInputAdapter;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkInputAdapter;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkRestInputAdapter;
 import hexagonal.architecture.framework.adapter.in.RouterViewCliInputAdapter;
-import hexagonal.architecture.framework.adapter.out.RouterNetworkFileOutputAdapter;
-import hexagonal.architecture.framework.adapter.out.RouterNetworkH2OutputAdapter;
+import hexagonal.architecture.framework.adapter.out.file.RouterNetworkFileOutputAdapter;
+import hexagonal.architecture.framework.adapter.out.h2.RouterNetworkH2OutputAdapter;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

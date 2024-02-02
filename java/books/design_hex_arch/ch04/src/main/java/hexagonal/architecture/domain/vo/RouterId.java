@@ -18,9 +18,11 @@ public class RouterId {
         return new RouterId(UUID.randomUUID());
     }
 
-    public UUID getId() {
+    public UUID getUUID() {
         return id;
     }
+
+
 
     @Override
     public String toString() {

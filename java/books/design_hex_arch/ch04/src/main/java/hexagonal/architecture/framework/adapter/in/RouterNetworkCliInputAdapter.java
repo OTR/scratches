@@ -8,7 +8,7 @@ import hexagonal.architecture.application.use_case.RouterNetworkUseCase;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.vo.Network;
 import hexagonal.architecture.domain.vo.RouterId;
-import hexagonal.architecture.framework.adapter.out.RouterNetworkFileOutputAdapter;
+import hexagonal.architecture.framework.adapter.out.file.RouterNetworkFileOutputAdapter;
 
 public class RouterNetworkCliInputAdapter extends RouterNetworkInputAdapter {
 

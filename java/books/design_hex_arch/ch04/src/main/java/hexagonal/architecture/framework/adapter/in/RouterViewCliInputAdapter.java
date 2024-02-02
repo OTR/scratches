@@ -4,7 +4,7 @@ import hexagonal.architecture.application.use_case.RouterViewUseCase;
 import hexagonal.architecture.application.port.in.RouterViewInputPort;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.vo.RouterType;
-import hexagonal.architecture.framework.adapter.out.RouterViewFileOutputAdapter;
+import hexagonal.architecture.framework.adapter.out.file.RouterViewFileOutputAdapter;
 
 import java.util.List;
 
