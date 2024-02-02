@@ -16,7 +16,7 @@ public class NetworkOperation {
             );
         }
 
-        if (isNetworkAvailable(router, address)) {
+        if (isNetworkAvailable(router, address, cidr)) {
             throw new IllegalArgumentException("Address already exist");
         }
 
@@ -24,8 +24,20 @@ public class NetworkOperation {
         router.addNetworkToSwitch(network);
     }
 
-    private boolean isNetworkAvailable(Router router, IP address) {
-        throw new NotImplementedYet();
+    private boolean isNetworkAvailable(Router router, IP address, int cidr) {
+        boolean availability = true;
+
+        for (Network network : router.retrieveNetworks()) {
+            if (
+                network.address().equals(address) &&
+                network.cird() == cidr
+            ) {
+                availability = false;
+                break;
+            }
+        }
+
+        return availability;
     }
 
 }
