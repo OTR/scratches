@@ -18,6 +18,10 @@ public class RouterId {
         return new RouterId(UUID.randomUUID());
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "RouterId{" +

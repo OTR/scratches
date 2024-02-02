@@ -26,23 +26,23 @@ public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
         List<Router> routers = new ArrayList<>();
 
         try(
-                Stream<String> stream = new BufferedReader(
-                        new InputStreamReader(
-                                Objects.requireNonNull(
-                                        RouterViewFileOutputAdapter
-                                                .class
-                                                .getClassLoader()
-                                                .getResourceAsStream("routers.txt")
-                                )
+            Stream<String> stream = new BufferedReader(
+                new InputStreamReader(
+                    Objects.requireNonNull(
+                        RouterViewFileOutputAdapter
+                            .class
+                            .getClassLoader()
+                            .getResourceAsStream("routers.txt")
                         )
-                ).lines()
+                    )
+            ).lines()
         ) {
             stream.forEach(line -> {
                 String[] routerEntry = line.split(";");
                 String id = routerEntry[0];
                 String type = routerEntry[1];
                 Router router = new Router(
-                        RouterType.valueOf(type), RouterId.withId(id)
+                    RouterType.valueOf(type), RouterId.withId(id)
                 );
                 routers.add(router);
             });
