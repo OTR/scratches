@@ -3,6 +3,7 @@ package hexagonal.architecture;
 import com.sun.net.httpserver.HttpServer;
 
 import hexagonal.architecture.application.port.in.RouterNetworkInputPort;
+import hexagonal.architecture.application.port.out.RouterNetworkOutputPort;
 import hexagonal.architecture.application.use_case.RouterNetworkUseCase;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkCliInputAdapter;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class App {
 
-    private RouterNetworkOutputAdapter outputPort;
+    private RouterNetworkOutputPort outputPort;
     private RouterNetworkUseCase useCase;
     private RouterNetworkInputAdapter inputAdapter;
 
@@ -29,13 +30,17 @@ public class App {
             case "rest" -> {
                 this.outputPort = RouterNetworkH2OutputAdapter.getInstance();
                 this.useCase = new RouterNetworkInputPort(this.outputPort);
-                this.inputAdapter = new RouterNetworkRestInputAdapter(usecase);
+                this.inputAdapter = new RouterNetworkRestInputAdapter(
+                        this.useCase
+                );
                 rest();
             }
             default -> {
                 this.outputPort = RouterNetworkFileOutputAdapter.getInstance();
                 this.useCase = new RouterNetworkInputPort(this.outputPort);
-                this.inputAdapter = new RouterNetworkCliInputAdapter(this.useCase);
+                this.inputAdapter = new RouterNetworkCliInputAdapter(
+                        this.useCase
+                );
                 cli();
             }
         }
