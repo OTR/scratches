@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<property
+        name="jakarta.persistence.jdbc.url"
+        value="jdbc:h2:mem:inventory;
+          MODE=MYSQL;
+          DB_CLOSE_DELAY=-1;
+          DB_CLOSE_ON_EXIT=FALSE;
+          IGNORECASE=TRUE;
+          INIT=CREATE SCHEMA IF NOT EXISTS inventory\;
+          RUNSCRIPT FROM 'classpath:inventory.sql'" />
