@@ -1,6 +1,6 @@
-package design.hexagonal.architecture.domain.spec.shared;
+package design.hexagonal.architecture.domain.spec;
 
-public class AndSpecification<T> extends AbstractSpecification<T> {
+public final class AndSpecification<T> extends AbstractSpecification<T> {
 
     private final Specification<T> spec1;
     private final Specification<T> spec2;

@@ -1,8 +1,6 @@
 package design.hexagonal.architecture.domain.spec;
 
-import design.hexagonal.architecture.domain.spec.shared.AbstractSpecification;
-
-public class CIDRSpecification extends AbstractSpecification<Integer> {
+public final class CIDRSpecification extends AbstractSpecification<Integer> {
 
     private static final int MINIMUM_ALLOWED_CIDR = 8;
 
