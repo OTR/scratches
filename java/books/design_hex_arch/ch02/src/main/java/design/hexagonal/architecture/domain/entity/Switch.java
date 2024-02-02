@@ -6,6 +6,7 @@ import design.hexagonal.architecture.domain.vo.SwitchId;
 import design.hexagonal.architecture.domain.vo.SwitchType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Switch {
@@ -27,10 +28,8 @@ public class Switch {
         this.address = address;
     }
 
-    public Switch addNetwork(Network network, Router router) {
-        List<Network> networks = new ArrayList<>(
-            router.retrieveNetworks()
-        );
+    public Switch addNetwork(Network network) {
+        List<Network> networks = new ArrayList<>(Arrays.asList(network));
         networks.add(network);
 
         return new Switch(

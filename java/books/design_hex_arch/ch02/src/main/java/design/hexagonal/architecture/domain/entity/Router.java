@@ -1,6 +1,5 @@
 package design.hexagonal.architecture.domain.entity;
 
-import design.hexagonal.architecture.domain.exception.NotImplementedYet;
 import design.hexagonal.architecture.domain.vo.IP;
 import design.hexagonal.architecture.domain.vo.Network;
 import design.hexagonal.architecture.domain.vo.RouterId;
@@ -33,7 +32,7 @@ public class Router {
     }
 
     public void addNetworkToSwitch(Network network) {
-        this.networkSwitch = networkSwitch.addNetwork(network, this);
+        this.networkSwitch = this.networkSwitch.addNetwork(network);
     }
 
     public Network createNetwork(IP address, String name, int cidr) {
