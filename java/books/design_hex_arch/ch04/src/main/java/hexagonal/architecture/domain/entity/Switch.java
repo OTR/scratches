@@ -11,14 +11,14 @@ import java.util.List;
 
 public class Switch {
 
-    private final SwitchType switchType;
     private final SwitchId switchId;
+    private final SwitchType switchType;
     private final List<Network> networks;
     private final IP address;
 
     public Switch(
-        SwitchType switchType,
         SwitchId switchId,
+        SwitchType switchType,
         List<Network> networks,
         IP address
     ) {
@@ -33,9 +33,8 @@ public class Switch {
         networks.add(network);
 
         return new Switch(
-            this.switchType,
-            this.switchId,
-            networks,
+                this.switchId, this.switchType,
+                networks,
             this.address
         );
     }
