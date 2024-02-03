@@ -5,12 +5,17 @@ import hex.arch.topologyinventory.domain.spec.EmptySwitchSpecification;
 import hex.arch.topologyinventory.domain.spec.SameCountrySpecification;
 import hex.arch.topologyinventory.domain.spec.SameIpSpecification;
 import hex.arch.topologyinventory.domain.spec.Specification;
+import hex.arch.topologyinventory.domain.vo.Id;
+
+import java.util.Map;
 
 public final class CoreRouter extends Router {
 
+    private final Map<Id, Router> routers;
+
     public Router addRouter(Router anyRouter) {
-        Specification<Equipment> sameCountrySpec = new SameCountrySpecification();
-        Specification<Equipment> sameIpSpec = new SameIpSpecification();
+        Specification<Equipment> sameCountrySpec = new SameCountrySpecification(this);
+        Specification<Equipment> sameIpSpec = new SameIpSpecification(this);
 
         sameCountrySpec.check(anyRouter);
         sameIpSpec.check(anyRouter);
