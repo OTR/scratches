@@ -1,5 +1,8 @@
 package hex.arch.topologyinventory.domain.vo;
 
+import lombok.Getter;
+
+@Getter
 public class IP {
 
     private final String ipAddress;
