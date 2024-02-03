@@ -9,8 +9,8 @@ import hex.arch.topologyinventory.domain.spec.Specification;
 public final class CoreRouter extends Router {
 
     public Router addRouter(Router anyRouter) {
-        Specification<Router> sameCountrySpec = new SameCountrySpecification();
-        Specification<Router> sameIpSpec = new SameIpSpecification();
+        Specification<Equipment> sameCountrySpec = new SameCountrySpecification();
+        Specification<Equipment> sameIpSpec = new SameIpSpecification();
 
         sameCountrySpec.check(anyRouter);
         sameIpSpec.check(anyRouter);

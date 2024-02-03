@@ -1,15 +1,16 @@
 package hex.arch.topologyinventory.domain.spec;
 
-import hex.arch.topologyinventory.domain.entity.Router;
+import hex.arch.topologyinventory.domain.entity.Equipment;
 
-public class SameIpSpecification extends AbstractSpecification<Router> {
+public class SameIpSpecification extends AbstractSpecification<Equipment> {
+
     @Override
-    public boolean isSatisfiedBy(Router router) {
+    public boolean isSatisfiedBy(Equipment equipment) {
         return false;
     }
 
     @Override
-    public void check(Router router) {
+    public void check(Equipment equipment) {
 
     }
 }
