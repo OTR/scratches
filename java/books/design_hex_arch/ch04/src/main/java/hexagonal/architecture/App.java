@@ -5,25 +5,29 @@ import com.sun.net.httpserver.HttpServer;
 import hexagonal.architecture.application.port.in.RouterNetworkInputPort;
 import hexagonal.architecture.application.port.out.RouterNetworkOutputPort;
 import hexagonal.architecture.application.use_case.RouterNetworkUseCase;
-import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.framework.adapter.in.stdin.RouterNetworkCliInputAdapter;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkInputAdapter;
 import hexagonal.architecture.framework.adapter.in.rest.RouterNetworkRestInputAdapter;
-import hexagonal.architecture.framework.adapter.in.stdin.RouterViewCliInputAdapter;
 import hexagonal.architecture.framework.adapter.out.file.RouterNetworkFileOutputAdapter;
 import hexagonal.architecture.framework.adapter.out.h2.RouterNetworkH2OutputAdapter;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class App {
 
-    private RouterNetworkOutputPort outputPort;
-    private RouterNetworkUseCase useCase;
     private RouterNetworkInputAdapter inputAdapter;
+    private RouterNetworkUseCase useCase;
+    private RouterNetworkOutputPort outputPort;
+
+    public static void main(String[] args) {
+        String adapter = "cli";
+        if (args.length > 0) {
+            adapter = args[0];
+        }
+        new App().setAdapter(adapter);
+    }
 
     void setAdapter(String adapter) {
         switch (adapter) {
@@ -31,7 +35,7 @@ public class App {
                 this.outputPort = RouterNetworkH2OutputAdapter.getInstance();
                 this.useCase = new RouterNetworkInputPort(this.outputPort);
                 this.inputAdapter = new RouterNetworkRestInputAdapter(
-                        this.useCase
+                    this.useCase
                 );
                 rest();
             }
@@ -39,7 +43,7 @@ public class App {
                 this.outputPort = RouterNetworkFileOutputAdapter.getInstance();
                 this.useCase = new RouterNetworkInputPort(this.outputPort);
                 this.inputAdapter = new RouterNetworkCliInputAdapter(
-                        this.useCase
+                    this.useCase
                 );
                 cli();
             }
@@ -61,17 +65,6 @@ public class App {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        var cli = new RouterViewCliInputAdapter();
-        String type = "CORE";
-        List<Router> routers = cli.obtainRelatedRouters(type);
-        System.out.println(
-                routers.stream()
-                    .map(Router::toString)
-                    .collect(Collectors.joining("\n"))
-        );
     }
 
 }
