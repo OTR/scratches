@@ -17,9 +17,8 @@ class MainTest {
   @Test
   void firstTest() {
     String input = "duke";
-
     String result = cut.format(input);
-
     assertEquals("DUKE", result);
   }
+
 }
