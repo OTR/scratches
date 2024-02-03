@@ -31,7 +31,7 @@ public class IPJson {
         this.address = address;
     }
 
-    private static IPJson fromAddress(String ipAddress) {
+    public static IPJson fromAddress(String ipAddress) {
         return new IPJson(ipAddress);
     }
 

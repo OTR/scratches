@@ -11,8 +11,12 @@ import hexagonal.architecture.domain.vo.SwitchType;
 import hexagonal.architecture.framework.adapter.out.file.json.IPJson;
 import hexagonal.architecture.framework.adapter.out.file.json.NetworkJson;
 import hexagonal.architecture.framework.adapter.out.file.json.RouterJson;
+import hexagonal.architecture.framework.adapter.out.file.json.RouterTypeJson;
+import hexagonal.architecture.framework.adapter.out.file.json.SwitchJson;
+import hexagonal.architecture.framework.adapter.out.file.json.SwitchTypeJson;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class RouterJsonFileMapper {
@@ -31,22 +35,29 @@ public class RouterJsonFileMapper {
     }
 
     public static RouterJson toJson(Router router) {
-        return new RouterJson(
-                routerId,
-                routerType,
-                switchJson
+        UUID routerId = router.getRouterId().getUUID();
+        RouterTypeJson routerTypeJson = RouterTypeJson.valueOf(router.getRouterType().toString());
+        UUID switchId = router.getNetworkSwitch().getSwitchId().getUUID();
+        SwitchTypeJson switchTypeJson = SwitchTypeJson.valueOf(
+            router.getNetworkSwitch().getSwitchType().toString()
         );
+        IPJson ipJson = IPJson.fromAddress(router.getNetworkSwitch().getAddress().getIPAddress());
+        List<NetworkJson> networkJsons = getNetworksFromDomain(router.retrieveNetworks());
+
+        SwitchJson switchJson = new SwitchJson(switchId, ipJson, switchTypeJson, networkJsons);
+
+        return new RouterJson(routerId, routerTypeJson, switchJson);
     }
 
     private static List<Network> getNetworksFromJson(
-        List<NetworkJson> networkJson
+        List<NetworkJson> networkJsons
     ) {
-        return networkJson.stream()
+        return networkJsons.stream()
                 .map(json ->
                     new Network(
                             IP.fromAddress(json.getIp().getAddress()),
                             json.getNetworkName(),
-                            json.getCidr()
+                            Integer.valueOf(json.getCidr())
                     )
                 )
                 .collect(Collectors.toList());
@@ -58,7 +69,9 @@ public class RouterJsonFileMapper {
         return networks.stream()
             .map(network ->
                 new NetworkJson(
-                    IPJson.fromAddress(network.getAddress().getIPAddress())
+                    IPJson.fromAddress(network.address().getIPAddress()),
+                    network.name(),
+                    String.valueOf(network.cidr())
                 )
             )
             .collect(Collectors.toList());
