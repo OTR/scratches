@@ -1,7 +1,7 @@
 package hex.arch.topologyinventory.domain;
 
 import hex.arch.topologyinventory.domain.entity.Switch;
-import hex.arch.topologyinventory.domain.spec.GenericSpecificationException;
+import hex.arch.topologyinventory.domain.exception.GenericSpecificationException;
 import hex.arch.topologyinventory.domain.vo.Location;
 import hex.arch.topologyinventory.domain.vo.Network;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package hex.arch.topologyinventory.domain.spec;
 
 import hex.arch.topologyinventory.domain.entity.Equipment;
+import hex.arch.topologyinventory.domain.exception.GenericSpecificationException;
 
 public final class SameIpSpecification extends AbstractSpecification<Equipment> {
 
