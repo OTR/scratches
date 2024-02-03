@@ -5,13 +5,13 @@ import com.sun.net.httpserver.HttpServer;
 
 import hexagonal.architecture.application.use_case.RouterNetworkUseCase;
 import hexagonal.architecture.domain.entity.Router;
-import hexagonal.architecture.domain.vo.RouterId;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkInputAdapter;
 import hexagonal.architecture.framework.adapter.out.file.RouterJsonFileMapper;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +68,8 @@ public class RouterNetworkRestInputAdapter extends RouterNetworkInputAdapter {
 
     private void httpParams(String query, Map<String, String> params) {
         String noNameText = "Anonymous";
-        Map<String, List<String>> requestParams = Pattern.compile("&")
+        Map<String, List<String>> requestParams = Pattern
+            .compile("&")
             .splitAsStream(query)
             .map(s -> Arrays.copyOf(s.split("="), 2))
             .collect(
@@ -78,9 +79,26 @@ public class RouterNetworkRestInputAdapter extends RouterNetworkInputAdapter {
                 )
             );
 
-        RouterId routerId = requestParams.getOrDefault(
-                "routerId", List.of
-        )
+        String routerId = requestParams
+            .getOrDefault("routerId", List.of(noNameText))
+            .stream().findFirst().orElse(noNameText);
+
+        String address = requestParams
+            .getOrDefault("address", List.of(noNameText))
+            .stream().findFirst().orElse(noNameText);
+
+        String name = requestParams
+            .getOrDefault("name", List.of(noNameText))
+            .stream().findFirst().orElse(noNameText);
+
+        String cidr = requestParams
+                .getOrDefault("cidr", List.of(noNameText))
+                .stream().findFirst().orElse(noNameText);
+
+        params.put("routerId", routerId);
+        params.put("address", address);
+        params.put("name", name);
+        params.put("cidr", cidr);
     }
 
     private static String decode(final String encoded) {
