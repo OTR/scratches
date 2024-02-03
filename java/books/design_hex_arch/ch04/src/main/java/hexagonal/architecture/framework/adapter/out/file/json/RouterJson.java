@@ -1,9 +1,7 @@
-package hexagonal.architecture.framework.adapter.out.file.data;
+package hexagonal.architecture.framework.adapter.out.file.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import hexagonal.architecture.domain.vo.RouterId;
 
 import java.util.UUID;
 

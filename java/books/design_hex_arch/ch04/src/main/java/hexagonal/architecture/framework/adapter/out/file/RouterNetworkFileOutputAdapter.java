@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import hexagonal.architecture.application.port.out.RouterNetworkOutputPort;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.vo.RouterId;
-import hexagonal.architecture.framework.adapter.out.file.data.RouterJson;
+import hexagonal.architecture.framework.adapter.out.file.json.RouterJson;
+import hexagonal.architecture.framework.adapter.out.file.mapper.RouterJsonFileMapper;
 
 import java.io.File;
 import java.io.IOException;

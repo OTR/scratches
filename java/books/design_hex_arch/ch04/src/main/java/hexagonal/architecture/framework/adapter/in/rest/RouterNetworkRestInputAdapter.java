@@ -6,7 +6,7 @@ import com.sun.net.httpserver.HttpServer;
 import hexagonal.architecture.application.use_case.RouterNetworkUseCase;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkInputAdapter;
-import hexagonal.architecture.framework.adapter.out.file.RouterJsonFileMapper;
+import hexagonal.architecture.framework.adapter.out.file.mapper.RouterJsonFileMapper;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;

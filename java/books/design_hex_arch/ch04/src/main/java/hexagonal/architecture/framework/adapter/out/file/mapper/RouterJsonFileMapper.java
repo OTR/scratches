@@ -1,11 +1,11 @@
-package hexagonal.architecture.framework.adapter.out.file;
+package hexagonal.architecture.framework.adapter.out.file.mapper;
 
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.vo.IP;
 import hexagonal.architecture.domain.vo.Network;
-import hexagonal.architecture.framework.adapter.out.file.data.IPJson;
-import hexagonal.architecture.framework.adapter.out.file.data.NetworkJson;
-import hexagonal.architecture.framework.adapter.out.file.data.RouterJson;
+import hexagonal.architecture.framework.adapter.out.file.json.IPJson;
+import hexagonal.architecture.framework.adapter.out.file.json.NetworkJson;
+import hexagonal.architecture.framework.adapter.out.file.json.RouterJson;
 
 import java.util.List;
 import java.util.stream.Collectors;
