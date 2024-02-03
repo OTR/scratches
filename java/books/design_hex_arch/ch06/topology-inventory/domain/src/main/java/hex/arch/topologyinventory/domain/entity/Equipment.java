@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 
 @AllArgsConstructor
 @Getter
-public abstract class Equipment {
+public abstract sealed class Equipment permits Router, Switch {
 
     protected Id id;
     protected Vendor vendor;
