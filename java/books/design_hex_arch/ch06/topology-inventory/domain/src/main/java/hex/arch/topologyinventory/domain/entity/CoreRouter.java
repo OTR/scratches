@@ -5,19 +5,32 @@ import hex.arch.topologyinventory.domain.spec.EmptySwitchSpecification;
 import hex.arch.topologyinventory.domain.spec.SameCountrySpecification;
 import hex.arch.topologyinventory.domain.spec.SameIpSpecification;
 import hex.arch.topologyinventory.domain.spec.Specification;
+import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Id;
+
+import hex.arch.topologyinventory.domain.vo.Location;
+import hex.arch.topologyinventory.domain.vo.Model;
+import hex.arch.topologyinventory.domain.vo.RouterType;
+import hex.arch.topologyinventory.domain.vo.Vendor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.Map;
 
+@Getter
 @ToString
 public final class CoreRouter extends Router {
 
     @Getter
     private final Map<Id, Router> routers;
 
-    public CoreRouter(Map<Id, Router> routers) {
+    @Builder
+    public CoreRouter(
+        Id id, Vendor vendor, Model model, IP ip, Location location,
+        RouterType routerType, Map<Id, Router> routers
+    ) {
+        super(id, vendor, model, ip, location, routerType);
         this.routers = routers;
     }
 
@@ -32,7 +45,7 @@ public final class CoreRouter extends Router {
     }
 
     public Router removeRouter(Router anyRouter) {
-        Specification<Equipment> emptyRouterSpec = new EmptyRouterSpecification();
+        var emptyRouterSpec = new EmptyRouterSpecification();
         Specification<Equipment> emptySwitchSpec = new EmptySwitchSpecification();
 
         switch (anyRouter.routerType) {
