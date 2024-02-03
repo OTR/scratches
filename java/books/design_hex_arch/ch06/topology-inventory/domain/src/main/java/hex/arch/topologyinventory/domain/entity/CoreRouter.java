@@ -7,11 +7,11 @@ import hex.arch.topologyinventory.domain.spec.SameIpSpecification;
 import hex.arch.topologyinventory.domain.spec.Specification;
 import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Id;
-
 import hex.arch.topologyinventory.domain.vo.Location;
 import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -22,7 +22,6 @@ import java.util.Map;
 @ToString
 public final class CoreRouter extends Router {
 
-    @Getter
     private final Map<Id, Router> routers;
 
     @Builder
@@ -35,7 +34,9 @@ public final class CoreRouter extends Router {
     }
 
     public Router addRouter(Router anyRouter) {
-        Specification<Equipment> sameCountrySpec = new SameCountrySpecification(this);
+        Specification<Equipment> sameCountrySpec = new SameCountrySpecification(
+    this
+        );
         Specification<Equipment> sameIpSpec = new SameIpSpecification(this);
 
         sameCountrySpec.check(anyRouter);
@@ -45,8 +46,8 @@ public final class CoreRouter extends Router {
     }
 
     public Router removeRouter(Router anyRouter) {
-        var emptyRouterSpec = new EmptyRouterSpecification();
-        Specification<Equipment> emptySwitchSpec = new EmptySwitchSpecification();
+        Specification<CoreRouter> emptyRouterSpec = new EmptyRouterSpecification();
+        Specification<EdgeRouter> emptySwitchSpec = new EmptySwitchSpecification();
 
         switch (anyRouter.routerType) {
             case CORE -> {
