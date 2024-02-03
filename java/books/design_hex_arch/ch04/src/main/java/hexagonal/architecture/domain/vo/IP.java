@@ -1,7 +1,5 @@
 package hexagonal.architecture.domain.vo;
 
-import hexagonal.architecture.domain.exception.NotImplementedYet;
-
 public class IP {
 
     private final String address;

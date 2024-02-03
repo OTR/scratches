@@ -2,7 +2,8 @@ package hexagonal.architecture.domain.spec;
 
 import hexagonal.architecture.domain.entity.Router;
 
-public final class NetworkAmountSpecification extends AbstractSpecification<Router> {
+public final class NetworkAmountSpecification
+    extends AbstractSpecification<Router> {
 
     private static final int MAXIMUM_ALLOWED_NETWORKS = 6;
 

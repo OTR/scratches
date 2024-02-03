@@ -22,8 +22,6 @@ public class RouterId {
         return id;
     }
 
-
-
     @Override
     public String toString() {
         return "RouterId{" +

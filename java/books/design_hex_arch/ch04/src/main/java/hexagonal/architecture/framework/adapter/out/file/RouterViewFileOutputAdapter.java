@@ -18,7 +18,7 @@ public class RouterViewFileOutputAdapter implements RouterViewOutputPort {
     private static RouterViewFileOutputAdapter instance;
 
     @Override
-    public List<Router> fetchRouters() {
+    public List<Router> fetchRelatedRouters() {
         return readFileAsString();
     }
 

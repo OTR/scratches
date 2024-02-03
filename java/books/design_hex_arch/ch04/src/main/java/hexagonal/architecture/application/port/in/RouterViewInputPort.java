@@ -4,22 +4,33 @@ import hexagonal.architecture.application.port.out.RouterViewOutputPort;
 import hexagonal.architecture.application.use_case.RouterViewUseCase;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.service.RouterSearchService;
+import hexagonal.architecture.domain.vo.RouterType;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class RouterViewInputPort implements RouterViewUseCase {
 
-    private RouterViewOutputPort routerViewOutputPort;
+    private RouterViewOutputPort outputPort;
+    private Router router;
 
-    public RouterViewInputPort(RouterViewOutputPort routerViewOutputPort) {
-        this.routerViewOutputPort = routerViewOutputPort;
+    public RouterViewInputPort(RouterViewOutputPort outputPort) {
+        this.outputPort = outputPort;
     }
 
     @Override
-    public List<Router> getRouters(Predicate<Router> filter) {
-        List<Router> routers = routerViewOutputPort.fetchRouters();
-        return RouterSearchService.retrieveRouter(routers, filter);
+    public List<Router> getRelatedRouters(
+        RelatedRoutersCommand relatedRoutersCommand
+    ) {
+        RouterType type = relatedRoutersCommand.getType();
+        List<Router> routers = outputPort.fetchRelatedRouters();
+        return this.fetchRelatedEdgeRouters(routers, type);
+    }
+
+    private List<Router> fetchRelatedEdgeRouters(
+        List<Router> routers,
+        RouterType type
+    ) {
+        return RouterSearchService.getRouters(routers, type);
     }
 
 }

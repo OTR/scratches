@@ -44,4 +44,16 @@ public class Switch {
         return networks;
     }
 
+    public SwitchType getSwitchType() {
+        return switchType;
+    }
+
+    public SwitchId getSwitchId() {
+        return switchId;
+    }
+
+    public IP getAddress() {
+        return address;
+    }
+
 }

@@ -17,7 +17,7 @@ public class RouterViewCliInputAdapter {
     }
 
     public List<Router> obtainRelatedRouters(String type) {
-        return routerViewUseCase.getRouters(
+        return routerViewUseCase.getRelatedRouters(
                 Router.filterRouterByType(RouterType.valueOf(type))
         );
     }

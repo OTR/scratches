@@ -10,8 +10,6 @@ import hexagonal.architecture.domain.vo.Network;
 
 public class NetworkOperationService {
 
-    private final int MINIMUM_ALLOWED_CIDR = 8;
-
     public static Router createNewNetwork(Router router, Network network) {
         Specification<Router> availabilitySpec = new NetworkAvailabilitySpecification(
                 network.address(), network.name(), network.cidr()

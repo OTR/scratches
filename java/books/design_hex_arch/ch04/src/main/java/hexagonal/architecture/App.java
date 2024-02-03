@@ -8,7 +8,7 @@ import hexagonal.architecture.application.use_case.RouterNetworkUseCase;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkCliInputAdapter;
 import hexagonal.architecture.framework.adapter.in.RouterNetworkInputAdapter;
-import hexagonal.architecture.framework.adapter.in.RouterNetworkRestInputAdapter;
+import hexagonal.architecture.framework.adapter.in.rest.RouterNetworkRestInputAdapter;
 import hexagonal.architecture.framework.adapter.in.RouterViewCliInputAdapter;
 import hexagonal.architecture.framework.adapter.out.file.RouterNetworkFileOutputAdapter;
 import hexagonal.architecture.framework.adapter.out.h2.RouterNetworkH2OutputAdapter;
