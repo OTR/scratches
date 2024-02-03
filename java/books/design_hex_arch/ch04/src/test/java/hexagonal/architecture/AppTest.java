@@ -1,7 +1,7 @@
 package hexagonal.architecture;
 
 import hexagonal.architecture.domain.entity.Router;
-import hexagonal.architecture.framework.adapter.in.RouterViewCliInputAdapter;
+import hexagonal.architecture.framework.adapter.in.stdin.RouterViewCliInputAdapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
