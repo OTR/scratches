@@ -31,4 +31,8 @@ public final class Switch extends Equipment {
         return this.switchNetworks.add(network);
     }
 
+    public boolean removeNetworkFromSwitch(Network network) {
+        return this.switchNetworks.remove(network);
+    }
+
 }
