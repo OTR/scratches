@@ -11,6 +11,7 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -22,6 +23,7 @@ public final class EdgeRouter extends Router {
 
     private final Map<Id, Switch> switches;
 
+    @Builder
     public EdgeRouter(
             Id id, Vendor vendor, Model model, IP ip, Location location,
             RouterType routerType, Map<Id, Switch> switches
@@ -44,7 +46,7 @@ public final class EdgeRouter extends Router {
     }
 
     public Switch removeSwitch(Switch anySwitch) {
-        Specification<Equipment> emptyNetworkSpec = new EmptyNetworkSpecification();
+        Specification<Switch> emptyNetworkSpec = new EmptyNetworkSpecification();
         emptyNetworkSpec.check(anySwitch);
         return this.switches.remove(anySwitch.id);
     }
