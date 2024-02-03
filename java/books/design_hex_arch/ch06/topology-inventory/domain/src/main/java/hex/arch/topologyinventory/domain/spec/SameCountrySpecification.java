@@ -3,7 +3,7 @@ package hex.arch.topologyinventory.domain.spec;
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 import hex.arch.topologyinventory.domain.entity.Equipment;
 
-public class SameCountrySpecification extends AbstractSpecification<Equipment> {
+public final class SameCountrySpecification extends AbstractSpecification<Equipment> {
 
     private final Equipment equipment;
 
