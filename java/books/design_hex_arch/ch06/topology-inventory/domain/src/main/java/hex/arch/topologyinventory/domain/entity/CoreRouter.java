@@ -19,8 +19,8 @@ public final class CoreRouter extends Router {
     }
 
     public Router removeRouter(Router anyRouter) {
-        Specification<Router> emptyRouterSpec = new EmptyRouterSpecification();
-        Specification<Router> emptySwitchSpec = new EmptySwitchSpecification();
+        Specification<Equipment> emptyRouterSpec = new EmptyRouterSpecification();
+        Specification<Equipment> emptySwitchSpec = new EmptySwitchSpecification();
 
         switch (anyRouter.routerType) {
             case CORE -> {

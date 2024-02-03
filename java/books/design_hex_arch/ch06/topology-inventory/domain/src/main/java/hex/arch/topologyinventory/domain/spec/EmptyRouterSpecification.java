@@ -2,7 +2,7 @@ package hex.arch.topologyinventory.domain.spec;
 
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 
-public class EmptyRouterSpecification implements Specification<CoreRouter> {
+public final class EmptyRouterSpecification extends AbstractSpecification<CoreRouter> {
 
     @Override
     public boolean isSatisfiedBy(CoreRouter coreRouter) {
