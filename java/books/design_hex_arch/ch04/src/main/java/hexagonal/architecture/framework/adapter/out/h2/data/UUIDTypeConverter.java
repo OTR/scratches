@@ -1,4 +1,4 @@
-package hexagonal.architecture.framework.adapter.out.h2;
+package hexagonal.architecture.framework.adapter.out.h2.data;
 
 
 import org.eclipse.persistence.internal.helper.DatabaseField;

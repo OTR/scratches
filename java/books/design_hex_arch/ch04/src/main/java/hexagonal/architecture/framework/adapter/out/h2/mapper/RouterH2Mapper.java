@@ -1,4 +1,4 @@
-package hexagonal.architecture.framework.adapter.out.h2;
+package hexagonal.architecture.framework.adapter.out.h2.mapper;
 
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.vo.IP;

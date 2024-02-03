@@ -1,14 +1,11 @@
 package hexagonal.architecture.framework.adapter.out.h2.data;
 
-import hexagonal.architecture.framework.adapter.out.h2.UUIDTypeConverter;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
@@ -56,6 +53,6 @@ public class RouterData implements Serializable {
         name = "router_id",
         referencedColumnName = "router_id"
     )
-    private SwitchData switchData;
+    private SwitchData networkSwitch;
 
 }

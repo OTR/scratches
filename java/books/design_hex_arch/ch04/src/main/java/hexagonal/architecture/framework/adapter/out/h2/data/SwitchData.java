@@ -1,6 +1,5 @@
 package hexagonal.architecture.framework.adapter.out.h2.data;
 
-import hexagonal.architecture.framework.adapter.out.h2.UUIDTypeConverter;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
@@ -14,9 +13,11 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import org.eclipse.persistence.annotations.Convert;
 import org.eclipse.persistence.annotations.Converter;
 
@@ -35,7 +36,11 @@ import java.util.UUID;
 public class SwitchData implements Serializable {
 
     @Id
-    @Column(name = "switch_id")
+    @Column(
+        name = "switch_id",
+        columnDefinition = "uuid",
+        updatable = false
+    )
     @Convert("uuidConverter")
     private UUID switchId;
 
