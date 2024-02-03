@@ -11,6 +11,7 @@ import hexagonal.architecture.framework.adapter.out.file.mapper.RouterJsonFileMa
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,8 @@ import java.util.List;
 public class RouterNetworkFileOutputAdapter implements RouterNetworkOutputPort {
 
     private static RouterNetworkFileOutputAdapter instance;
-    private List<RouterJson> routers = new ArrayList<>();
+    private List<RouterJson> routers;
+    private InputStream resource;
     private ObjectMapper objectMapper;
 
     @Override
@@ -61,6 +63,10 @@ public class RouterNetworkFileOutputAdapter implements RouterNetworkOutputPort {
     }
 
     private RouterNetworkFileOutputAdapter() {
+        this.objectMapper = new ObjectMapper();
+        this.resource = getClass()
+            .getClassLoader()
+            .getResourceAsStream("inventory.json");
         readJsonFile();
     }
 
