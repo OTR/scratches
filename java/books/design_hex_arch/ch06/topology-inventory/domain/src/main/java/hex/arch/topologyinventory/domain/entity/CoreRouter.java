@@ -6,12 +6,20 @@ import hex.arch.topologyinventory.domain.spec.SameCountrySpecification;
 import hex.arch.topologyinventory.domain.spec.SameIpSpecification;
 import hex.arch.topologyinventory.domain.spec.Specification;
 import hex.arch.topologyinventory.domain.vo.Id;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Map;
 
+@ToString
 public final class CoreRouter extends Router {
 
+    @Getter
     private final Map<Id, Router> routers;
+
+    public CoreRouter(Map<Id, Router> routers) {
+        this.routers = routers;
+    }
 
     public Router addRouter(Router anyRouter) {
         Specification<Equipment> sameCountrySpec = new SameCountrySpecification(this);
