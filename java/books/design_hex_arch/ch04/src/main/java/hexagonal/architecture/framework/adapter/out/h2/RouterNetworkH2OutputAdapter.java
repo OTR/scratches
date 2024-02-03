@@ -4,8 +4,8 @@ import hexagonal.architecture.application.port.out.RouterNetworkOutputPort;
 import hexagonal.architecture.domain.entity.Router;
 import hexagonal.architecture.domain.vo.RouterId;
 import hexagonal.architecture.framework.adapter.out.h2.data.RouterData;
-
 import hexagonal.architecture.framework.adapter.out.h2.mapper.RouterH2Mapper;
+
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;

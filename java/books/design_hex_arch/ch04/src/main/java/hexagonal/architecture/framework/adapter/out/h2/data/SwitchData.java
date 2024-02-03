@@ -74,10 +74,4 @@ public class SwitchData implements Serializable {
     })
     IPData ip;
 
-    @Column(name = "network_name")
-    String name;
-
-    @Column(name = "network_cidr")
-    Integer cidr;
-
 }
