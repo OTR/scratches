@@ -3,7 +3,7 @@ package hex.arch.topologyinventory.domain.entity;
 import hex.arch.topologyinventory.domain.spec.CIDRSpecification;
 import hex.arch.topologyinventory.domain.spec.NetworkAmountSpecification;
 import hex.arch.topologyinventory.domain.spec.NetworkAvailabilitySpecification;
-import hex.arch.topologyinventory.domain.spec.Specification;
+import hex.arch.topologyinventory.domain.spec.shared.Specification;
 import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Id;
 import hex.arch.topologyinventory.domain.vo.Location;

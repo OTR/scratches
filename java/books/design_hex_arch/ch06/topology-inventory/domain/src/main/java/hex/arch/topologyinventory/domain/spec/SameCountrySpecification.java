@@ -3,6 +3,7 @@ package hex.arch.topologyinventory.domain.spec;
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 import hex.arch.topologyinventory.domain.entity.Equipment;
 import hex.arch.topologyinventory.domain.exception.GenericSpecificationException;
+import hex.arch.topologyinventory.domain.spec.shared.AbstractSpecification;
 
 public final class SameCountrySpecification extends AbstractSpecification<Equipment> {
 
@@ -26,7 +27,7 @@ public final class SameCountrySpecification extends AbstractSpecification<Equipm
     }
 
     @Override
-    public void check(Equipment anyEquipment) {
+    public void check(Equipment anyEquipment) throws GenericSpecificationException {
         if (!isSatisfiedBy(anyEquipment)) {
             throw new GenericSpecificationException(
                 "The equipments should be in the same country"

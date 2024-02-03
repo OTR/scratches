@@ -4,7 +4,7 @@ import hex.arch.topologyinventory.domain.spec.EmptyRouterSpecification;
 import hex.arch.topologyinventory.domain.spec.EmptySwitchSpecification;
 import hex.arch.topologyinventory.domain.spec.SameCountrySpecification;
 import hex.arch.topologyinventory.domain.spec.SameIpSpecification;
-import hex.arch.topologyinventory.domain.spec.Specification;
+import hex.arch.topologyinventory.domain.spec.shared.Specification;
 import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Id;
 import hex.arch.topologyinventory.domain.vo.Location;
