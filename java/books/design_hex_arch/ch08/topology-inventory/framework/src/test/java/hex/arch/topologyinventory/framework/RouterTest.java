@@ -2,7 +2,9 @@ package hex.arch.topologyinventory.framework;
 
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 import hex.arch.topologyinventory.domain.vo.*;
-import hex.arch.topologyinventory.framework.adapter.in.RouterManagementGenericInputAdapter;
+import hex.arch.topologyinventory.framework.adapter.in
+    .RouterManagementGenericInputAdapter;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,13 +15,14 @@ public class RouterTest extends FrameworkTestData {
     RouterManagementGenericInputAdapter routerManagementGenericAdapter;
 
     public RouterTest() {
-        this.routerManagementGenericAdapter = new RouterManagementGenericInputAdapter();
+        this.routerManagementGenericAdapter
+            = new RouterManagementGenericInputAdapter();
         loadData();
     }
 
     @Test
     public void retrieveRouter() {
-        var id = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+        var id = Id.withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
         var actualId = routerManagementGenericAdapter.
             retrieveRouter(id).getId();
         assertEquals(id, actualId);
@@ -35,7 +38,8 @@ public class RouterTest extends FrameworkTestData {
                 IP.fromAddress(ipAddress),
                 locationA,
                 RouterType.EDGE).getId();
-        var router = this.routerManagementGenericAdapter.retrieveRouter(routerId);
+        var router = this.routerManagementGenericAdapter
+            .retrieveRouter(routerId);
         assertEquals(routerId, router.getId());
         assertEquals(Vendor.DLINK, router.getVendor());
         assertEquals(Model.XYZ0001, router.getModel());
@@ -46,17 +50,21 @@ public class RouterTest extends FrameworkTestData {
 
     @Test
     public void addRouterToCoreRouter() {
-        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
-        var coreRouterId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+        var routerId = Id.withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
+        var coreRouterId = Id
+            .withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
         var actualRouter = (CoreRouter)this.routerManagementGenericAdapter.
             addRouterToCoreRouter(routerId,coreRouterId);
-        assertEquals(routerId, actualRouter.getRouters().get(routerId).getId());
+        assertEquals(routerId, actualRouter.getRouters()
+            .get(routerId).getId());
     }
 
     @Test
     public void removeRouterFromCoreRouter(){
-        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0a");
-        var coreRouterId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+        var routerId = Id
+            .withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0a");
+        var coreRouterId = Id
+            .withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
         var removedRouter = this.routerManagementGenericAdapter.
             removeRouterFromCoreRouter(routerId, coreRouterId);
         var coreRouter = (CoreRouter)this.routerManagementGenericAdapter
@@ -67,8 +75,9 @@ public class RouterTest extends FrameworkTestData {
 
     @Test
     public void removeRouter() {
-        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
-        var router = this.routerManagementGenericAdapter.removeRouter(routerId);
+        var routerId = Id.withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
+        var router = this.routerManagementGenericAdapter
+            .removeRouter(routerId);
         assertEquals(null, router);
     }
 }

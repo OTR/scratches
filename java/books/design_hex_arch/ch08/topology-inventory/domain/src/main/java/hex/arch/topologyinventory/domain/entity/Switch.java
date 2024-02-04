@@ -15,6 +15,7 @@ import hex.arch.topologyinventory.domain.vo.Vendor;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,14 +26,18 @@ public final class Switch extends Equipment {
     private final SwitchType switchType;
     private final List<Network> switchNetworks;
 
+    @Setter
+    private Id routerId;
+
     @Builder
     public Switch(
-        Id id, Vendor vendor, Model model, IP ip, Location location,
+        Id switchId, Id routerId, Vendor vendor, Model model, IP ip, Location location,
         SwitchType switchType, List<Network> switchNetworks
     ) {
-        super(id, vendor, model, ip, location);
+        super(switchId, vendor, model, ip, location);
         this.switchType = switchType;
         this.switchNetworks = switchNetworks;
+        this.routerId = routerId;
     }
 
     public static Predicate<Network> getNetworkProtocolPredicate(Protocol protocol) {

@@ -11,13 +11,13 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class Id {
 
-    private final UUID id;
+    private final UUID uuid;
 
-    private Id(UUID id) {
-        this.id = id;
+    private Id(UUID uuid) {
+        this.uuid = uuid;
     }
 
-    public static Id withId(String id) {
+    public static Id withUuid(String id) {
         return new Id(UUID.fromString(id));
     }
 

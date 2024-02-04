@@ -29,7 +29,7 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
         Location location, SwitchType switchType
     ) {
         return Switch.builder()
-            .id(Id.withoutId())
+            .routerId(Id.withoutId())
             .vendor(vendor)
             .model(model)
             .ip(ip)

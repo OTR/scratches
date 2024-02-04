@@ -7,6 +7,8 @@ import hex.arch.topologyinventory.framework.adapter.out.h2.data.RouterData;
 import hex.arch.topologyinventory.framework.adapter.out.h2.mapper.RouterH2Mapper;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 public class RouterManagementH2OutputAdapter implements RouterManagementOutputPort {
@@ -30,7 +32,7 @@ public class RouterManagementH2OutputAdapter implements RouterManagementOutputPo
     @Override
     public Router retrieveRouter(Id id) {
         RouterData routerData = em.getReference(
-            RouterData.class, id.getId()
+            RouterData.class, id.getUuid()
         );
         return RouterH2Mapper.routerDataToDomain(routerData);
     }
@@ -38,14 +40,17 @@ public class RouterManagementH2OutputAdapter implements RouterManagementOutputPo
     @Override
     public Router removeRouter(Id id) {
         RouterData routerData = em.getReference(
-            RouterData.class, id.getId()
+            RouterData.class, id.getUuid()
         );
         em.remove(routerData);
         return null;
     }
 
     private void setUpH2Database() {
-
+        EntityManagerFactory emFactory = Persistence
+                .createEntityManagerFactory("inventory");
+        EntityManager em = emFactory.createEntityManager();
+        this.em = em;
     }
 
     public static RouterManagementOutputPort getInstance() {

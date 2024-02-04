@@ -1,6 +1,7 @@
 package hex.arch.topologyinventory.framework.adapter.out.h2;
 
-import hex.arch.topologyinventory.application.port.out.SwitchManagementOutputPort;
+import hex.arch.topologyinventory.application.port.out
+    .SwitchManagementOutputPort;
 import hex.arch.topologyinventory.domain.entity.Switch;
 import hex.arch.topologyinventory.domain.vo.Id;
 
@@ -26,7 +27,7 @@ public class SwitchManagementH2OutputAdapter implements SwitchManagementOutputPo
     @Override
     public Switch retrieveSwitch(Id id) {
         SwitchData switchData = em.getReference(
-            SwitchData.class, id.getId()
+            SwitchData.class, id.getUuid()
         );
         return RouterH2Mapper.switchDataToDomain(switchData);
     }

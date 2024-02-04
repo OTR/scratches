@@ -13,13 +13,13 @@ import hex.arch.topologyinventory.domain.vo.Vendor;
 public class RouterFactory {
 
     public static Router getRouter(
-        Vendor vendor, Model model, IP ip,
+        Id id, Vendor vendor, Model model, IP ip,
         Location location, RouterType routerType
     ) {
         return switch (routerType) {
             case CORE -> {
                 yield CoreRouter.builder()
-                    .id(Id.withoutId())
+                    .id(id == null ? Id.withoutId() : id)
                     .vendor(vendor)
                     .model(model)
                     .ip(ip)
@@ -29,7 +29,7 @@ public class RouterFactory {
             }
             case EDGE -> {
                 yield EdgeRouter.builder()
-                    .id(Id.withoutId())
+                    .id(id == null ? Id.withoutId() : id)
                     .vendor(vendor)
                     .model(model)
                     .ip(ip)

@@ -31,12 +31,19 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
         Vendor vendor, Model model, IP ip,
         Location location, RouterType routerType
     ) {
-        return RouterFactory.getRouter(vendor, model, ip, location, routerType);
+        return RouterFactory.getRouter(
+            null,
+            vendor,
+            model,
+            ip,
+            location,
+            routerType
+        );
     }
 
     @Override
     public Router removeRouter(Id id) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return outputPort.removeRouter(id);
     }
 
     @Override

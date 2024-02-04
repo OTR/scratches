@@ -147,7 +147,7 @@ public class DomainTest {
 
         edgeRouter.addSwitch(networkSwitch);
         networkSwitch.removeNetworkFromSwitch(network);
-        var expectedId = Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+        var expectedId = Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
         var actualId= edgeRouter.removeSwitch(networkSwitch).getId();
 
         assertEquals(expectedId, actualId);
@@ -317,7 +317,7 @@ public class DomainTest {
 
         switchesOfEdgeRouter.put(networkSwitch.getId(), networkSwitch);
 
-        Id expectedId = Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+        Id expectedId = Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
         Id actualId = SwitchService.findById(
             switchesOfEdgeRouter, expectedId
         ).getId();
@@ -361,7 +361,7 @@ public class DomainTest {
         Location location, List<Network> networks
     ){
         return Switch.builder().
-            id(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
+            switchId(Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
             vendor(Vendor.CISCO).
             model(Model.XYZ0004).
             ip(IP.fromAddress("20.0.0.100")).

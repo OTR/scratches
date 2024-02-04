@@ -1,10 +1,12 @@
 package hex.arch.topologyinventory.framework;
 
-
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
 import hex.arch.topologyinventory.domain.entity.Switch;
 import hex.arch.topologyinventory.domain.vo.*;
-import hex.arch.topologyinventory.framework.adapter.in.SwitchManagementGenericInputAdapter;
+import hex.arch.topologyinventory.framework.adapter.in
+    .SwitchManagementGenericInputAdapter;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,15 +20,17 @@ public class SwitchTest extends FrameworkTestData {
     SwitchManagementGenericInputAdapter switchManagementGenericAdapter;
 
     public SwitchTest(){
-        this.switchManagementGenericAdapter = new SwitchManagementGenericInputAdapter();
+        this.switchManagementGenericAdapter
+            = new SwitchManagementGenericInputAdapter();
         loadData();
     }
 
     @Test
     @Order(1)
     public void retrieveSwitch(){
-        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb47");
-        Switch networkSwitch = switchManagementGenericAdapter.retrieveSwitch(switchId);
+        Id switchId = Id.withUuid("922dbcd5-d071-41bd-920b-00f83eb4bb47");
+        Switch networkSwitch = switchManagementGenericAdapter
+            .retrieveSwitch(switchId);
         assertNotNull(networkSwitch);
     }
 
@@ -34,8 +38,9 @@ public class SwitchTest extends FrameworkTestData {
     @Order(2)
     public void createAndAddSwitchToEdgeRouter(){
         var expectedSwitchIP = "15.0.0.1";
-        var id = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
-        EdgeRouter edgeRouter = switchManagementGenericAdapter.createAndAddSwitchToEdgeRouter(
+        var id = Id.withUuid("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
+        EdgeRouter edgeRouter = switchManagementGenericAdapter
+            .createAndAddSwitchToEdgeRouter(
             Vendor.HP,
             Model.XYZ0004,
             IP.fromAddress(expectedSwitchIP),
@@ -56,10 +61,11 @@ public class SwitchTest extends FrameworkTestData {
     @Test
     @Order(3)
     public void removeSwitchFromEdgeRouter(){
-        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb47");
-        Id edgerRouterId = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
+        Id switchId = Id.withUuid("922dbcd5-d071-41bd-920b-00f83eb4bb47");
+        Id edgerRouterId = Id.withUuid("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
         EdgeRouter edgeRouter = switchManagementGenericAdapter
             .removeSwitchFromEdgeRouter(switchId, edgerRouterId);
         assertNull(edgeRouter.getSwitches().get(switchId));
     }
+
 }

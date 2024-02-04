@@ -85,7 +85,7 @@ public class ApplicationTestData {
         this.networks.add(network);
 
         this.networkSwitch = Switch.builder().
-            id(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
+            switchId(Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
             vendor(Vendor.CISCO).
             model(Model.XYZ0004).
             ip(IP.fromAddress("20.0.0.100")).
@@ -119,7 +119,7 @@ public class ApplicationTestData {
             build();
 
         this.newCoreRouter = CoreRouter.builder().
-            id(Id.withId("81579b05-4b4e-4b9b-91f4-75a5a8561296")).
+            id(Id.withUuid("81579b05-4b4e-4b9b-91f4-75a5a8561296")).
             vendor(Vendor.HP).
             model(Model.XYZ0001).
             ip(IP.fromAddress("10.1.0.1")).
@@ -130,7 +130,7 @@ public class ApplicationTestData {
         this.coreRouter.addRouter(newCoreRouter);
 
         this.newEdgeRouter = EdgeRouter.builder().
-            id(Id.withId("ca23800e-9b5a-11eb-a8b3-0242ac130003")).
+            id(Id.withUuid("ca23800e-9b5a-11eb-a8b3-0242ac130003")).
             vendor(Vendor.CISCO).
             model(Model.XYZ0002).
             ip(IP.fromAddress("20.1.0.1")).

@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
+import lombok.Builder;
 
+@Builder
 @Entity
 @Table(name = "location")
 @MappedSuperclass
@@ -139,7 +141,7 @@ public class LocationData {
             this.latitude = latitude;
             return this;
         }
-
+/*
         public LocationDataBuilder longitude(float longitude) {
             this.longitude = longitude;
             return this;
@@ -163,8 +165,9 @@ public class LocationData {
             }
 
             throw new IllegalArgumentException("Some fields are not set");
-        }
 
+        }
+*/
     }
 
 }

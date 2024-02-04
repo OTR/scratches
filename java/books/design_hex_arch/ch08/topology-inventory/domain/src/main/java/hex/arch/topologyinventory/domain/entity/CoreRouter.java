@@ -14,6 +14,7 @@ import hex.arch.topologyinventory.domain.vo.Vendor;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Map;
@@ -22,7 +23,8 @@ import java.util.Map;
 @ToString
 public final class CoreRouter extends Router {
 
-    private final Map<Id, Router> routers;
+    @Setter
+    private Map<Id, Router> routers;
 
     @Builder
     public CoreRouter(
