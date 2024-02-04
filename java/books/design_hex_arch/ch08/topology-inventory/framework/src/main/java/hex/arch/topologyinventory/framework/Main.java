@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework;
+package hex.arch.topologyinventory.framework;
 
 public class Main {
 

@@ -10,7 +10,7 @@ mvn archetype:generate \
     -DgroupId=hex.arch \
     -DartifactId=framework \
     -Dversion=0.0.1 \
-    -Dpackage=dev.davivieira.topologyinventory.framework \
+    -Dpackage=hex.arch.topologyinventory.framework \
     -DinteractiveMode=false
 ```
 

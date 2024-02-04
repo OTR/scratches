@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework;
+package hex.arch.topologyinventory.framework;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
