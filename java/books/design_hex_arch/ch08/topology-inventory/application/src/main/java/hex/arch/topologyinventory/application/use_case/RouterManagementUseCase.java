@@ -12,8 +12,15 @@ import hex.arch.topologyinventory.domain.vo.Vendor;
 public interface RouterManagementUseCase {
 
     Router createRouter(
-        Vendor vendor, Model model, IP ip, Location location, RouterType routerType
+//        Id id,
+        Vendor vendor,
+        Model model,
+        IP ip,
+        Location location,
+        RouterType routerType
     );
+
+    Router removeRouter(Id id);
 
     CoreRouter addRouterToCoreRouter(Router router, CoreRouter coreRouter);
 
