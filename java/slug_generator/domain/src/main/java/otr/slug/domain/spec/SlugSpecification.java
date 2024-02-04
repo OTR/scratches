@@ -3,6 +3,7 @@ package otr.slug.domain.spec;
 import java.time.Year;
 
 public class SlugSpecification {
+
     public boolean isCharacterSetValid(String input) {
         // Check if the input contains only Latin letters in lowercase
         return input.matches("[a-z]+");

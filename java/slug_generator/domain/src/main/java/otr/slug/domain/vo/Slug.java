@@ -1,5 +1,5 @@
 package otr.slug.domain.vo;
 
-public record RawInput (
+public record Slug(
     String value
 ) {}
