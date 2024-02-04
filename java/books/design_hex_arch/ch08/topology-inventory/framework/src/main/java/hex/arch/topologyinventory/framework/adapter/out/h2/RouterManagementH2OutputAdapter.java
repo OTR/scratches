@@ -48,4 +48,11 @@ public class RouterManagementH2OutputAdapter implements RouterManagementOutputPo
 
     }
 
+    public static RouterManagementOutputPort getInstance() {
+        if (instance == null) {
+            instance = new RouterManagementH2OutputAdapter();
+        }
+        return instance;
+    }
+
 }
