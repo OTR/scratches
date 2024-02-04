@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.function.Predicate;
+
 @Builder
 @Getter
 @EqualsAndHashCode
@@ -14,6 +16,16 @@ public class Network {
     private IP networkAddress;
     private String networkName;
     private int networkCidr;
+
+    public static Predicate<Network> getNetworkProtocolPredicate(
+        Protocol protocol
+    ){
+        return s -> s.getNetworkAddress().getProtocol().equals(protocol);
+    }
+
+    public static Predicate<Network> getNetworkNamePredicate(String name){
+        return s -> s.getNetworkName().equals(name);
+    }
 
     public Network(IP networkAddress, String networkName, int networkCidr) {
         if (networkCidr < 1 || networkCidr > 32) {
