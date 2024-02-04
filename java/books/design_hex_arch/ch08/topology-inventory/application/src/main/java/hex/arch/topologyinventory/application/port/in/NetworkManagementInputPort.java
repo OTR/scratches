@@ -1,11 +1,20 @@
 package hex.arch.topologyinventory.application.port.in;
 
+import hex.arch.topologyinventory.application.port.out.RouterManagementOutputPort;
 import hex.arch.topologyinventory.application.use_case.NetworkManagementUseCase;
 import hex.arch.topologyinventory.domain.entity.Switch;
 import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Network;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class NetworkManagementInputPort implements NetworkManagementUseCase {
+
+    private RouterManagementOutputPort outputPort;
+
+    public NetworkManagementInputPort(RouterManagementOutputPort outputPort) {
+        this.outputPort = outputPort;
+    }
 
     @Override
     public Network createNetwork(
