@@ -22,7 +22,7 @@ public class RemainYearPolicy implements FilterStringPolicy {
             if (subMatcher.find()) {
                 return subMatcher.group();
             } else {
-                return "";
+                return "_";
             }
         });
     }
