@@ -8,6 +8,8 @@ import hex.arch.topologyinventory.framework.adapter.out.h2.mapper.RouterH2Mapper
 import hex.arch.topologyinventory.framework.adapter.out.h2.data.SwitchData;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
 public class SwitchManagementH2OutputAdapter implements SwitchManagementOutputPort {
@@ -17,12 +19,23 @@ public class SwitchManagementH2OutputAdapter implements SwitchManagementOutputPo
     @PersistenceContext
     private EntityManager em;
 
+    public SwitchManagementH2OutputAdapter() {
+        setUpH2Database();
+    }
+
     @Override
     public Switch retrieveSwitch(Id id) {
         SwitchData switchData = em.getReference(
             SwitchData.class, id.getId()
         );
         return RouterH2Mapper.switchDataToDomain(switchData);
+    }
+
+    private void setUpH2Database() {
+        EntityManagerFactory emFactory = Persistence
+            .createEntityManagerFactory("inventory");
+        EntityManager em = emFactory.createEntityManager();
+        this.em = em;
     }
 
     public static SwitchManagementH2OutputAdapter getInstance() {

@@ -54,4 +54,9 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
         return edgeRouter;
     }
 
+    @Override
+    public Switch retrieveSwitch(Id switchId) {
+        return outputPort.retrieveSwitch(switchId);
+    }
+
 }
