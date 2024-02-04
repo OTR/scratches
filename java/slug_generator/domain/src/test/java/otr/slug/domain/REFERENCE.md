@@ -1,19 +1,6 @@
-package com.github.otr.normalization;
+# A suit of tests to be refactored
 
-import com.github.otr.slug.normalization.Normalizer;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-
-/**
- *
- */
+```java
 @RunWith(Parameterized.class)
 public class NormalizerTest {
 
@@ -91,3 +78,4 @@ public class NormalizerTest {
     }
 
 }
+```
