@@ -28,37 +28,27 @@ import java.util.Map;
 public class ApplicationTestData {
 
     protected RouterManagementUseCase routerManagementUseCase;
-
     protected SwitchManagementUseCase switchManagementUseCase;
-
     protected NetworkManagementUseCase networkManagementUseCase;
 
     protected Router router;
+    protected Switch networkSwitch;
+    protected Network network;
 
     protected List<Router> routers = new ArrayList<>();
-
     protected List<Switch> switches = new ArrayList<>();
-
     protected List<Network> networks = new ArrayList<>();
 
     protected Map<Id, Router> routersOfCoreRouter = new HashMap<>();
-
     protected Map<Id, Switch> switchesOfEdgeRouter = new HashMap<>();
 
-    protected Network network;
-
-    protected Switch networkSwitch;
-
     protected CoreRouter coreRouter;
-
     protected CoreRouter newCoreRouter;
 
     protected EdgeRouter edgeRouter;
-
     protected EdgeRouter newEdgeRouter;
 
     protected Location locationA;
-
     protected Location locationB;
 
     public void loadData() {
