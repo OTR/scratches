@@ -9,4 +9,6 @@ public interface RouterManagementOutputPort {
 
     Router retrieveRouter(Id id);
 
+    Router removeRouter(Id id);
+
 }
