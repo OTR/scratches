@@ -33,7 +33,7 @@ public final class CoreRouter extends Router {
         this.routers = routers;
     }
 
-    public Router addRouter(Router anyRouter) {
+    public CoreRouter addRouter(Router anyRouter) {
         Specification<Equipment> sameCountrySpec = new SameCountrySpecification(
     this
         );
@@ -42,7 +42,9 @@ public final class CoreRouter extends Router {
         sameCountrySpec.check(anyRouter);
         sameIpSpec.check(anyRouter);
 
-        return this.routers.put(anyRouter.id, anyRouter);
+        this.routers.put(anyRouter.id, anyRouter);
+
+        return this;
     }
 
     public Router removeRouter(Router anyRouter) {

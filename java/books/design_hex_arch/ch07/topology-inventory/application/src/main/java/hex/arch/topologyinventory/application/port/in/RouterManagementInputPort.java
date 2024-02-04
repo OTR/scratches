@@ -3,6 +3,7 @@ package hex.arch.topologyinventory.application.port.in;
 import hex.arch.topologyinventory.application.port.out.RouterManagementOutputPort;
 import hex.arch.topologyinventory.application.use_case.RouterManagementUseCase;
 
+import hex.arch.topologyinventory.domain.entity.factory.RouterFactory;
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 import hex.arch.topologyinventory.domain.entity.Router;
 import hex.arch.topologyinventory.domain.vo.IP;
