@@ -1,4 +1,4 @@
-package com.github.otr.slug.options;
+package com.github.otr.slug.framework.adapter.in.stdin;
 
 import org.apache.commons.cli.Option;
 

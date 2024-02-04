@@ -1,6 +1,6 @@
 package com.github.otr.slug;
 
-import com.github.otr.slug.options.Argument;
+import com.github.otr.slug.framework.adapter.in.stdin.Argument;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;

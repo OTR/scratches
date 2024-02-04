@@ -3,7 +3,7 @@ package com.github.otr.slug;
 import com.github.otr.slug.application.port.in.GenerateSlugInputPort;
 import com.github.otr.slug.application.use_case.GenerateSlugUseCase;
 import com.github.otr.slug.framework.adapter.in.BaseInputAdapter;
-import com.github.otr.slug.framework.adapter.in.GenerateSlugCliInputAdapter;
+import com.github.otr.slug.framework.adapter.in.stdin.GenerateSlugCliInputAdapter;
 
 /**
  *
