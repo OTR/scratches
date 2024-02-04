@@ -1,5 +1,6 @@
 package hex.arch.topologyinventory.application.port.in;
 
+import hex.arch.topologyinventory.application.port.out.SwitchManagementOutputPort;
 import hex.arch.topologyinventory.application.use_case.SwitchManagementUseCase;
 
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
@@ -11,7 +12,16 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.SwitchType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class SwitchManagementInputPort implements SwitchManagementUseCase {
+
+    private SwitchManagementOutputPort outputPort;
+
+    public SwitchManagementInputPort(SwitchManagementOutputPort outputPort) {
+        this.outputPort = outputPort;
+    }
 
     @Override
     public Switch createSwitch(

@@ -12,6 +12,8 @@ import jakarta.persistence.PersistenceContext;
 
 public class SwitchManagementH2OutputAdapter implements SwitchManagementOutputPort {
 
+    private static SwitchManagementH2OutputAdapter instance;
+
     @PersistenceContext
     private EntityManager em;
 
@@ -21,6 +23,13 @@ public class SwitchManagementH2OutputAdapter implements SwitchManagementOutputPo
             SwitchData.class, id.getId()
         );
         return RouterH2Mapper.switchDataToDomain(switchData);
+    }
+
+    public static SwitchManagementH2OutputAdapter getInstance() {
+        if (instance == null) {
+            instance = new SwitchManagementH2OutputAdapter();
+        }
+        return instance;
     }
 
 }

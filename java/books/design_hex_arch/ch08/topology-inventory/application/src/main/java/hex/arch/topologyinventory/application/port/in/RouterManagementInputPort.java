@@ -15,6 +15,8 @@ import hex.arch.topologyinventory.domain.vo.Vendor;
 
 import lombok.NoArgsConstructor;
 
+import java.security.GeneralSecurityException;
+
 @NoArgsConstructor
 public class RouterManagementInputPort implements RouterManagementUseCase {
 
@@ -30,6 +32,11 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
         Location location, RouterType routerType
     ) {
         return RouterFactory.getRouter(vendor, model, ip, location, routerType);
+    }
+
+    @Override
+    public Router removeRouter(Id id) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override

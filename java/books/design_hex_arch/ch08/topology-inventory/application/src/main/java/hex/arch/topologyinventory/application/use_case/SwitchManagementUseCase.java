@@ -3,6 +3,7 @@ package hex.arch.topologyinventory.application.use_case;
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
 import hex.arch.topologyinventory.domain.entity.Switch;
 import hex.arch.topologyinventory.domain.vo.IP;
+import hex.arch.topologyinventory.domain.vo.Id;
 import hex.arch.topologyinventory.domain.vo.Location;
 import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.SwitchType;
@@ -22,5 +23,7 @@ public interface SwitchManagementUseCase {
     EdgeRouter removeSwitchFromEdgeRouter(
         Switch networkSwitch, EdgeRouter edgeRouter
     );
+
+    Switch retrieveSwitch(Id switchId);
 
 }
