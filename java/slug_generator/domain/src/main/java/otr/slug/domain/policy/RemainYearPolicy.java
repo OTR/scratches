@@ -1,4 +1,4 @@
-package com.github.otr.slug.domain.policy;
+package otr.slug.domain.policy;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

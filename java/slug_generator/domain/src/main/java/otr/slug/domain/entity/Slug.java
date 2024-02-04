@@ -1,7 +1,7 @@
-package com.github.otr.slug.domain.entity;
+package otr.slug.domain.entity;
 
-import com.github.otr.slug.domain.policy.FilterStringPolicy;
-import com.github.otr.slug.domain.policy.RemainYearPolicy;
+import otr.slug.domain.policy.FilterStringPolicy;
+import otr.slug.domain.policy.RemainYearPolicy;
 
 /**
  *

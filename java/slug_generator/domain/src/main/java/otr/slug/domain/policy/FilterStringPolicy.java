@@ -1,4 +1,4 @@
-package com.github.otr.slug.domain.policy;
+package otr.slug.domain.policy;
 
 /**
  *

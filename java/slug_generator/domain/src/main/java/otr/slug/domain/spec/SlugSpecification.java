@@ -1,4 +1,4 @@
-package com.github.otr.slug.domain.spec;
+package otr.slug.domain.spec;
 
 import java.time.Year;
 
