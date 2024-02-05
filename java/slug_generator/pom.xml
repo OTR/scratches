@@ -75,7 +75,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.otr.slug.Main</mainClass>
+                            <mainClass>otr.slug.framework.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -93,7 +93,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.github.otr.slug.Main</mainClass>
+                            <mainClass>otr.slug.framework.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
