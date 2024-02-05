@@ -1,5 +1,8 @@
 package otr.slug.framework;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import otr.slug.domain.exception.BaseCustomException;
 import otr.slug.framework.adapter.in.stdin.option.ConsoleOption;
 import otr.slug.framework.exception.UnrecognizedOptionHandler;
@@ -12,8 +15,6 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import java.util.Arrays;
-
 /**
  * An entry point to a console program that executes
  * a text processing over supplied string
@@ -25,6 +26,7 @@ import java.util.Arrays;
 public class Main {
 
     public static final Options OPTIONS = configureOptions();
+    private final static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(final String[] args) {
         CommandLineParser parser = new DefaultParser();
@@ -77,14 +79,14 @@ public class Main {
 
         // When no special option has applied ->
         // Then trigger this `default` branch
-        if (cmd.getArgs().length > 0) {
+        if (cmd.getArgs().length > 0 || cmd.getOptions().length > 0) {
             runDefaultBranch(cmd);
         }
     }
 
     private static void runDefaultBranch(CommandLine cmd) {
         if (cmd.hasOption(ConsoleOption.TARGET.getOpt())) {
-            System.out.println("");
+            LOGGER.info("Launching in TARGET mode");
         }
         String commandLineArgs = String.join(" ", cmd.getArgList());
         App app = App.getCliApp();
