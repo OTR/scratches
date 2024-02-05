@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.otr</groupId>
+        <groupId>otr.slug</groupId>
         <artifactId>slug_generator</artifactId>
         <version>0.0.1</version>
     </parent>

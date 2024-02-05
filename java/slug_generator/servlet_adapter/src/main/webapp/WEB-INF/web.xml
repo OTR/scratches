@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>SlugGeneratorServlet</servlet-name>
-        <servlet-class>com.github.otr.slug.framework.adapter.in.servlet.SlugGeneratorServlet</servlet-class>
+        <servlet-class>otr.slug.framework.adapter.in.servlet.SlugGeneratorServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

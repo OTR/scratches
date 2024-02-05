@@ -7,7 +7,7 @@
     http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.otr</groupId>
+    <groupId>otr.slug</groupId>
     <artifactId>slug_generator</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
@@ -69,7 +69,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                            <mainClass>otr.slug.framework.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -87,7 +87,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                            <mainClass>otr.slug.framework.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

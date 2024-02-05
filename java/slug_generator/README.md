@@ -8,14 +8,14 @@ To compile java sources and run
 
 ```bash
 mvn clean compile
-mvn exec:java -Dexec.mainClass=com.github.otr.slug.Main
+mvn exec:java -Dexec.mainClass=otr.slug.framework.Main
 ```
 
 ## Run CLI mode with args
 
 ```bash
 mvn clean compile
-mvn exec:java -Dexec.mainClass=com.github.otr.slug.Main "SDSDqw12rwfefe&$%#&^*$dsf dsf sdfew"
+mvn exec:java -Dexec.mainClass=otr.slug.framework.Main "SDSDqw12rwfefe&$%#&^*$dsf dsf sdfew"
 ```
 
 ## Build the fat JAR

@@ -8,7 +8,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.otr</groupId>
+    <groupId>otr.slug</groupId>
     <artifactId>slug_generator</artifactId>
     <packaging>war</packaging>
     <version>0.0.1</version>
@@ -96,7 +96,7 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                                <mainClass>otr.slug.framework.Main</mainClass>
                             </manifest>
                         </archive>
                         <!--                        <classifier>best-version</classifier>-->
@@ -159,7 +159,7 @@
                                 <transformers>
                                     <transformer
                                             implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                        <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                                        <mainClass>otr.slug.framework.Main</mainClass>
                                     </transformer>
                                 </transformers>
                             </configuration>
@@ -204,7 +204,7 @@
                             <configuration>
                                 <archive>
                                     <manifest>
-                                        <mainClass>com.github.otr.slug.Maincom.github.otr.slug.Main</mainClass>
+                                        <mainClass>otr.slug.framework.Main</mainClass>
                                     </manifest>
                                 </archive>
                                 <descriptorRefs>
