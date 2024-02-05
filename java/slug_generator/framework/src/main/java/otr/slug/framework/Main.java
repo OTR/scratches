@@ -42,7 +42,7 @@ public class Main {
                 CommandLine cmd = parser.parse(OPTIONS, newArgs);
                 parseOptions(cmd);
             } catch (ParseException cause) {
-                throw new BaseCustomException("Caught in Main class", cause);
+                throw new BaseCustomException("Handler hasn't worked out", cause);
             }
         }
 

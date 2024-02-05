@@ -4,6 +4,13 @@
 mkdir $HOME/standalone_jar/
 ```
 
+# Recompile the FAT JAR after changes
+
+```bash
+cd ../
+mvn clean package -e
+```
+
 # Copy FAT JAR
 
 ```bash
