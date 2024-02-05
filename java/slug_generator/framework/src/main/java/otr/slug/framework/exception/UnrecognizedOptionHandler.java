@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 public class UnrecognizedOptionHandler {
 
     private static final String TRIGGER_MESSAGE = "Unrecognized option:";
+    private static final String LEADING_DASHES = "-+.*";
     private static final String MULTIPLE_DASHES = "-+";
 
     public static String[] handle(
@@ -17,7 +18,7 @@ public class UnrecognizedOptionHandler {
         String message = e.getMessage();
         String brokenOption = e.getOption();
         if (message.contains(TRIGGER_MESSAGE)) {
-            if (brokenOption.matches(MULTIPLE_DASHES)) {
+            if (brokenOption.matches(LEADING_DASHES)) {
                 return removeDashOnlyStrings(args);
             } else {
                 throw new BaseCustomException(e);
@@ -30,7 +31,7 @@ public class UnrecognizedOptionHandler {
     private static String[] removeDashOnlyStrings(String[] args) {
         String[] newArgs = Stream.of(args)
             .map(s ->
-                s.matches(MULTIPLE_DASHES)
+                s.matches(LEADING_DASHES)
                     ? s.replaceAll(MULTIPLE_DASHES, "")
                     : s
             )

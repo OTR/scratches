@@ -22,9 +22,9 @@ cp ../framework/target/framework-0.0.1-jar-with-dependencies.jar ~/standalone_ja
 ```bash
 cd ../
 mvn clean package -e
-cp ../framework/target/framework-0.0.1-jar-with-dependencies.jar ~/standalone_jar/framework-0.0.1.jar
+cp framework/target/framework-0.0.1-jar-with-dependencies.jar ~/standalone_jar/framework-0.0.1.jar
 cd $HOME/standalone_jar/
-slug_generator.sh "Hello beautiful world325234521452340on12)(@!!3124 14132@#)(!3mArch310    --- 2024.pdf"
+slug_generator.sh 'Hello beautiful world325234521452340on12)(@!!3124 14132@#)(!3mArch310    --- 2024.pdf'
 ```
 
 # Only Run

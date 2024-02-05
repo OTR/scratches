@@ -13,6 +13,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class UnrecognizedOptionHandlerTest {
 
     private static final String BROKEN_ARGS
@@ -99,6 +102,39 @@ public class UnrecognizedOptionHandlerTest {
         assertThat(actual, equalTo(expected));
         // AND
         assertThat(actual2, equalTo(expected2));
+    }
+
+    @Test
+    public void shouldMatchOnlyLeadingDashes() {
+        // GIVEN
+        String regEx = "-+.*";
+
+        String input1 = "-i"; // true expected
+        String input2 = "--i"; // true expected
+        String input3 = "-input"; // true expected
+        String input4 = "--input"; // true expected
+        String input5 = "---input"; // true expected
+        String input6 = "---"; // true expected
+
+        String input7 = "input-"; // false expected
+        String input8 = "input--"; // false expected
+        String input9 = "input-file"; // false expected
+        String input10 = "input--file"; // false expected
+
+
+        // WHEN && THEN
+        assertTrue(input1.matches(regEx));
+        assertTrue(input2.matches(regEx));
+        assertTrue(input3.matches(regEx));
+        assertTrue(input4.matches(regEx));
+        assertTrue(input5.matches(regEx));
+        assertTrue(input6.matches(regEx));
+        // AND
+        assertFalse(input7.matches(regEx));
+        assertFalse(input8.matches(regEx));
+        assertFalse(input9.matches(regEx));
+        assertFalse(input10.matches(regEx));
+
     }
 
 }
