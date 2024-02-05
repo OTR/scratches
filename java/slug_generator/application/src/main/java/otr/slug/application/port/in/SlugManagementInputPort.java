@@ -1,22 +1,53 @@
 package otr.slug.application.port.in;
 
 import otr.slug.application.usecase.SlugManagementUseCase;
+import otr.slug.domain.policy.CollapseMultipleUnderscoresPolicy;
+import otr.slug.domain.policy.FilterStringPolicy;
+import otr.slug.domain.policy.RemainYearPolicy;
+import otr.slug.domain.policy.ReplaceNonAlphaDecimalPolicy;
+import otr.slug.domain.policy.TrimUnderscoresPolicy;
+import otr.slug.domain.service.SlugService;
 import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
+
+import java.util.List;
 
 public class SlugManagementInputPort implements SlugManagementUseCase {
 
     private Object outputPort; // Placeholder
+    private List<FilterStringPolicy> policies;
 
     public SlugManagementInputPort(Object outputPort) {
+        this();
         this.outputPort = outputPort;
     }
 
-    public SlugManagementInputPort() {}
+    public SlugManagementInputPort() {
+        setUpPolicies();
+    }
 
     @Override
     public Slug createSlug(RawInput rawInput) {
-        return null;
+        return SlugService.createSlug(rawInput, policies);
+    }
+
+    private void setUpPolicies() {
+        policies = List.of(
+            String::toLowerCase,
+            String::trim,
+            new ReplaceNonAlphaDecimalPolicy(),
+            new RemainYearPolicy(),
+            new CollapseMultipleUnderscoresPolicy(),
+            new TrimUnderscoresPolicy()
+        );
+    }
+
+    public static void main(String[] args) {
+        SlugManagementInputPort sl = new SlugManagementInputPort();
+        Slug result = sl.createSlug(new RawInput(
+            "asdasdw qwdqw 2020 year the3rd edition "
+        ));
+        System.out.println(result);
     }
 
 }
