@@ -1,13 +1,18 @@
 package otr.slug.framework;
 
+import otr.slug.domain.exception.BaseCustomException;
 import otr.slug.framework.adapter.in.stdin.option.ConsoleOption;
+import otr.slug.framework.exception.UnrecognizedOptionHandler;
 
+import org.apache.commons.cli.UnrecognizedOptionException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+
+import java.util.Arrays;
 
 /**
  * An entry point to a console program that executes
@@ -21,14 +26,24 @@ public class Main {
 
     public static final Options OPTIONS = configureOptions();
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         CommandLineParser parser = new DefaultParser();
+        String[] newArgs = Arrays.copyOf(args, args.length);
 
         try {
             CommandLine cmd = parser.parse(OPTIONS, args);
             parseOptions(cmd);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        } catch (UnrecognizedOptionException e) {
+            newArgs = UnrecognizedOptionHandler.handle(args, e);
+        } catch (ParseException cause) {
+            throw new BaseCustomException("Caught in Main class ", cause);
+        } finally {
+            try {
+                CommandLine cmd = parser.parse(OPTIONS, newArgs);
+                parseOptions(cmd);
+            } catch (ParseException cause) {
+                throw new BaseCustomException("Caught in Main class", cause);
+            }
         }
 
     }
