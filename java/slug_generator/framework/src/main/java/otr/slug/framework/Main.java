@@ -15,6 +15,9 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * An entry point to a console program that executes
  * a text processing over supplied string
@@ -29,6 +32,7 @@ public class Main {
     private final static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(final String[] args) {
+//        LOGGER.debug(Arrays.toString(args));
         CommandLineParser parser = new DefaultParser();
         String[] newArgs;
 
@@ -61,12 +65,7 @@ public class Main {
     private static void parseOptions(CommandLine cmd) {
         // If `HELP` option is present -> show help message and exit
         if (cmd.hasOption(ConsoleOption.HELP.getOpt())) {
-            HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp(
-                "slug_generator.sh [OPTION]... -t DIRECTORY SOURCE...\n"
-                + "Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.",
-                OPTIONS
-            );
+            displayHelp();
             return;
         }
 
@@ -77,6 +76,12 @@ public class Main {
             return;
         }
 
+        // Target
+        if (cmd.hasOption(ConsoleOption.TARGET.getOpt())) {
+            parseTargetMode(cmd);
+            return;
+        }
+
         // When no special option has applied ->
         // Then trigger this `default` branch
         if (cmd.getArgs().length > 0 || cmd.getOptions().length > 0) {
@@ -84,13 +89,39 @@ public class Main {
         }
     }
 
+    private static void displayHelp() {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp(
+            "slug_generator.sh [OPTION]... -t DIRECTORY SOURCE...\n"
+            + "Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.",
+            OPTIONS
+        );
+    }
+
     private static void runDefaultBranch(CommandLine cmd) {
-        if (cmd.hasOption(ConsoleOption.TARGET.getOpt())) {
-            LOGGER.info("Launching in TARGET mode");
-        }
         String commandLineArgs = String.join(" ", cmd.getArgList());
         App app = App.getCliApp();
         app.runCliWithArgs(commandLineArgs);
     }
+
+    private static void parseTargetMode(CommandLine cmd) {
+        String[] args = cmd.getArgs();
+        if (args.length == 1) {
+            String path = args[0];
+            if (path == null || path.isEmpty() || path.equals(".") || path.equals("..")) {
+                throw new BaseCustomException();
+            }
+            Path normalizedPath = Paths.get(path).normalize();
+
+            if (!normalizedPath.isAbsolute()) {
+                normalizedPath = Paths.get(".").toAbsolutePath().resolve(path).normalize();
+            }
+
+            LOGGER.debug(normalizedPath.toString());
+        } else {
+            displayHelp();
+        }
+    }
+
 
 }

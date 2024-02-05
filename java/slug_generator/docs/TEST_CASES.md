@@ -70,3 +70,11 @@ slug_generator.sh --'--'-s-
 ```shell
 slug_generator.sh 'Sh24=_J@420j12 e1j030e1 32 2- -23 -32 -r----- QWe qwe123 231205j EWQ  wWQE2()U@(*!)#! !@) @ 01j2 -2))__'
 ```
+
+```shell
+$ slug_generator.sh -t /home/laptop/Downloads/RESTful\ Java\ with\ JAX-RS\ 2.0\ --\ Bill\ Burke\ --\ 2014\ --\ O\'Reilly\ Media\,\ Inc.\ --\ bbfb9aa2e12aadbfdac09583958b2cb0\ --\ Anna’s\ Archive.epub
+```
+
+```shell
+slug_generator.sh -t "/home/laptop/Downloads/RESTful Java with JAX-RS 2.0 -- Bill Burke -- 2014 -- O'Reilly Media, Inc. -- bbfb9aa2e12aadbfdac09583958b2cb0 -- Anna’s Archive.epub"
+```
