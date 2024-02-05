@@ -51,6 +51,7 @@ public class Main {
         Options options = new Options();
         options.addOption(ConsoleOption.HELP);
         options.addOption(ConsoleOption.REST);
+        options.addOption(ConsoleOption.TARGET);
 
         return options;
     }
@@ -59,7 +60,11 @@ public class Main {
         // If `HELP` option is present -> show help message and exit
         if (cmd.hasOption(ConsoleOption.HELP.getOpt())) {
             HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp("slug_generator", OPTIONS);
+            formatter.printHelp(
+                "slug_generator.sh [OPTION]... -t DIRECTORY SOURCE...\n"
+                + "Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.",
+                OPTIONS
+            );
             return;
         }
 
@@ -73,10 +78,17 @@ public class Main {
         // When no special option has applied ->
         // Then trigger this `default` branch
         if (cmd.getArgs().length > 0) {
-            String commandLineArgs = String.join(" ", cmd.getArgList());
-            App app = App.getCliApp();
-            app.runCliWithArgs(commandLineArgs);
+            runDefaultBranch(cmd);
         }
+    }
+
+    private static void runDefaultBranch(CommandLine cmd) {
+        if (cmd.hasOption(ConsoleOption.TARGET.getOpt())) {
+            System.out.println();
+        }
+        String commandLineArgs = String.join(" ", cmd.getArgList());
+        App app = App.getCliApp();
+        app.runCliWithArgs(commandLineArgs);
     }
 
 }
