@@ -15,6 +15,7 @@
         <module>domain</module>
         <module>application</module>
         <module>framework</module>
+        <module>servlet_adapter</module>
     </modules>
 
     <properties>

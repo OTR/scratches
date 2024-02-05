@@ -5,7 +5,7 @@ import org.apache.commons.cli.Option;
 /**
  * TODO: Rewrite with ENUM class
  */
-public final class HelpOption {
+public final class ConsoleOption {
 
     private static final String SHORT_OPTION = "h";
     private static final String LONG_OPTION = "help";

@@ -3,6 +3,7 @@ package otr.slug.framework.adapter.in.stdin;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import otr.slug.application.port.in.SlugManagementInputPort;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +26,9 @@ public class SlugManagementCliInputAdapterTest {
 
         // WHEN
             SlugManagementCliSlugInputAdapter adapter
-                = new SlugManagementCliSlugInputAdapter();
+                = new SlugManagementCliSlugInputAdapter(
+                    new SlugManagementInputPort()
+            );
             adapter.invoke(args);
     }
 

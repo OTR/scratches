@@ -1,7 +1,6 @@
 package otr.slug.framework.adapter.in.stdin;
 
-import otr.slug.application.port.in.SlugManagementInputPort;
-
+import otr.slug.application.usecase.SlugManagementUseCase;
 import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
@@ -10,8 +9,8 @@ import java.util.Map;
 
 public class SlugManagementCliSlugInputAdapter extends BaseSlugInputAdapter {
 
-    public SlugManagementCliSlugInputAdapter() {
-        setPorts();
+    public SlugManagementCliSlugInputAdapter(SlugManagementUseCase useCase) {
+        this.useCase = useCase;
     }
 
     @Override
@@ -31,10 +30,6 @@ public class SlugManagementCliSlugInputAdapter extends BaseSlugInputAdapter {
                     "` are not supported"
             );
         }
-    }
-
-    private void setPorts() {
-        this.useCase = new SlugManagementInputPort();
     }
 
 }

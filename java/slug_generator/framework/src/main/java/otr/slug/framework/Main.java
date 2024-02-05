@@ -1,6 +1,6 @@
 package otr.slug.framework;
 
-import com.github.otr.slug.framework.adapter.in.stdin.Argument;
+import otr.slug.framework.adapter.in.stdin.option.ConsoleOption;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -35,13 +35,13 @@ public class Main {
 
     private static Options configureOptions() {
         Options options = new Options();
-        options.addOption(Argument.HELP);
+        options.addOption(ConsoleOption.HELP);
 
         return options;
     }
 
     private static void parseOptions(CommandLine cmd) {
-        if (cmd.hasOption(Argument.HELP.getOpt())) {
+        if (cmd.hasOption(ConsoleOption.HELP.getOpt())) {
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp("slug_generator", OPTIONS);
         // When no special option has applied
