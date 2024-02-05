@@ -1,6 +1,7 @@
 package otr.slug.application.port.in;
 
 import otr.slug.application.usecase.SlugManagementUseCase;
+
 import otr.slug.domain.policy.CollapseMultipleUnderscoresPolicy;
 import otr.slug.domain.policy.FilterStringPolicy;
 import otr.slug.domain.policy.RemainYearPolicy;
@@ -40,14 +41,6 @@ public class SlugManagementInputPort implements SlugManagementUseCase {
             new CollapseMultipleUnderscoresPolicy(),
             new TrimUnderscoresPolicy()
         );
-    }
-
-    public static void main(String[] args) {
-        SlugManagementInputPort sl = new SlugManagementInputPort();
-        Slug result = sl.createSlug(new RawInput(
-            "asdasdw qwdqw 2020 year the3rd edition "
-        ));
-        System.out.println(result);
     }
 
 }
