@@ -35,15 +35,14 @@ public class Main {
             parseOptions(cmd);
         } catch (UnrecognizedOptionException e) {
             newArgs = UnrecognizedOptionHandler.handle(args, e);
-        } catch (ParseException cause) {
-            throw new BaseCustomException("Caught in Main class ", cause);
-        } finally {
             try {
                 CommandLine cmd = parser.parse(OPTIONS, newArgs);
                 parseOptions(cmd);
             } catch (ParseException cause) {
                 throw new BaseCustomException("Handler hasn't worked out", cause);
             }
+        } catch (ParseException cause) {
+            throw new BaseCustomException("Caught in Main class ", cause);
         }
 
     }
@@ -68,6 +67,7 @@ public class Main {
         if (cmd.hasOption(ConsoleOption.REST.getOpt())) {
             App app = App.getRestApp();
             app.runRestWithNoArgs();
+            return;
         }
 
         // When no special option has applied ->
