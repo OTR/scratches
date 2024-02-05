@@ -24,8 +24,8 @@ public class SlugManagementCliInputAdapterTest {
         thrown.expectMessage(expectedMsg);
 
         // WHEN
-            SlugManagementCliInputAdapter adapter
-                = new SlugManagementCliInputAdapter();
+            SlugManagementCliSlugInputAdapter adapter
+                = new SlugManagementCliSlugInputAdapter();
             adapter.invoke(args);
     }
 
