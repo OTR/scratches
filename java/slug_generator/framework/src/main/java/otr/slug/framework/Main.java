@@ -84,7 +84,7 @@ public class Main {
 
     private static void runDefaultBranch(CommandLine cmd) {
         if (cmd.hasOption(ConsoleOption.TARGET.getOpt())) {
-            System.out.println();
+            System.out.println("");
         }
         String commandLineArgs = String.join(" ", cmd.getArgList());
         App app = App.getCliApp();
