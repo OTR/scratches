@@ -28,7 +28,7 @@ public class Main {
 
     public static void main(final String[] args) {
         CommandLineParser parser = new DefaultParser();
-        String[] newArgs = Arrays.copyOf(args, args.length);
+        String[] newArgs;
 
         try {
             CommandLine cmd = parser.parse(OPTIONS, args);

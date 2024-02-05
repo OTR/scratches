@@ -18,22 +18,26 @@ public class UnrecognizedOptionHandler {
         String brokenOption = e.getOption();
         if (message.contains(TRIGGER_MESSAGE)) {
             if (brokenOption.matches(MULTIPLE_DASHES)) {
-                String[] newArgs = Stream.of(args)
-                    .map(s ->
-                        s.matches(MULTIPLE_DASHES)
-                            ? s.replaceAll(MULTIPLE_DASHES, "")
-                            : s
-                    )
-                    .filter(s -> !s.isEmpty())
-                    .toArray(String[]::new);
-
-                return newArgs;
+                return removeDashOnlyStrings(args);
             } else {
                 throw new BaseCustomException(e);
             }
         } else {
             throw new BaseCustomException(e);
         }
+    }
+
+    private static String[] removeDashOnlyStrings(String[] args) {
+        String[] newArgs = Stream.of(args)
+            .map(s ->
+                s.matches(MULTIPLE_DASHES)
+                    ? s.replaceAll(MULTIPLE_DASHES, "")
+                    : s
+            )
+            .filter(s -> !s.isEmpty())
+            .toArray(String[]::new);
+
+        return newArgs;
     }
 
 }
