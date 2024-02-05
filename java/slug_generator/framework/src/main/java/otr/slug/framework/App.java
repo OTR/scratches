@@ -1,4 +1,4 @@
-package com.github.otr.slug;
+package otr.slug.framework;
 
 import com.github.otr.slug.application.port.in.GenerateSlugInputPort;
 import com.github.otr.slug.application.use_case.GenerateSlugUseCase;

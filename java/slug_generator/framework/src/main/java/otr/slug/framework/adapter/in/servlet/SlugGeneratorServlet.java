@@ -1,4 +1,4 @@
-package com.github.otr.slug.framework.adapter.in.servlet;
+package otr.slug.framework.adapter.in.servlet;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
