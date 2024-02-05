@@ -36,20 +36,31 @@ public class Main {
     private static Options configureOptions() {
         Options options = new Options();
         options.addOption(ConsoleOption.HELP);
+        options.addOption(ConsoleOption.REST);
 
         return options;
     }
 
     private static void parseOptions(CommandLine cmd) {
+        // If `HELP` option is present -> show help message and exit
         if (cmd.hasOption(ConsoleOption.HELP.getOpt())) {
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp("slug_generator", OPTIONS);
-        // When no special option has applied
+            return;
+        }
+
+        // Run in HTTP REST Server mode
+        if (cmd.hasOption(ConsoleOption.REST.getOpt())) {
+            App app = App.getRestApp();
+            app.runRestWithNoArgs();
+        }
+
+        // When no special option has applied ->
         // Then trigger this `default` branch
-        } else if (cmd.getArgs().length > 0) {
+        if (cmd.getArgs().length > 0) {
             String commandLineArgs = String.join(" ", cmd.getArgList());
             App app = App.getCliApp();
-            app.runWithArgs(commandLineArgs);
+            app.runCliWithArgs(commandLineArgs);
         }
     }
 

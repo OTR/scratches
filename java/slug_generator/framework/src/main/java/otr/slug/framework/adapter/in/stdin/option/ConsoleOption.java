@@ -20,4 +20,11 @@ public final class ConsoleOption {
             .desc(COMMAND_DESCRIPTION)
             .build();
 
+    public static final Option REST = Option
+        .builder("r")
+        .longOpt("rest")
+        .hasArg(HAS_NO_ARG)
+        .desc("Run in HTTP REST Server mode")
+        .build();
+
 }
