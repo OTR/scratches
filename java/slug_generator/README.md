@@ -24,8 +24,9 @@ To build a `fat jar`
 
 ```shell
 mvn clean package
-mv ./target/slug_generator-0.0.1-jar-with-dependencies.jar ./target/slug_generator.jar
-java -jar ./target/slug_generator.jar
+mv framework/target/framework-0.0.1-jar-with-dependencies.jar framework/target/framework.jar
+$USER_INPUT="SDSDqw12rwfefe&$%#&^*$dsf dsf sdfew"
+java -jar framework/target/framework.jar $USER_INPUT
 ```
 
 ## Run options
@@ -35,5 +36,5 @@ java -jar ./target/slug_generator.jar
 Use double quotes to
 
 ```bash
-java -jar ./target/slug_generator.jar "SDSDqw12rwfefe&$%#&^*$dsf dsf sdfew"
+java -jar framework/target/framework.jar "SDSDqw12rwfefe&$%#&^*$dsf dsf sdfew"
 ```
