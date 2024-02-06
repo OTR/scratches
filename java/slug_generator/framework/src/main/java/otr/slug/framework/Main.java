@@ -32,7 +32,6 @@ public class Main {
     private final static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(final String[] args) {
-//        LOGGER.debug(Arrays.toString(args));
         CommandLineParser parser = new DefaultParser();
         String[] newArgs;
 
@@ -76,7 +75,7 @@ public class Main {
             return;
         }
 
-        // Target
+        // If `TARGET` option is present
         if (cmd.hasOption(ConsoleOption.TARGET.getOpt())) {
             parseTargetMode(cmd);
             return;

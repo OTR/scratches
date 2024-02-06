@@ -1,5 +1,6 @@
 package otr.slug.framework;
 
+import com.sun.net.httpserver.HttpServer;
 import otr.slug.application.port.in.SlugManagementInputPort;
 import otr.slug.application.usecase.SlugManagementUseCase;
 import otr.slug.domain.vo.Slug;
@@ -8,6 +9,8 @@ import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
 import otr.slug.framework.adapter.in.rest.SlugManagementRestInputAdapter;
 import otr.slug.framework.adapter.in.stdin.SlugManagementCliSlugInputAdapter;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.Collections;
 import java.util.Map;
 
@@ -39,8 +42,16 @@ public class App {
     }
 
     public void runRestWithNoArgs() {
-        Map<String, String> noArgs = Collections.<String, String>emptyMap();
-        this.inputAdapter.invoke(noArgs);
+        try {
+            System.out.println("REST endpoint listening on port 8080...");
+            HttpServer httpServer = HttpServer.create(
+                new InetSocketAddress(8080), 0
+            );
+            this.inputAdapter.invoke(httpServer);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
