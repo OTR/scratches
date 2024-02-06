@@ -1,7 +1,7 @@
 # Idea / Android Studio config files
 .idea/
 target/
-out/
+/out/
 *.iml
 
 # Internal application data
