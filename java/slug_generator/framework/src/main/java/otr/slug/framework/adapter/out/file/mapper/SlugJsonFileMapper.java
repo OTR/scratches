@@ -9,4 +9,8 @@ public class SlugJsonFileMapper {
         return null;
     }
 
+    public static Slug toDomain(SlugJson slugJson) {
+        return null;
+    }
+
 }
