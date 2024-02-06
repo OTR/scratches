@@ -18,16 +18,11 @@ import java.util.UUID;
 public class SlugManagementFileOutputAdapter
     implements SlugManagementOutputPort {
 
-    private final ObjectMapper objectMapper;
-    private List<SlugJson> slugs;
-    private InputStream resource;
+    private static SlugManagementFileOutputAdapter instance;
 
-    private SlugManagementFileOutputAdapter() {
-        this.objectMapper = new ObjectMapper();
-        this.resource = getClass().getClassLoader()
-            .getResourceAsStream("slugs.json");
-        readJsonFile();
-    }
+    private final ObjectMapper objectMapper;
+    private final InputStream resource;
+    private List<SlugJson> slugs;
 
     @Override
     public Slug fetchSlugById(UUID slugId) {
@@ -66,6 +61,22 @@ public class SlugManagementFileOutputAdapter
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private SlugManagementFileOutputAdapter() {
+        this.objectMapper = new ObjectMapper();
+        this.resource = getClass()
+            .getClassLoader()
+            .getResourceAsStream("slugs.json");
+
+        readJsonFile();
+    }
+
+    public static SlugManagementFileOutputAdapter getInstance() {
+        if (instance == null) {
+            instance = new SlugManagementFileOutputAdapter();
+        }
+        return instance;
     }
 
 }
