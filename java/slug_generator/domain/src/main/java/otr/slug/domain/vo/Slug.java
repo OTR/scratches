@@ -9,10 +9,11 @@ public record Slug(
 ) {
 
     public Slug(String value) {
-        Specification<Slug> alphaDecimal = new AlphaDecimalSpecification();
-        Specification<Slug> validYear = new ValidYearSpecification();
+        Specification<String> alphaDecimal = new AlphaDecimalSpecification();
+        Specification<String> validYear = new ValidYearSpecification();
 
-
+        alphaDecimal.check(value);
+        validYear.check(value);
 
         this.value = value;
     }
