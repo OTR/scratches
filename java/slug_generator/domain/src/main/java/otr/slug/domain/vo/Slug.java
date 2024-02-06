@@ -12,8 +12,7 @@ public record Slug(
         Specification<String> alphaDecimal = new AlphaDecimalSpecification();
         Specification<String> validYear = new ValidYearSpecification();
 
-        alphaDecimal.check(value);
-        validYear.check(value);
+        alphaDecimal.and(validYear).check(value);
 
         this.value = value;
     }

@@ -45,7 +45,7 @@ public class SlugManagementRestInputAdapter extends BaseSlugInputAdapter {
             if (exchange.getRequestMethod().equals("GET")) {
                 String query = exchange.getRequestURI().getRawQuery();
                 var params = Collections.<String, String>emptyMap();
-                httpParams(query, params);
+//                httpParams(query, params);
                 RawInput rawInput = wrapUserInput(params);
                 Slug slug = useCase.createSlug(rawInput);
 
