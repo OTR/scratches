@@ -1,8 +1,8 @@
-package otr.slug.framework.adapter.in.rest;
+package otr.slug.framework.adapter.in.sun_http;
 
-public class Utils {
+class Utils {
 
-    public static void printGreetingsLine() {
+    static void printGreetingsLine() {
         System.out.println(getServerGreetings());
     }
 

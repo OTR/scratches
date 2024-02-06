@@ -1,4 +1,4 @@
-package otr.slug.framework.adapter.in.rest;
+package otr.slug.framework.adapter.in.sun_http;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -10,11 +10,11 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 
-public class MapStringCollector {
+class MapStringCollector {
 
-    public static final String ENCODING_SCHEME = "UTF-8";
+    private static final String ENCODING_SCHEME = "UTF-8";
 
-    public static Collector<String[], ?, Map<String, List<String>>> collect() {
+    static Collector<String[], ?, Map<String, List<String>>> collect() {
         return groupingBy(
             s -> decodeUrl(s[0]),
             mapping(

@@ -6,7 +6,7 @@ import otr.slug.application.port.in.SlugManagementInputPort;
 import otr.slug.application.usecase.SlugManagementUseCase;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
-import otr.slug.framework.adapter.in.rest.SlugManagementRestInputAdapter;
+import otr.slug.framework.adapter.in.sun_http.SlugManagementRestInputAdapter;
 import otr.slug.framework.adapter.in.stdin.SlugManagementCliSlugInputAdapter;
 
 import java.io.IOException;
