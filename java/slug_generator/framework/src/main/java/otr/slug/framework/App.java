@@ -41,7 +41,6 @@ public class App {
 
     public void runRestWithNoArgs() {
         try {
-            System.out.println("REST endpoint listening on port 8080...");
             HttpServer httpServer = HttpServer.create(
                 new InetSocketAddress(8080), 0
             );

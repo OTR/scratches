@@ -1,8 +1,5 @@
 package otr.slug.framework.adapter.in.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -10,64 +7,84 @@ import otr.slug.application.usecase.SlugManagementUseCase;
 import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
-import otr.slug.framework.adapter.out.file.mapper.SlugJsonFileMapper;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.regex.Pattern;
 
 public class SlugManagementRestInputAdapter extends BaseSlugInputAdapter {
 
+    private static final String DEFAULT_USER_INPUT = "";
+    private static final String CREATE_ENDPOINT = "/create";
+    private static final Executor DEFAULT_EXECUTOR = null;
+    public static final String URL_QUERY_SEPARATOR = "&";
+
+    private HttpHandler createHandler;
+    Slug slug;
+
     public SlugManagementRestInputAdapter(SlugManagementUseCase useCase) {
         this.useCase = useCase;
+        this.createHandler = new CreateSlugHandler(this);
     }
 
     @Override
     public Slug invoke(Object requestParams) {
-        Map<String, String> params = parseUserInput(requestParams);
+        HttpServer httpServer = parseParams(requestParams);
+        httpServer.createContext(CREATE_ENDPOINT, createHandler);
+        httpServer.setExecutor(DEFAULT_EXECUTOR);
+        httpServer.start();
+        Utils.printGreetingsLine();
 
-        HttpServer httpServer = null;
-        httpServer.createContext("/create", CREATE_HANDLER);
-
-
-        return new Slug("");
+        return this.slug;
     }
 
-    private Map<String, String> parseUserInput(Object requestParams) {
-        return Collections.emptyMap();
+    void createSlug(RawInput rawInput) {
+        this.slug = useCase.createSlug(rawInput);
     }
 
-    private final HttpHandler CREATE_HANDLER = new HttpHandler() {
+    Map<String, String> extractUserInputFromQuery(String query) {
+        Map<String, List<String>> requestParams = extractParamsFrom(query);
+        String userInput = getUserInputOrDefault(requestParams);
+        return Map.of(USER_INPUT_PARAMS_KEY, userInput);
+    }
 
-        @Override
-        public void handle(HttpExchange exchange) throws IOException {
-            if (exchange.getRequestMethod().equals("GET")) {
-                String query = exchange.getRequestURI().getRawQuery();
-                var params = Collections.<String, String>emptyMap();
-//                httpParams(query, params);
-                RawInput rawInput = wrapUserInput(params);
-                Slug slug = useCase.createSlug(rawInput);
+    private static String getUserInputOrDefault(
+        Map<String, List<String>> requestParams
+    ) {
+        String userInput = requestParams.getOrDefault(
+                USER_INPUT_PARAMS_KEY,
+                List.of(DEFAULT_USER_INPUT)
+            )
+            .stream()
+            .findFirst()
+            .orElse(DEFAULT_USER_INPUT);
 
-                ObjectMapper mapper = new ObjectMapper();
-                String slugJson = mapper.writeValueAsString(
-                    SlugJsonFileMapper.toJson(slug)
-                );
+        return userInput;
+    }
 
-                exchange.getResponseHeaders()
-                    .set("Content-Type", "application/json");
-                exchange.sendResponseHeaders(
-                    200, slugJson.getBytes().length
-                );
-                OutputStream output = exchange.getResponseBody();
-                output.write(slugJson.getBytes());
-                output.flush();
-            } else {
-                exchange.sendResponseHeaders(405, -1);
-            }
+    private static Map<String, List<String>> extractParamsFrom(String query) {
+        Map<String, List<String>> requestParams = Pattern
+            .compile(URL_QUERY_SEPARATOR)
+            .splitAsStream(query)
+            .map(FuncUtils.getFirstTwoElements())
+            .collect(MapStringCollector.collect());
+
+        return requestParams;
+    }
+
+    private static HttpServer parseParams(Object requestParams) {
+        if (requestParams instanceof HttpServer) {
+            return  (HttpServer) requestParams;
+        } else {
+            throw new IllegalArgumentException(
+                "An instance of HttpServer should be provided"
+            );
         }
+    }
 
-    };
-
+    RawInput wrapUserInputAccess(Map<String, String> params) {
+        return super.wrapUserInput(params);
+    }
 
 }
