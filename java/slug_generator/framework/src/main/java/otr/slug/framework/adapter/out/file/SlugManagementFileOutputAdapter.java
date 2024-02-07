@@ -38,7 +38,7 @@ public class SlugManagementFileOutputAdapter
     }
 
     @Override
-    public boolean persistSlug(Slug slug) {
+    public Slug persistSlug(Slug slug) {
         SlugJson slugJson = SlugJsonFileMapper.toJson(slug);
 
         try {
@@ -50,7 +50,7 @@ public class SlugManagementFileOutputAdapter
             throw new RuntimeException(e);
         }
 
-        return true;
+        return slug;
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface SlugManagementOutputPort {
 
     Slug fetchSlugById(UUID slugId);
 
-    boolean persistSlug(Slug slug);
+    Slug persistSlug(Slug slug);
 
     List<Slug> retrieveSlugs();
 

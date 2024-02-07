@@ -36,10 +36,19 @@ public class SlugManagementInputPort implements SlugManagementUseCase {
 
     @Override
     public List<Slug> retrieveSlugs() {
-        if (outputPort != null) {
-            return outputPort.retrieveSlugs();
+        if (this.outputPort != null) {
+            return this.outputPort.retrieveSlugs();
         } else {
             return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public Slug persistSlug(Slug slug) {
+        if (this.outputPort != null) {
+            return this.outputPort.persistSlug(slug);
+        } else {
+            return slug;
         }
     }
 

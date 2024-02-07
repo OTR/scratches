@@ -12,4 +12,6 @@ public interface SlugManagementUseCase {
 
     List<Slug> retrieveSlugs();
 
+    Slug persistSlug(Slug slug);
+
 }

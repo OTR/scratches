@@ -60,10 +60,12 @@ public class App {
     }
 
     public void runCliFilePersistenceOneArg(String userInput) {
-        System.out.println("The user asked to convert raw input to Slug.");
+        System.out.println(
+            "The user asked to convert raw input to Slug and persist the result"
+        );
         System.out.println("Input: ");
         System.out.println(userInput);
-        Slug slug = this.inputAdapter.createSlug(userInput);
+        Slug slug = this.inputAdapter.createAndPersist(userInput);
         System.out.println("Output: ");
         System.out.println(slug.value());
     }

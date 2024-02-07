@@ -5,7 +5,6 @@ import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
 
-import java.util.List;
 import java.util.Map;
 
 public class SlugManagementCliSlugInputAdapter extends BaseSlugInputAdapter {
@@ -18,7 +17,13 @@ public class SlugManagementCliSlugInputAdapter extends BaseSlugInputAdapter {
     public Slug createSlug(Object requestParams) {
         Map<String, String> params = parseParams(requestParams);
         RawInput rawInput = wrapUserInput(params);
-        return useCase.createSlug(rawInput);
+        return this.useCase.createSlug(rawInput);
+    }
+
+    @Override
+    public Slug createAndPersist(Object requestParams) {
+        Slug slug = createSlug(requestParams);
+        return this.useCase.persistSlug(slug);
     }
 
     private Map<String, String> parseParams(Object requestParams) {

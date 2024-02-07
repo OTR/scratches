@@ -27,4 +27,13 @@ public abstract class BaseSlugInputAdapter {
         return this.useCase.retrieveSlugs();
     };
 
+    public Slug persistSlug(Slug slug) {
+        return this.useCase.persistSlug(slug);
+    }
+
+    public Slug createAndPersist(Object requestParams) {
+        Slug slug = this.createSlug(requestParams);
+        return this.persistSlug(slug);
+    }
+
 }
