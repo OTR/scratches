@@ -78,3 +78,9 @@ $ slug_generator.sh -t /home/laptop/Downloads/RESTful\ Java\ with\ JAX-RS\ 2.0\ 
 ```shell
 slug_generator.sh -t "/home/laptop/Downloads/RESTful Java with JAX-RS 2.0 -- Bill Burke -- 2014 -- O'Reilly Media, Inc. -- bbfb9aa2e12aadbfdac09583958b2cb0 -- Anna’s Archive.epub"
 ```
+
+# Sanitizer erases correct Option
+
+It filters out `-i` Option
+
+```-f 7Hello bea%$@#@$uT4ti5246--- ---- F$$$ul 235426 33 2004 WorlD --- .pdf```

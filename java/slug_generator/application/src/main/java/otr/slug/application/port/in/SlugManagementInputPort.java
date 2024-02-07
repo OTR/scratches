@@ -1,5 +1,6 @@
 package otr.slug.application.port.in;
 
+import otr.slug.application.port.out.SlugManagementOutputPort;
 import otr.slug.application.usecase.SlugManagementUseCase;
 
 import otr.slug.domain.policy.CollapseMultipleUnderscoresPolicy;
@@ -15,10 +16,10 @@ import java.util.List;
 
 public class SlugManagementInputPort implements SlugManagementUseCase {
 
-    private Object outputPort; // Placeholder
+    private SlugManagementOutputPort outputPort;
     private List<FilterStringPolicy> policies;
 
-    public SlugManagementInputPort(Object outputPort) {
+    public SlugManagementInputPort(SlugManagementOutputPort outputPort) {
         this();
         this.outputPort = outputPort;
     }

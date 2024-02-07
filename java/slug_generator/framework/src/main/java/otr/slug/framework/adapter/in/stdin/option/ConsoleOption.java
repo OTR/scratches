@@ -36,4 +36,11 @@ public final class ConsoleOption {
         .desc("move all SOURCE arguments into DIRECTORY")
         .build();
 
+    public static final Option FILE = Option
+        .builder("f")
+        .longOpt("file-backed")
+        .hasArg(HAS_NO_ARG)
+        .desc("persist the result in a JSON file backed storage")
+        .build();
+
 }

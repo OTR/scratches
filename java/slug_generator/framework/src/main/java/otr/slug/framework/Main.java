@@ -40,6 +40,7 @@ public class Main {
             parseOptions(cmd);
         } catch (UnrecognizedOptionException e) {
             newArgs = UnrecognizedOptionHandler.handle(args, e);
+            LOGGER.debug("Options has been sanitized, and could be corrupted");
             try {
                 CommandLine cmd = parser.parse(OPTIONS, newArgs);
                 parseOptions(cmd);
@@ -57,6 +58,7 @@ public class Main {
         options.addOption(ConsoleOption.HELP);
         options.addOption(ConsoleOption.REST);
         options.addOption(ConsoleOption.TARGET);
+        options.addOption(ConsoleOption.FILE);
 
         return options;
     }
@@ -81,20 +83,17 @@ public class Main {
             return;
         }
 
+        // If `FILE` option is present -> run in JSON File based retrieve mode
+        if (cmd.hasOption(ConsoleOption.FILE.getOpt()) ) {
+            parseFileMode(cmd);
+            return;
+        }
+
         // When no special option has applied ->
         // Then trigger this `default` branch
         if (cmd.getArgs().length > 0 || cmd.getOptions().length > 0) {
             runDefaultBranch(cmd);
         }
-    }
-
-    private static void displayHelp() {
-        HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp(
-            "slug_generator.sh [OPTION]... -t DIRECTORY SOURCE...\n"
-            + "Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.",
-            OPTIONS
-        );
     }
 
     private static void runDefaultBranch(CommandLine cmd) {
@@ -120,6 +119,26 @@ public class Main {
         } else {
             displayHelp();
         }
+    }
+
+    private static void parseFileMode(CommandLine cmd) {
+        String[] args = cmd.getArgs();
+        if (args.length > 0) {
+            String userInput = String.join(" ", args);
+            App app = App.getCliAppWithFilePersistence();
+            app.runCliAppWithFilePersistence(userInput);
+        } else {
+            displayHelp();
+        }
+    }
+
+    private static void displayHelp() {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp(
+            "slug_generator.sh [OPTION]... -t DIRECTORY SOURCE...\n"
+                + "Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.",
+            OPTIONS
+        );
     }
 
 
