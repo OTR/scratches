@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import otr.slug.application.port.out.SlugManagementOutputPort;
+import otr.slug.domain.exception.BaseCustomException;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.out.file.json.SlugJson;
 import otr.slug.framework.adapter.out.file.mapper.SlugJsonFileMapper;
@@ -59,7 +60,7 @@ public class SlugManagementFileOutputAdapter
                 new TypeReference<List<SlugJson>>() {}
             );
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new BaseCustomException(e);
         }
     }
 
