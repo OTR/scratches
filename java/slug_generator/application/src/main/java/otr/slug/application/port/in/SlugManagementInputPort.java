@@ -12,6 +12,7 @@ import otr.slug.domain.service.SlugService;
 import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
 
+import java.util.Collections;
 import java.util.List;
 
 public class SlugManagementInputPort implements SlugManagementUseCase {
@@ -31,6 +32,15 @@ public class SlugManagementInputPort implements SlugManagementUseCase {
     @Override
     public Slug createSlug(RawInput rawInput) {
         return SlugService.createSlug(rawInput, policies);
+    }
+
+    @Override
+    public List<Slug> retrieveSlugs() {
+        if (outputPort != null) {
+            return outputPort.retrieveSlugs();
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     private void setUpPolicies() {

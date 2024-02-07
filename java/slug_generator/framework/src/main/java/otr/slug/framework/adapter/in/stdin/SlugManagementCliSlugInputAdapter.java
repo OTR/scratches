@@ -5,6 +5,7 @@ import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
 
+import java.util.List;
 import java.util.Map;
 
 public class SlugManagementCliSlugInputAdapter extends BaseSlugInputAdapter {

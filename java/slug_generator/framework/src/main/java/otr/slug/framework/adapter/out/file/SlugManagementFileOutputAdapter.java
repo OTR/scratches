@@ -23,12 +23,12 @@ public class SlugManagementFileOutputAdapter
 
     private final ObjectMapper objectMapper;
     private final InputStream resource;
-    private List<SlugJson> slugs;
+    private List<SlugJson> slugJsons;
 
     @Override
     public Slug fetchSlugById(UUID slugId) {
 
-        for (SlugJson slugJson : slugs) {
+        for (SlugJson slugJson : slugJsons) {
             if (slugJson.getSlugId().equals(slugId)) {
                 return SlugJsonFileMapper.toDomain(slugJson);
             }
@@ -44,7 +44,7 @@ public class SlugManagementFileOutputAdapter
         try {
             String localDir = Paths.get("").toAbsolutePath().toString();
             File file = new File(localDir + "/slugs.json");
-            file.delete();
+            boolean isDeleted = file.delete();
             this.objectMapper.writeValue(file, slugJson);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -53,9 +53,14 @@ public class SlugManagementFileOutputAdapter
         return true;
     }
 
+    @Override
+    public List<Slug> retrieveSlugs() {
+        return SlugJsonFileMapper.getSlugsFromJson(slugJsons);
+    }
+
     private void readJsonFile() {
         try {
-            this.slugs = objectMapper.readValue(
+            this.slugJsons = objectMapper.readValue(
                 this.resource,
                 new TypeReference<List<SlugJson>>() {}
             );

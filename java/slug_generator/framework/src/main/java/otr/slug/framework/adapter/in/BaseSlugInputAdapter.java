@@ -4,6 +4,7 @@ import otr.slug.application.usecase.SlugManagementUseCase;
 import otr.slug.domain.vo.RawInput;
 import otr.slug.domain.vo.Slug;
 
+import java.util.List;
 import java.util.Map;
 
 public abstract class BaseSlugInputAdapter {
@@ -21,5 +22,9 @@ public abstract class BaseSlugInputAdapter {
         String userInput = params.get(USER_INPUT_PARAMS_KEY);
         return new RawInput(userInput);
     }
+
+    public List<Slug> retrieveSlugs() {
+        return this.useCase.retrieveSlugs();
+    };
 
 }

@@ -13,6 +13,7 @@ import otr.slug.framework.adapter.out.file.SlugManagementFileOutputAdapter;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.List;
 
 public class App {
 
@@ -51,11 +52,11 @@ public class App {
         System.out.println(slug.value());
     }
 
-    public void runCliFilePersistenceNoArgs(String userInput) {
+    public void runCliFilePersistenceNoArgs() {
         System.out.println("The user asked to display existing Slugs.");
-        Slug slug = this.inputAdapter.createSlug(userInput);
+        List<Slug> slug = this.inputAdapter.retrieveSlugs();
         System.out.println("Output: ");
-        System.out.println(slug.value());
+        System.out.println(slug.toString());
     }
 
     public void runCliFilePersistenceOneArg(String userInput) {

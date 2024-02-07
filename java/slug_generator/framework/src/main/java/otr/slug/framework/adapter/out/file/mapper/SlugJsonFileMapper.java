@@ -15,14 +15,14 @@ public class SlugJsonFileMapper {
         return new Slug(slugJson.getSlugValue());
     }
 
-    private static List<Slug> getSlugsFromJson(List<SlugJson> slugJsons) {
+    public static List<Slug> getSlugsFromJson(List<SlugJson> slugJsons) {
         return slugJsons.stream()
             .map(SlugJson::getSlugValue)
             .map(Slug::new)
             .toList();
     }
 
-    private static List<SlugJson> getSlugsFromDomain(List<Slug> slugs) {
+    public static List<SlugJson> getSlugsFromDomain(List<Slug> slugs) {
         return slugs.stream()
             .map(Slug::value)
             .map(SlugJson::valueOf)

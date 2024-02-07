@@ -128,7 +128,8 @@ public class Main {
             App app = App.getCliAppWithFilePersistence();
             app.runCliFilePersistenceOneArg(userInput);
         } else {
-            displayHelp();
+            App app = App.getCliAppWithFilePersistence();
+            app.runCliFilePersistenceNoArgs();
         }
     }
 
