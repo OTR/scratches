@@ -55,6 +55,20 @@
             <version>3.1.0</version>
         </dependency>
 
+        <!-- Eclipse Link JPA plugin -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!-- H2 Driver -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+        </dependency>
+
     </dependencies>
 
 </project>

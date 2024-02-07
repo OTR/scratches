@@ -7,9 +7,12 @@ public class SlugH2Mapper {
 
     public static Slug toDomain(SlugData slugData) {
 
+        return null;
     }
 
     public static SlugData toH2(Slug slug) {
+
+        return null;
     }
 
 }
