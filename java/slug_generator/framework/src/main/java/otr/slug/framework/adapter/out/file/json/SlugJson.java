@@ -9,6 +9,7 @@ import otr.slug.domain.spec.shared.Specification;
 
 import otr.slug.framework.adapter.out.file.mapper.UuidProvider;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -44,6 +45,22 @@ public class SlugJson {
         UUID uuid = UuidProvider.fromString(value);
 
         return new SlugJson(uuid, value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SlugJson slugJson)) return false;
+
+        if (!getSlugId().equals(slugJson.getSlugId())) return false;
+        return getSlugValue().equals(slugJson.getSlugValue());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getSlugId().hashCode();
+        result = 31 * result + getSlugValue().hashCode();
+        return result;
     }
 
 }

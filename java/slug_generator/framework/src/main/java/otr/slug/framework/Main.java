@@ -115,7 +115,6 @@ public class Main {
                 normalizedPath = Paths.get(".").toAbsolutePath().resolve(path).normalize();
             }
 
-            LOGGER.debug(normalizedPath.toString());
         } else {
             displayHelp();
         }

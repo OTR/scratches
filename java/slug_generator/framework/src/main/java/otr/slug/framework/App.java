@@ -54,19 +54,24 @@ public class App {
 
     public void runCliFilePersistenceNoArgs() {
         System.out.println("The user asked to display existing Slugs.");
-        List<Slug> slug = this.inputAdapter.retrieveSlugs();
-        System.out.println("Output: ");
-        System.out.println(slug.toString());
+        List<Slug> slugs = this.inputAdapter.retrieveSlugs();
+        System.out.printf("Found %d entities:%n", slugs.size());
+
+        System.out.println("Output:");
+        for (int i = 0; i < slugs.size(); i++) {
+            Slug slug = slugs.get(i);
+            System.out.printf("%d. %s%n", i + 1, slug.value());
+        }
     }
 
     public void runCliFilePersistenceOneArg(String userInput) {
         System.out.println(
             "The user asked to convert raw input to Slug and persist the result"
         );
-        System.out.println("Input: ");
+        System.out.println("Input:");
         System.out.println(userInput);
         Slug slug = this.inputAdapter.createAndPersist(userInput);
-        System.out.println("Output: ");
+        System.out.println("Output:");
         System.out.println(slug.value());
     }
 

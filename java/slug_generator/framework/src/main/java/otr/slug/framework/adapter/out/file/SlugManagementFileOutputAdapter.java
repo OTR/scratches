@@ -12,9 +12,12 @@ import otr.slug.framework.adapter.out.file.mapper.SlugJsonFileMapper;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SlugManagementFileOutputAdapter
     implements SlugManagementOutputPort {
@@ -41,11 +44,12 @@ public class SlugManagementFileOutputAdapter
     public Slug persistSlug(Slug slug) {
         SlugJson slugJson = SlugJsonFileMapper.toJson(slug);
 
+        this.updateSlugJsonsWith(slugJson);
+
         try {
-            String localDir = Paths.get("").toAbsolutePath().toString();
-            File file = new File(localDir + "/slugs.json");
+            File file = getTmpJsonFile();
             boolean isDeleted = file.delete();
-            this.objectMapper.writeValue(file, slugJson);
+            this.objectMapper.writeValue(file, slugJsons);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,11 +63,18 @@ public class SlugManagementFileOutputAdapter
     }
 
     private void readJsonFile() {
+        var typeReference = new TypeReference<List<SlugJson>>() {};
         try {
-            this.slugJsons = objectMapper.readValue(
-                this.resource,
-                new TypeReference<List<SlugJson>>() {}
-            );
+            File tmpJsonFile = getTmpJsonFile();
+            if (tmpJsonFile.exists()) {
+                this.slugJsons = objectMapper.readValue(
+                    tmpJsonFile, typeReference
+                );
+            } else {
+                this.slugJsons = objectMapper.readValue(
+                    this.resource, typeReference
+                );
+            }
         } catch (Exception e) {
             throw new BaseCustomException(e);
         }
@@ -83,6 +94,24 @@ public class SlugManagementFileOutputAdapter
             instance = new SlugManagementFileOutputAdapter();
         }
         return instance;
+    }
+
+    private File getTmpJsonFile() {
+        Path tmpJsonPath = Paths
+            .get(System.getProperty("java.io.tmpdir"))
+            .resolve(".app_data")
+            .resolve("slugs.json");
+        File file = tmpJsonPath.toFile();
+
+        return file;
+    }
+
+    private void updateSlugJsonsWith(SlugJson slugJson) {
+        this.slugJsons = Stream.concat(
+                this.slugJsons.stream(), Stream.of(slugJson)
+            )
+            .distinct()
+            .collect(Collectors.toList());
     }
 
 }
