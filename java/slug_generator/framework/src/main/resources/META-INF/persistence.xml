@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence">
+
+    <persistence-unit name="slugs">
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:h2:mem:slugs;
+                            MODE=MYSQL;
+                            DB_CLOSE_DELAY=-1;
+                            DB_CLOSE_ON_EXIT=FALSE;
+                            IGNORECASE=TRUE;
+                            INIT=CREATE SCHEMA IF NOT EXISTS slugs\;
+                            RUNSCRIPT FROM 'classpath:slugs.sql'"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
