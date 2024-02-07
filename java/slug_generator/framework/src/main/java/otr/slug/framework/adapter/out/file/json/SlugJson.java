@@ -20,6 +20,8 @@ public class SlugJson {
     @JsonProperty(value = "slug_value")
     private String slugValue;
 
+    public SlugJson() {}
+
     private SlugJson(UUID slugId, String slugValue) {
         this.slugId = slugId;
         this.slugValue = slugValue;
