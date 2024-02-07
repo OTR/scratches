@@ -10,6 +10,8 @@ import jakarta.persistence.PersistenceException;
 import org.hibernate.HibernateException;
 import org.hibernate.exception.ConstraintViolationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import otr.slug.application.port.out.SlugManagementOutputPort;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.out.h2.data.SlugData;
@@ -22,6 +24,9 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
 
     private static SlugManagementH2OutputAdapter instance;
     private static final String TABLE_NAME = "SlugData";
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        "H2 Output Adapter"
+    );
 
     @PersistenceContext
     private EntityManager em;
@@ -86,6 +91,9 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
                     "on INSERT STATEMENTS WITH PRIMARY KEY"
                 );
             }
+            throw e;
+        } catch (PersistenceException e) {
+            LOGGER.error(e.getMessage());
             throw e;
         }
 

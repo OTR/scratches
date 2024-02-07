@@ -55,13 +55,6 @@
             <version>3.1.0</version>
         </dependency>
 
-        <!-- Eclipse Link JPA plugin -->
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-
         <!-- Hibernate Persistence Provider -->
         <dependency>
             <groupId>org.hibernate</groupId>
