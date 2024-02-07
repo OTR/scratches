@@ -12,6 +12,7 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import otr.slug.application.port.out.SlugManagementOutputPort;
 import otr.slug.domain.vo.Slug;
 import otr.slug.framework.adapter.out.h2.data.SlugData;
@@ -22,11 +23,11 @@ import java.util.UUID;
 
 public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
 
-    private static SlugManagementH2OutputAdapter instance;
-    private static final String TABLE_NAME = "SlugData";
+    private static final String DB_ENTITY_CLASS = "SlugData";
     private static final Logger LOGGER = LoggerFactory.getLogger(
         "H2 Output Adapter"
     );
+    private static SlugManagementH2OutputAdapter instance;
 
     @PersistenceContext
     private EntityManager em;
@@ -71,7 +72,7 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
     public List<Slug> retrieveSlugs() {
         List<SlugData> slugDatas = em
             .createQuery(
-                "SELECT e FROM %s e".formatted(TABLE_NAME),
+                "SELECT e FROM %s e".formatted(DB_ENTITY_CLASS),
                 SlugData.class
             )
             .getResultList();
