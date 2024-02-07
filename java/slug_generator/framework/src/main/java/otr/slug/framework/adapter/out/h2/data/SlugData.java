@@ -3,6 +3,7 @@ package otr.slug.framework.adapter.out.h2.data;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 
 import org.eclipse.persistence.annotations.Convert;
@@ -10,7 +11,6 @@ import org.eclipse.persistence.annotations.Converter;
 import otr.slug.domain.spec.AlphaDecimalSpecification;
 import otr.slug.domain.spec.ValidYearSpecification;
 import otr.slug.domain.spec.shared.Specification;
-import otr.slug.framework.adapter.out.file.json.SlugJson;
 import otr.slug.framework.adapter.out.file.mapper.UuidProvider;
 
 import java.io.Serializable;

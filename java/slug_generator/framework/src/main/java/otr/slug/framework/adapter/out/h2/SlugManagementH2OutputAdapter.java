@@ -16,6 +16,7 @@ import java.util.UUID;
 public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
 
     private static SlugManagementH2OutputAdapter instance;
+    private static final String TABLE_NAME = "SlugData";
 
     @PersistenceContext
     private EntityManager em;
@@ -39,7 +40,13 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
 
     @Override
     public List<Slug> retrieveSlugs() {
-        return null;
+        List<SlugData> slugDatas = em
+            .createQuery(
+                "SELECT e FROM %s e".formatted(TABLE_NAME),
+                SlugData.class
+            )
+            .getResultList();
+        return SlugH2Mapper.getSlugsFromData(slugDatas);
     }
 
     private void setUpH2Database() {
@@ -48,7 +55,7 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
         this.em = emFactory.createEntityManager();
     }
 
-    public SlugManagementH2OutputAdapter getInstance() {
+    public static SlugManagementH2OutputAdapter getInstance() {
         if (instance == null) {
             instance = new SlugManagementH2OutputAdapter();
         }

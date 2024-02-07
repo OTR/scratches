@@ -3,7 +3,7 @@ CREATE TABLE slugs(
     slug_value VARCHAR(255)
 );
 
-INSERT INTO slugs(slug_id, slug_value
+INSERT INTO slugs(slug_id, slug_value)
     VALUES ('99b1ff8f-1178-3541-b7f8-9f9bd41c4a17', 'hello_world');
 
 INSERT INTO slugs(slug_id, slug_value)

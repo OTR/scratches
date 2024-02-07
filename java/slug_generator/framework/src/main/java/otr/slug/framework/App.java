@@ -10,6 +10,7 @@ import otr.slug.framework.adapter.in.BaseSlugInputAdapter;
 import otr.slug.framework.adapter.in.sun_http.SlugManagementRestInputAdapter;
 import otr.slug.framework.adapter.in.stdin.SlugManagementCliSlugInputAdapter;
 import otr.slug.framework.adapter.out.file.SlugManagementFileOutputAdapter;
+import otr.slug.framework.adapter.out.h2.SlugManagementH2OutputAdapter;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -32,7 +33,9 @@ public class App {
 
     static App getCliAppWithFilePersistence() {
         App app = new App();
-        SlugManagementOutputPort outputPort = SlugManagementFileOutputAdapter
+//        SlugManagementOutputPort outputPort = SlugManagementFileOutputAdapter
+//            .getInstance();
+        SlugManagementOutputPort outputPort = SlugManagementH2OutputAdapter
             .getInstance();
         app.useCase = new SlugManagementInputPort(outputPort);
         app.inputAdapter = new SlugManagementCliSlugInputAdapter(app.useCase);
