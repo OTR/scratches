@@ -27,7 +27,7 @@ public class SlugManagementRestInputAdapter extends BaseSlugInputAdapter {
     }
 
     @Override
-    public Slug invoke(Object requestParams) {
+    public Slug createSlug(Object requestParams) {
         HttpServer httpServer = parseParams(requestParams);
         httpServer.createContext(CREATE_ENDPOINT, createHandler);
         httpServer.setExecutor(DEFAULT_EXECUTOR);

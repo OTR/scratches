@@ -126,7 +126,7 @@ public class Main {
         if (args.length > 0) {
             String userInput = String.join(" ", args);
             App app = App.getCliAppWithFilePersistence();
-            app.runCliAppWithFilePersistence(userInput);
+            app.runCliFilePersistenceOneArg(userInput);
         } else {
             displayHelp();
         }

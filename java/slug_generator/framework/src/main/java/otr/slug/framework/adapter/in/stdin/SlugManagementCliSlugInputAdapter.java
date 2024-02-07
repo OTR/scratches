@@ -14,7 +14,7 @@ public class SlugManagementCliSlugInputAdapter extends BaseSlugInputAdapter {
     }
 
     @Override
-    public Slug invoke(Object requestParams) {
+    public Slug createSlug(Object requestParams) {
         Map<String, String> params = parseParams(requestParams);
         RawInput rawInput = wrapUserInput(params);
         return useCase.createSlug(rawInput);

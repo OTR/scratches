@@ -47,16 +47,24 @@ public class App {
     }
 
     public void runCliWithArgs(String userInput) {
-        Slug slug = this.inputAdapter.invoke(userInput);
+        Slug slug = this.inputAdapter.createSlug(userInput);
         System.out.println(slug.value());
     }
 
-    public void runCliAppWithFilePersistence(String userInput) {
-        Slug slug = this.inputAdapter.invoke(userInput);
-        System.out.println("Result: ");
+    public void runCliFilePersistenceNoArgs(String userInput) {
+        System.out.println("The user asked to display existing Slugs.");
+        Slug slug = this.inputAdapter.createSlug(userInput);
+        System.out.println("Output: ");
         System.out.println(slug.value());
-        System.out.println("The result bas been persisted to a file: ");
-        System.out.println("$HOME/file-storage-something.json");
+    }
+
+    public void runCliFilePersistenceOneArg(String userInput) {
+        System.out.println("The user asked to convert raw input to Slug.");
+        System.out.println("Input: ");
+        System.out.println(userInput);
+        Slug slug = this.inputAdapter.createSlug(userInput);
+        System.out.println("Output: ");
+        System.out.println(slug.value());
     }
 
     public void runRestWithNoArgs() {
@@ -64,7 +72,7 @@ public class App {
             HttpServer httpServer = HttpServer.create(
                 new InetSocketAddress(8080), 0
             );
-            this.inputAdapter.invoke(httpServer);
+            this.inputAdapter.createSlug(httpServer);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

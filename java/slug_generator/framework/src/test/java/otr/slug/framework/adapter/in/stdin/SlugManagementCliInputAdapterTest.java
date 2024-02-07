@@ -29,7 +29,7 @@ public class SlugManagementCliInputAdapterTest {
                 = new SlugManagementCliSlugInputAdapter(
                     new SlugManagementInputPort()
             );
-            adapter.invoke(args);
+            adapter.createSlug(args);
     }
 
 }

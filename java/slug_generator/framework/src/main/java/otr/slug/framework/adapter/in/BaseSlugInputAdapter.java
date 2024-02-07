@@ -12,7 +12,10 @@ public abstract class BaseSlugInputAdapter {
 
     protected SlugManagementUseCase useCase;
 
-    public abstract Slug invoke(Object requestParams);
+    public abstract Slug createSlug(Object requestParams);
+
+    // TODO: Launch Input Adapter in infinity event loop mode
+    //public abstract void invoke(Object requestParams);
 
     protected RawInput wrapUserInput(Map<String, String> params) {
         String userInput = params.get(USER_INPUT_PARAMS_KEY);
