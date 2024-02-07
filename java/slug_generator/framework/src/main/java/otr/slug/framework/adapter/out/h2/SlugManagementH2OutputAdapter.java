@@ -3,9 +3,12 @@ package otr.slug.framework.adapter.out.h2;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
+
+import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
 
 import otr.slug.application.port.out.SlugManagementOutputPort;
 import otr.slug.domain.vo.Slug;
@@ -42,9 +45,18 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
             tx.begin();
             em.persist(slugData);
             tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-            throw e;
+        } catch (PersistenceException e) {
+            if (e.getCause() instanceof ConstraintViolationException constEx
+                    && constEx.getSQLException().getMessage()
+                .contains("Unique index or primary key violation")) {
+                System.out.println("Such Slug is already persisted");
+            } else {
+                throw e;
+            }
+        } finally {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
         }
 
         return slug;
@@ -62,11 +74,21 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
     }
 
     private void setUpH2Database() {
-        EntityManagerFactory emFactory = Persistence
-            .createEntityManagerFactory("slugs");
-        EntityManager em = emFactory.createEntityManager();
-//        em.setFlushMode(FlushModeType.AUTO);
-        this.em = em;
+        try {
+            EntityManagerFactory emFactory = Persistence
+                .createEntityManagerFactory("slugs");
+            EntityManager em = emFactory.createEntityManager();
+            this.em = em;
+        } catch (HibernateException e) {
+            if (e.getMessage().contains("ViolatedConstraint")) {
+                System.out.println(
+                    "Database initialization SQL Script causes Exception" +
+                    "on INSERT STATEMENTS WITH PRIMARY KEY"
+                );
+            }
+            throw e;
+        }
+
     }
 
     public static SlugManagementH2OutputAdapter getInstance() {

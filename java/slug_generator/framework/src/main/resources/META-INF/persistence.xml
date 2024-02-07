@@ -7,7 +7,7 @@
 
     <persistence-unit name="slugs" transaction-type="RESOURCE_LOCAL">
 
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>otr.slug.framework.adapter.out.h2.data.SlugData</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         
@@ -16,10 +16,7 @@
                       value="org.h2.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:h2:file:/tmp/.app_data/slug;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS slugs\;RUNSCRIPT FROM 'classpath:slugs.sql'"/>
-            <property name="eclipselink.target-database" 
-                      value="org.eclipse.persistence.platform.database.H2Platform"/>
-            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
-            <property name="eclipselink.logging.level" value="info"/>
+            <property name="hibernate.connection.autocommit" value="true"/>
         </properties>
     </persistence-unit>
 

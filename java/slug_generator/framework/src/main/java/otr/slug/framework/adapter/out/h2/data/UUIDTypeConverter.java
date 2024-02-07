@@ -1,38 +1,22 @@
 package otr.slug.framework.adapter.out.h2.data;
 
-import org.eclipse.persistence.internal.helper.DatabaseField;
-import org.eclipse.persistence.mappings.DatabaseMapping;
-import org.eclipse.persistence.mappings.converters.Converter;
-import org.eclipse.persistence.sessions.Session;
-
-import java.sql.Types;
 import java.util.UUID;
 
-public class UUIDTypeConverter implements Converter {
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
+
+@Converter(autoApply = true)
+public class UUIDTypeConverter implements AttributeConverter<UUID, String> {
 
     @Override
-    public UUID convertObjectValueToDataValue(Object objectValue,
-                                                Session session) {
-        return (UUID) objectValue;
+    public String convertToDatabaseColumn(UUID uuid) {
+        return uuid == null ? null : uuid.toString();
     }
 
     @Override
-    public UUID convertDataValueToObjectValue(Object dataValue,
-                                                Session session) {
-        return (UUID) dataValue;
-    }
-
-    @Override
-    public boolean isMutable() {
-        return true;
-    }
-
-    @Override
-    public void initialize(DatabaseMapping mapping, Session session) {
-        DatabaseField field = mapping.getField();
-        field.setSqlType(Types.OTHER);
-        field.setTypeName("java.util.UUID");
-        field.setColumnDefinition("UUID");
+    public UUID convertToEntityAttribute(String string) {
+        return string == null ? null : UUID.fromString(string);
     }
 
 }
