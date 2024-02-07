@@ -2,6 +2,8 @@ package otr.slug.framework.adapter.out.h2;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
@@ -34,7 +36,17 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
     @Override
     public Slug persistSlug(Slug slug) {
         SlugData slugData = SlugH2Mapper.toH2(slug);
-        em.persist(slugData);
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            em.persist(slugData);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            throw e;
+        }
+
         return slug;
     }
 
@@ -52,7 +64,9 @@ public class SlugManagementH2OutputAdapter implements SlugManagementOutputPort {
     private void setUpH2Database() {
         EntityManagerFactory emFactory = Persistence
             .createEntityManagerFactory("slugs");
-        this.em = emFactory.createEntityManager();
+        EntityManager em = emFactory.createEntityManager();
+//        em.setFlushMode(FlushModeType.AUTO);
+        this.em = em;
     }
 
     public static SlugManagementH2OutputAdapter getInstance() {
