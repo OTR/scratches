@@ -7,6 +7,11 @@ import jakarta.persistence.Table;
 
 import org.eclipse.persistence.annotations.Convert;
 import org.eclipse.persistence.annotations.Converter;
+import otr.slug.domain.spec.AlphaDecimalSpecification;
+import otr.slug.domain.spec.ValidYearSpecification;
+import otr.slug.domain.spec.shared.Specification;
+import otr.slug.framework.adapter.out.file.json.SlugJson;
+import otr.slug.framework.adapter.out.file.mapper.UuidProvider;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -29,6 +34,17 @@ public class SlugData implements Serializable {
     public SlugData(UUID slugId, String slugValue) {
         this.slugId = slugId;
         this.slugValue = slugValue;
+    }
+
+    public static SlugData valueOf(String slugValue) {
+        Specification<String> alphaDecimal = new AlphaDecimalSpecification();
+        Specification<String> validYear = new ValidYearSpecification();
+
+        alphaDecimal.and(validYear).check(slugValue);
+
+        UUID slugId = UuidProvider.fromString(slugValue);
+
+        return new SlugData(slugId, slugValue);
     }
 
     public UUID getSlugId() {
