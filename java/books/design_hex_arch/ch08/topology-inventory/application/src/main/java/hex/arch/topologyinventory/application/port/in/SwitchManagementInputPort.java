@@ -1,7 +1,9 @@
 package hex.arch.topologyinventory.application.port.in;
 
-import hex.arch.topologyinventory.application.port.out.SwitchManagementOutputPort;
-import hex.arch.topologyinventory.application.use_case.SwitchManagementUseCase;
+import hex.arch.topologyinventory.application.port.out.
+    SwitchManagementOutputPort;
+import hex.arch.topologyinventory.application.use_case.
+    SwitchManagementUseCase;
 
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
 import hex.arch.topologyinventory.domain.entity.Switch;
@@ -29,7 +31,7 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
         Location location, SwitchType switchType
     ) {
         return Switch.builder()
-            .routerId(Id.withoutId())
+            .switchId(Id.withoutId())
             .vendor(vendor)
             .model(model)
             .ip(ip)
@@ -38,10 +40,15 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
             .build();
     }
 
+    public Switch retrieveSwitch(Id id) {
+        return outputPort.retrieveSwitch(id);
+    }
+
     @Override
     public EdgeRouter addSwitchToEdgeRouter(
         Switch networkSwitch, EdgeRouter edgeRouter
     ) {
+        networkSwitch.setRouterId(edgeRouter.getId());
         edgeRouter.addSwitch(networkSwitch);
         return edgeRouter;
     }
@@ -52,11 +59,6 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
     ) {
         edgeRouter.removeSwitch(networkSwitch);
         return edgeRouter;
-    }
-
-    @Override
-    public Switch retrieveSwitch(Id switchId) {
-        return outputPort.retrieveSwitch(switchId);
     }
 
 }

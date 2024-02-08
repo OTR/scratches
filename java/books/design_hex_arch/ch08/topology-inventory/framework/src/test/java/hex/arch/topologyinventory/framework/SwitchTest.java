@@ -34,12 +34,12 @@ public class SwitchTest extends FrameworkTestData {
         assertNotNull(networkSwitch);
     }
 
-    @Disabled // FIXME:
     @Test
     @Order(2)
     public void createAndAddSwitchToEdgeRouter(){
         var expectedSwitchIP = "15.0.0.1";
         var id = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
+
         EdgeRouter edgeRouter = switchManagementGenericAdapter
             .createAndAddSwitchToEdgeRouter(
             Vendor.HP,
@@ -48,6 +48,7 @@ public class SwitchTest extends FrameworkTestData {
             locationA,
             SwitchType.LAYER3,
             id);
+
         String actualSwitchIP = edgeRouter.getSwitches()
             .entrySet()
             .stream()
@@ -56,6 +57,7 @@ public class SwitchTest extends FrameworkTestData {
             .filter(ipAddress -> ipAddress.equals(expectedSwitchIP))
             .findFirst()
             .get();
+
         assertEquals(expectedSwitchIP,actualSwitchIP);
     }
 
