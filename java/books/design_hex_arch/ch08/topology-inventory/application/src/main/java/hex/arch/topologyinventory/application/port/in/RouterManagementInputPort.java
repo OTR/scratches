@@ -13,14 +13,11 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
-import lombok.NoArgsConstructor;
-
-import java.security.GeneralSecurityException;
-
-@NoArgsConstructor
 public class RouterManagementInputPort implements RouterManagementUseCase {
 
     private RouterManagementOutputPort outputPort;
+
+    public RouterManagementInputPort() {}
 
     public RouterManagementInputPort(RouterManagementOutputPort outputPort) {
         this.outputPort = outputPort;
@@ -73,4 +70,12 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
     public Router persistRouter(Router router) {
         return outputPort.persistRouter(router);
     }
+
+    @Override
+    public void setOutputPort(
+        RouterManagementOutputPort outputPort
+    ) {
+        this.outputPort = outputPort;
+    }
+
 }
