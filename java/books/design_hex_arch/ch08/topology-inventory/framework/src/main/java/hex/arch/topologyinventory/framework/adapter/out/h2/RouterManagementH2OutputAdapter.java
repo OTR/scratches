@@ -8,8 +8,6 @@ import hex.arch.topologyinventory.framework.adapter.out.h2.mapper.RouterH2Mapper
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
