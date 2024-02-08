@@ -50,7 +50,7 @@ public class NetworkManagementInputPort
     public Switch removeNetworkFromSwitch(
         String networkName, Switch networkSwitch
     ) {
-        Id routerId = networkSwitch.getId();
+        Id routerId = networkSwitch.getRouterId();
         Id switchId = networkSwitch.getId();
         EdgeRouter edgeRouter = (EdgeRouter) outputPort
             .retrieveRouter(routerId);
