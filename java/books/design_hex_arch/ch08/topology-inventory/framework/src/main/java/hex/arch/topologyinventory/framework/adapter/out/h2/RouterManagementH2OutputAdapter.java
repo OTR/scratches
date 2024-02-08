@@ -8,6 +8,8 @@ import hex.arch.topologyinventory.framework.adapter.out.h2.mapper.RouterH2Mapper
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
@@ -25,7 +27,10 @@ public class RouterManagementH2OutputAdapter implements RouterManagementOutputPo
     @Override
     public Router persistRouter(Router router) {
         RouterData routerData = RouterH2Mapper.routerDomainToData(router);
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin();
         em.persist(routerData);
+//        tx.commit();
         return router;
     }
 
@@ -42,7 +47,11 @@ public class RouterManagementH2OutputAdapter implements RouterManagementOutputPo
         RouterData routerData = em.getReference(
             RouterData.class, id.getUuid()
         );
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin();
         em.remove(routerData);
+//        tx.commit();
+//        em.flush();
         return null;
     }
 

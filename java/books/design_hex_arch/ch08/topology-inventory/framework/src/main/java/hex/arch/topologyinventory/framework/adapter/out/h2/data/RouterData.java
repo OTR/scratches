@@ -2,6 +2,7 @@ package hex.arch.topologyinventory.framework.adapter.out.h2.data;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -28,9 +29,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
+import static java.util.Objects.requireNonNull;
+
 @Builder
 @Getter
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "routers")
@@ -72,7 +75,7 @@ public class RouterData implements Serializable {
     })
     private IPData ip;
 
-    @ManyToOne
+    @ManyToOne//(cascade = CascadeType.PERSIST)
     @JoinColumn(name="location_id")
     private LocationData routerLocation;
 
@@ -94,5 +97,28 @@ public class RouterData implements Serializable {
         inverseJoinColumns={@JoinColumn(name="router_id")})
     @Setter
     private List<RouterData> routers;
+
+    public RouterData(UUID routerId,
+                      UUID routerParentCoreId,
+                      VendorData routerVendor,
+                      ModelData routerModel,
+                      IPData ip,
+                      LocationData routerLocation,
+                      RouterTypeData routerType,
+                      List<SwitchData> switches,
+                      List<RouterData> routers) {
+
+        //requireNonNull(routerLocation);
+
+        this.routerId = routerId;
+        this.routerParentCoreId = routerParentCoreId;
+        this.routerVendor = routerVendor;
+        this.routerModel = routerModel;
+        this.ip = ip;
+        this.routerLocation = routerLocation;
+        this.routerType = routerType;
+        this.switches = switches;
+        this.routers = routers;
+    }
 
 }

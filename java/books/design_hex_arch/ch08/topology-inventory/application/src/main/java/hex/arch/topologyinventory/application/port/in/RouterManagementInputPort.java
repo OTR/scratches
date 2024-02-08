@@ -60,7 +60,7 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
         Router router, CoreRouter coreRouter
     ) {
         Router removedRouter = coreRouter.removeRouter(router);
-        // persistRouter(removedRouter);
+        persistRouter(removedRouter);
         return removedRouter;
     }
 

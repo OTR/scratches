@@ -5,13 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
+
 import lombok.Builder;
+
+import java.io.Serializable;
 
 @Builder
 @Entity
 @Table(name = "location")
 @MappedSuperclass
-public class LocationData {
+public class LocationData implements Serializable {
 
     @Id
     @Column(name = "location_id")
@@ -90,84 +93,6 @@ public class LocationData {
 
     public float getLongitude() {
         return longitude;
-    }
-
-    public static LocationDataBuilder builder() {
-        return new LocationDataBuilder();
-    }
-
-    public static final class LocationDataBuilder {
-
-        private int locationId;
-        private String address;
-        private String city;
-        private String state;
-        private int zipcode;
-        private String country;
-        private float latitude;
-        private float longitude;
-
-        public LocationDataBuilder locationId(int locationId) {
-            this.locationId = locationId;
-            return this;
-        }
-
-        public LocationDataBuilder address(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public LocationDataBuilder city(String city) {
-            this.city = city;
-            return this;
-        }
-
-        public LocationDataBuilder state(String state) {
-            this.state = state;
-            return this;
-        }
-
-        public LocationDataBuilder zipcode(int zipcode) {
-            this.zipcode = zipcode;
-            return this;
-        }
-
-        public LocationDataBuilder country(String country) {
-            this.country = country;
-            return this;
-        }
-
-        public LocationDataBuilder latitude(float latitude) {
-            this.latitude = latitude;
-            return this;
-        }
-/*
-        public LocationDataBuilder longitude(float longitude) {
-            this.longitude = longitude;
-            return this;
-        }
-
-        public LocationData build() {
-            if (
-                this.locationId != 0
-                    && this.address != null
-                    && this.city != null
-                    && this.state != null
-                    && this.zipcode != 0
-                    && this.country != null
-                    && this.latitude != 0f
-                    && this.longitude != 0f
-            ) {
-                return new LocationData(
-                    locationId, address, city, state, zipcode,
-                    country, latitude, longitude
-                );
-            }
-
-            throw new IllegalArgumentException("Some fields are not set");
-
-        }
-*/
     }
 
 }
