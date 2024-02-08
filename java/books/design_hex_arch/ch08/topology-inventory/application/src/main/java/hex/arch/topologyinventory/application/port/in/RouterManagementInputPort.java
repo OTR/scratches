@@ -19,10 +19,6 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
 
     public RouterManagementInputPort() {}
 
-    public RouterManagementInputPort(RouterManagementOutputPort outputPort) {
-        this.outputPort = outputPort;
-    }
-
     @Override
     public Router createRouter(
         Vendor vendor, Model model, IP ip,

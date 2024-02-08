@@ -1,5 +1,6 @@
 package hex.arch.topologyinventory.application.use_case;
 
+import hex.arch.topologyinventory.application.port.out.SwitchManagementOutputPort;
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
 import hex.arch.topologyinventory.domain.entity.Switch;
 import hex.arch.topologyinventory.domain.vo.IP;
@@ -25,5 +26,7 @@ public interface SwitchManagementUseCase {
     );
 
     Switch retrieveSwitch(Id switchId);
+
+    void setOutputPort(SwitchManagementOutputPort outputPort);
 
 }

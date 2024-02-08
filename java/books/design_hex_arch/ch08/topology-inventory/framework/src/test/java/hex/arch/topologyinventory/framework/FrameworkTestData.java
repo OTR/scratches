@@ -1,5 +1,10 @@
 package hex.arch.topologyinventory.framework;
 
+import hex.arch.topologyinventory.application.port.out.RouterManagementOutputPort;
+import hex.arch.topologyinventory.application.port.out.SwitchManagementOutputPort;
+import hex.arch.topologyinventory.application.use_case.NetworkManagementUseCase;
+import hex.arch.topologyinventory.application.use_case.RouterManagementUseCase;
+import hex.arch.topologyinventory.application.use_case.SwitchManagementUseCase;
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
 import hex.arch.topologyinventory.domain.entity.Router;
@@ -13,12 +18,24 @@ import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.SwitchType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
+import hex.arch.topologyinventory.framework.adapter.in
+    .NetworkManagementGenericInputAdapter;
+import hex.arch.topologyinventory.framework.adapter.in
+    .RouterManagementGenericInputAdapter;
+import hex.arch.topologyinventory.framework.adapter.in
+    .SwitchManagementGenericInputAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 public class FrameworkTestData {
+
+    protected RouterManagementGenericInputAdapter routerIA;
+    protected SwitchManagementGenericInputAdapter switchIA;
+    protected NetworkManagementGenericInputAdapter networkIA;
 
     protected List<Router> routers = new ArrayList<>();
     protected List<Switch> switches = new ArrayList<>();
@@ -38,6 +55,37 @@ public class FrameworkTestData {
 
     protected Location locationA;
     protected Location locationB;
+
+    protected void loadPortsAndUseCases() {
+
+        // Router
+        ServiceLoader<RouterManagementUseCase> routerUCLoad = ServiceLoader.load(RouterManagementUseCase.class);
+        ServiceLoader<RouterManagementOutputPort> routerOPLoad  = ServiceLoader.load(RouterManagementOutputPort.class);
+
+        RouterManagementUseCase routerUC = routerUCLoad.findFirst().get();
+        RouterManagementOutputPort routerOP = routerOPLoad.findFirst().get();
+
+        routerUC.setOutputPort(routerOP);
+        this.routerIA = new RouterManagementGenericInputAdapter(routerUC);
+
+
+        // Switch
+        ServiceLoader<SwitchManagementUseCase> switchUCLoad = ServiceLoader.load(SwitchManagementUseCase.class);
+        ServiceLoader<SwitchManagementOutputPort>  switchOPLoad = ServiceLoader.load(SwitchManagementOutputPort.class);
+
+        SwitchManagementOutputPort switchOP = switchOPLoad.findFirst().get();
+        SwitchManagementUseCase switchUC = switchUCLoad .findFirst().get();
+
+        switchUC.setOutputPort(switchOP);
+        this.switchIA = new SwitchManagementGenericInputAdapter(routerUC, switchUC);
+
+        // Network
+        ServiceLoader<NetworkManagementUseCase> networkUCLoad = ServiceLoader.load(NetworkManagementUseCase.class);
+        NetworkManagementUseCase networkUC = networkUCLoad.findFirst().get();
+        networkUC.setOutputPort(routerOP);
+        this.networkIA = new NetworkManagementGenericInputAdapter(switchUC, networkUC);
+
+    }
 
     public void loadData() {
         this.locationA = Location.builder().

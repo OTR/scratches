@@ -1,7 +1,6 @@
 package hex.arch.topologyinventory.application.port.in;
 
-import hex.arch.topologyinventory.application.port.out
-    .RouterManagementOutputPort;
+import hex.arch.topologyinventory.application.port.out.RouterManagementOutputPort;
 import hex.arch.topologyinventory.application.use_case
     .NetworkManagementUseCase;
 import hex.arch.topologyinventory.domain.entity.EdgeRouter;
@@ -11,20 +10,14 @@ import hex.arch.topologyinventory.domain.vo.Id;
 import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Network;
 
-import lombok.NoArgsConstructor;
-
 import java.util.function.Predicate;
 
-@NoArgsConstructor
 public class NetworkManagementInputPort
     implements NetworkManagementUseCase {
 
     private RouterManagementOutputPort outputPort;
 
-    public NetworkManagementInputPort(
-        RouterManagementOutputPort outputPort
-    ) {
-        this.outputPort = outputPort;
+    public NetworkManagementInputPort() {
     }
 
     @Override
@@ -69,6 +62,11 @@ public class NetworkManagementInputPort
         return switchToRemoveNetwork.removeNetworkFromSwitch(network)
             ? switchToRemoveNetwork
             : null;
+    }
+
+    @Override
+    public void setOutputPort(RouterManagementOutputPort outputPort) {
+        this.outputPort = outputPort;
     }
 
 }

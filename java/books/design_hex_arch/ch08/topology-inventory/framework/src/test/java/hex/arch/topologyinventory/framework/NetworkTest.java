@@ -4,10 +4,6 @@ import hex.arch.topologyinventory.domain.entity.Switch;
 import hex.arch.topologyinventory.domain.service.NetworkService;
 import hex.arch.topologyinventory.domain.vo.Id;
 import hex.arch.topologyinventory.domain.vo.Network;
-import hex.arch.topologyinventory.framework.adapter.in
-    .NetworkManagementGenericInputAdapter;
-import hex.arch.topologyinventory.framework.adapter.in
-    .SwitchManagementGenericInputAdapter;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -22,15 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NetworkTest extends FrameworkTestData {
 
-    NetworkManagementGenericInputAdapter networkManagementGenericAdapter;
-    SwitchManagementGenericInputAdapter switchManagementGenericAdapter;
-
     public NetworkTest(){
-        this.networkManagementGenericAdapter
-            = new NetworkManagementGenericInputAdapter();
-        this.switchManagementGenericAdapter
-            = new SwitchManagementGenericInputAdapter();
-
+        loadPortsAndUseCases();
         loadData();
     }
 
@@ -38,7 +27,7 @@ public class NetworkTest extends FrameworkTestData {
     @Order(1)
     public void addNetworkToSwitch(){
         Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
-        Switch networkSwitch = networkManagementGenericAdapter
+        Switch networkSwitch = this.networkIA
             .addNetworkToSwitch(network, switchId);
         Predicate<Network> predicate = Network
             .getNetworkNamePredicate("TestNetwork");
@@ -54,12 +43,12 @@ public class NetworkTest extends FrameworkTestData {
         String networkName = "HR";
         Predicate<Network> predicate = Network
             .getNetworkNamePredicate(networkName);
-        Switch networkSwitch = switchManagementGenericAdapter
+        Switch networkSwitch = this.switchIA
             .retrieveSwitch(switchId);
         Network existentNetwork = NetworkService
             .findNetwork(networkSwitch.getSwitchNetworks(), predicate);
         assertNotNull(existentNetwork);
-        networkSwitch = networkManagementGenericAdapter
+        networkSwitch = this.networkIA
             .removeNetworkFromSwitch(networkName, switchId);
         assertNull(networkSwitch);
     }

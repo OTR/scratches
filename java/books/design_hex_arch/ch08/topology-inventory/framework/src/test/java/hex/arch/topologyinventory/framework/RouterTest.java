@@ -13,18 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RouterTest extends FrameworkTestData {
 
-    RouterManagementGenericInputAdapter routerManagementGenericAdapter;
-
     public RouterTest() {
-        this.routerManagementGenericAdapter
-            = new RouterManagementGenericInputAdapter();
+        loadPortsAndUseCases();
         loadData();
     }
 
     @Test
     public void retrieveRouter() {
         var id = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
-        var actualId = routerManagementGenericAdapter.
+        var actualId = this.routerIA.
             retrieveRouter(id).getId();
         assertEquals(id, actualId);
     }
@@ -32,14 +29,14 @@ public class RouterTest extends FrameworkTestData {
     @Test
     public void createRouter() {
         var ipAddress = "40.0.0.1";
-        var routerId  = this.
-            routerManagementGenericAdapter.createRouter(
+        var routerId  = this.routerIA
+            .createRouter(
                 Vendor.DLINK,
                 Model.XYZ0001,
                 IP.fromAddress(ipAddress),
-                locationA,
+                this.locationA,
                 RouterType.EDGE).getId();
-        var router = this.routerManagementGenericAdapter
+        var router = this.routerIA
             .retrieveRouter(routerId);
         assertEquals(routerId, router.getId());
         assertEquals(Vendor.DLINK, router.getVendor());
@@ -54,7 +51,7 @@ public class RouterTest extends FrameworkTestData {
         var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
         var coreRouterId = Id
             .withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
-        var actualRouter = (CoreRouter)this.routerManagementGenericAdapter.
+        var actualRouter = (CoreRouter) this.routerIA.
             addRouterToCoreRouter(routerId,coreRouterId);
         assertEquals(routerId, actualRouter.getRouters()
             .get(routerId).getId());
@@ -67,9 +64,9 @@ public class RouterTest extends FrameworkTestData {
         var coreRouterId = Id
             .withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
 
-        var removedRouter = this.routerManagementGenericAdapter.
+        var removedRouter = this.routerIA.
             removeRouterFromCoreRouter(routerId, coreRouterId);
-        var coreRouter = (CoreRouter)this.routerManagementGenericAdapter
+        var coreRouter = (CoreRouter)this.routerIA
             .retrieveRouter(coreRouterId);
 
         assertEquals(routerId, removedRouter.getId());
@@ -79,7 +76,7 @@ public class RouterTest extends FrameworkTestData {
     @Test
     public void removeRouter() {
         var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
-        var router = this.routerManagementGenericAdapter
+        var router = this.routerIA
             .removeRouter(routerId);
         assertEquals(null, router);
     }

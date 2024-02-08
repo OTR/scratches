@@ -16,14 +16,12 @@ import hex.arch.topologyinventory.domain.vo.Vendor;
 
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+
 public class SwitchManagementInputPort implements SwitchManagementUseCase {
 
     private SwitchManagementOutputPort outputPort;
 
-    public SwitchManagementInputPort(SwitchManagementOutputPort outputPort) {
-        this.outputPort = outputPort;
-    }
+    public SwitchManagementInputPort() {}
 
     @Override
     public Switch createSwitch(
@@ -59,6 +57,11 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
     ) {
         edgeRouter.removeSwitch(networkSwitch);
         return edgeRouter;
+    }
+
+    @Override
+    public void setOutputPort(SwitchManagementOutputPort outputPort) {
+        this.outputPort = outputPort;
     }
 
 }
