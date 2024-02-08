@@ -63,9 +63,7 @@ public class RouterManagementGenericInputAdapter {
     /**
      * POST /router/remove
      */
-    public Router removeRouterFromCoreRouter(
-        Id routerId, Id coreRouterId
-    ) {
+    public Router removeRouterFromCoreRouter(Id routerId, Id coreRouterId) {
         Router router = useCase.retrieveRouter(routerId);
         CoreRouter coreRouter = (CoreRouter) useCase.retrieveRouter(
             coreRouterId

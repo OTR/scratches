@@ -60,7 +60,6 @@ public class RouterTest extends FrameworkTestData {
             .get(routerId).getId());
     }
 
-    @Disabled // FIXME:
     @Test
     public void removeRouterFromCoreRouter(){
         var routerId = Id
