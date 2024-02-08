@@ -1,0 +1,38 @@
+package hex.arch.topologyinventory.domain.spec;
+
+import hex.arch.topologyinventory.domain.entity.CoreRouter;
+import hex.arch.topologyinventory.domain.entity.Equipment;
+import hex.arch.topologyinventory.domain.exception.GenericSpecificationException;
+import hex.arch.topologyinventory.domain.spec.shared.AbstractSpecification;
+
+public final class SameCountrySpecification extends AbstractSpecification<Equipment> {
+
+    private final Equipment equipment;
+
+    public SameCountrySpecification(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    @Override
+    public boolean isSatisfiedBy(Equipment anyEquipment) {
+        if (anyEquipment instanceof CoreRouter) {
+            return true;
+        } else if (anyEquipment != null && this.equipment != null) {
+            return this.equipment.getLocation().getCountry().equals(
+                anyEquipment.getLocation().getCountry()
+            );
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void check(Equipment anyEquipment) throws GenericSpecificationException {
+        if (!isSatisfiedBy(anyEquipment)) {
+            throw new GenericSpecificationException(
+                "The equipments should be in the same country"
+            );
+        }
+    }
+
+}
