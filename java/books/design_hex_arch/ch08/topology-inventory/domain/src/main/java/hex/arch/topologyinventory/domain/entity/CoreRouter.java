@@ -17,6 +17,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -32,7 +34,7 @@ public final class CoreRouter extends Router {
         RouterType routerType, Map<Id, Router> routers
     ) {
         super(id, vendor, model, ip, location, routerType);
-        this.routers = routers;
+        this.routers = routers == null ? new HashMap<>() : routers;
     }
 
     public CoreRouter addRouter(Router anyRouter) {
