@@ -6,7 +6,6 @@ import hex.arch.topologyinventory.domain.vo.*;
 import hex.arch.topologyinventory.framework.adapter.in
     .SwitchManagementGenericInputAdapter;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -19,9 +18,10 @@ public class SwitchTest extends FrameworkTestData {
 
     SwitchManagementGenericInputAdapter switchManagementGenericAdapter;
 
-    public SwitchTest(){
+    public SwitchTest() {
         this.switchManagementGenericAdapter
             = new SwitchManagementGenericInputAdapter();
+
         loadData();
     }
 
@@ -37,8 +37,8 @@ public class SwitchTest extends FrameworkTestData {
     @Test
     @Order(2)
     public void createAndAddSwitchToEdgeRouter(){
-        var expectedSwitchIP = "15.0.0.1";
-        var id = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
+        String expectedSwitchIP = "15.0.0.1";
+        Id id = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
 
         EdgeRouter edgeRouter = switchManagementGenericAdapter
             .createAndAddSwitchToEdgeRouter(

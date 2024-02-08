@@ -30,8 +30,10 @@ public class NetworkTest extends FrameworkTestData {
             = new NetworkManagementGenericInputAdapter();
         this.switchManagementGenericAdapter
             = new SwitchManagementGenericInputAdapter();
+
         loadData();
     }
+
     @Test
     @Order(1)
     public void addNetworkToSwitch(){
@@ -49,7 +51,7 @@ public class NetworkTest extends FrameworkTestData {
     @Order(2)
     public void removeNetworkFromSwitch(){
         Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
-        var networkName = "HR";
+        String networkName = "HR";
         Predicate<Network> predicate = Network
             .getNetworkNamePredicate(networkName);
         Switch networkSwitch = switchManagementGenericAdapter

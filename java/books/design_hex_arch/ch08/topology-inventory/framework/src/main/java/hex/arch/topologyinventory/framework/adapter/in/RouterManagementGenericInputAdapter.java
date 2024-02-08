@@ -1,6 +1,5 @@
 package hex.arch.topologyinventory.framework.adapter.in;
 
-import hex.arch.topologyinventory.application.port.in.RouterManagementInputPort;
 import hex.arch.topologyinventory.application.use_case.RouterManagementUseCase;
 
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
@@ -12,14 +11,12 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
-import hex.arch.topologyinventory.framework.adapter.out.h2.RouterManagementH2OutputAdapter;
-
 public class RouterManagementGenericInputAdapter {
 
     private RouterManagementUseCase useCase;
 
-    public RouterManagementGenericInputAdapter() {
-        setPorts();
+    public RouterManagementGenericInputAdapter(RouterManagementUseCase useCase) {
+        this.useCase = useCase;
     }
 
     /**
@@ -69,12 +66,6 @@ public class RouterManagementGenericInputAdapter {
             coreRouterId
         );
         return useCase.removeRouterFromCoreRouter(router, coreRouter);
-    }
-
-    private void setPorts() {
-        this.useCase = new RouterManagementInputPort(
-            RouterManagementH2OutputAdapter.getInstance()
-        );
     }
 
 }

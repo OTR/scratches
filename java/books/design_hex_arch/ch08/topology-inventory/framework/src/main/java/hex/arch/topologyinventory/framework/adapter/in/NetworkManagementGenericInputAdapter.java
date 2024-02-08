@@ -17,8 +17,12 @@ public class NetworkManagementGenericInputAdapter {
     private SwitchManagementUseCase switchUseCase;
     private NetworkManagementUseCase networkUseCase;
 
-    public NetworkManagementGenericInputAdapter() {
-        setPorts();
+    public NetworkManagementGenericInputAdapter(
+        SwitchManagementUseCase switchUseCase,
+        NetworkManagementUseCase networkUseCase
+    ) {
+        this.switchUseCase = switchUseCase;
+        this.networkUseCase = networkUseCase;
     }
 
     /**
@@ -34,15 +38,6 @@ public class NetworkManagementGenericInputAdapter {
     ) {
         Switch networkSwitch = switchUseCase.retrieveSwitch(switchId);
         return networkUseCase.removeNetworkFromSwitch(networkName, networkSwitch);
-    }
-
-    private void setPorts() {
-        this.switchUseCase = new SwitchManagementInputPort(
-            SwitchManagementH2OutputAdapter.getInstance()
-        );
-        this.networkUseCase = new NetworkManagementInputPort(
-            RouterManagementH2OutputAdapter.getInstance()
-        );
     }
 
 }
