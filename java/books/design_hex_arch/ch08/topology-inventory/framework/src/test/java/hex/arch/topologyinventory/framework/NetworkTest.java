@@ -36,7 +36,7 @@ public class NetworkTest extends FrameworkTestData {
     @Test
     @Order(1)
     public void addNetworkToSwitch(){
-        Id switchId = Id.withUuid("922dbcd5-d071-41bd-920b-00f83eb4bb46");
+        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
         Switch networkSwitch = networkManagementGenericAdapter
             .addNetworkToSwitch(network, switchId);
         Predicate<Network> predicate = Network
@@ -50,7 +50,7 @@ public class NetworkTest extends FrameworkTestData {
     @Test
     @Order(2)
     public void removeNetworkFromSwitch(){
-        Id switchId = Id.withUuid("922dbcd5-d071-41bd-920b-00f83eb4bb46");
+        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
         var networkName = "HR";
         Predicate<Network> predicate = Network
             .getNetworkNamePredicate(networkName);

@@ -22,7 +22,7 @@ public class RouterH2Mapper {
 
     public static Router routerDataToDomain(RouterData routerData){
         var router = RouterFactory.getRouter(
-            Id.withUuid(routerData.getRouterId().toString()),
+            Id.withId(routerData.getRouterId().toString()),
             Vendor.valueOf(routerData.getRouterVendor().toString()),
             Model.valueOf(routerData.getRouterModel().toString()),
             IP.fromAddress(routerData.getIp().getAddress()),
@@ -60,8 +60,8 @@ public class RouterH2Mapper {
 
     public static Switch switchDataToDomain(SwitchData switchData) {
         return Switch.builder().
-            switchId(Id.withUuid(switchData.getSwitchId().toString())).
-            routerId(Id.withUuid(switchData.getRouterId().toString())).
+            switchId(Id.withId(switchData.getSwitchId().toString())).
+            routerId(Id.withId(switchData.getRouterId().toString())).
             vendor(Vendor.valueOf(switchData.getSwitchVendor().toString())).
             model(Model.valueOf(switchData.getSwitchModel().toString())).
             ip(IP.fromAddress(switchData.getIp().getAddress())).
@@ -98,13 +98,13 @@ public class RouterH2Mapper {
 
     public static LocationData locationDomainToLocationData(Location location){
         return LocationData.builder()
-            .address(location.address())
-            .city(location.city())
-            .state(location.state())
-            .zipcode(location.zipCode())
-            .country(location.country())
-            .latitude(location.latitude())
-            .longitude(location.longitude())
+            .address(location.getAddress())
+            .city(location.getCity())
+            .state(location.getState())
+            .zipcode(location.getZipCode())
+            .country(location.getCountry())
+            .latitude(location.getLatitude())
+            .longitude(location.getLongitude())
             .build();
     }
 
@@ -112,7 +112,7 @@ public class RouterH2Mapper {
         Map<Id,Router> routerMap = new HashMap<>();
         for (RouterData routerData : routerDataList) {
             routerMap.put(
-                Id.withUuid(routerData.getRouterId().toString()),
+                Id.withId(routerData.getRouterId().toString()),
                 routerDataToDomain(routerData));
         }
         return routerMap;
@@ -131,7 +131,7 @@ public class RouterH2Mapper {
         Map<Id,Switch> switchMap = new HashMap<>();
         for (SwitchData switchData : switchDataList) {
             switchMap.put(
-                Id.withUuid(switchData.getSwitchId().toString()),
+                Id.withId(switchData.getSwitchId().toString()),
                 switchDataToDomain(switchData));
         }
         return switchMap;

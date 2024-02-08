@@ -23,7 +23,7 @@ public class RouterTest extends FrameworkTestData {
 
     @Test
     public void retrieveRouter() {
-        var id = Id.withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+        var id = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
         var actualId = routerManagementGenericAdapter.
             retrieveRouter(id).getId();
         assertEquals(id, actualId);
@@ -51,9 +51,9 @@ public class RouterTest extends FrameworkTestData {
 
     @Test
     public void addRouterToCoreRouter() {
-        var routerId = Id.withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
+        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
         var coreRouterId = Id
-            .withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+            .withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
         var actualRouter = (CoreRouter)this.routerManagementGenericAdapter.
             addRouterToCoreRouter(routerId,coreRouterId);
         assertEquals(routerId, actualRouter.getRouters()
@@ -64,9 +64,9 @@ public class RouterTest extends FrameworkTestData {
     @Test
     public void removeRouterFromCoreRouter(){
         var routerId = Id
-            .withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0a");
+            .withId("b832ef4f-f894-4194-8feb-a99c2cd4be0a");
         var coreRouterId = Id
-            .withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+            .withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
 
         var removedRouter = this.routerManagementGenericAdapter.
             removeRouterFromCoreRouter(routerId, coreRouterId);
@@ -79,7 +79,7 @@ public class RouterTest extends FrameworkTestData {
 
     @Test
     public void removeRouter() {
-        var routerId = Id.withUuid("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
+        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
         var router = this.routerManagementGenericAdapter
             .removeRouter(routerId);
         assertEquals(null, router);

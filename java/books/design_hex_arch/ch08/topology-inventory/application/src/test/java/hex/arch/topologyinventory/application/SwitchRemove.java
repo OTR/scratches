@@ -21,7 +21,7 @@ public class SwitchRemove extends ApplicationTestData{
 
     @Given("I know the switch I want to remove")
     public void i_know_the_switch_i_want_to_remove(){
-        id = Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+        id = Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
         switchToBeRemoved = edgeRouter.getSwitches().get(id);
     }
     @And("The switch has no networks")

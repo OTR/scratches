@@ -147,7 +147,7 @@ public class DomainTest {
 
         edgeRouter.addSwitch(networkSwitch);
         networkSwitch.removeNetworkFromSwitch(network);
-        var expectedId = Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+        var expectedId = Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
         var actualId= edgeRouter.removeSwitch(networkSwitch).getId();
 
         assertEquals(expectedId, actualId);
@@ -216,16 +216,16 @@ public class DomainTest {
     @Test
     public void filterRouterByLocation(){
         List<Router> routers = new ArrayList<>();
-        var location = createLocation("US");
-        var coreRouter = createCoreRouter(location, "30.0.0.1");
+        Location location = createLocation("US");
+        CoreRouter coreRouter = createCoreRouter(location, "30.0.0.1");
 
         routers.add(coreRouter);
 
-        var actualCountry = RouterService
+        String actualCountry = RouterService
             .filterAndRetrieveRouter(routers,
             Router.getCountryPredicate(location)
-            ).get(0).getLocation().country();
-        assertEquals(location.country(), actualCountry);
+            ).get(0).getLocation().getCountry();
+        assertEquals(location.getCountry(), actualCountry);
     }
 
     @Test
@@ -317,7 +317,7 @@ public class DomainTest {
 
         switchesOfEdgeRouter.put(networkSwitch.getId(), networkSwitch);
 
-        Id expectedId = Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+        Id expectedId = Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
         Id actualId = SwitchService.findById(
             switchesOfEdgeRouter, expectedId
         ).getId();
@@ -334,10 +334,10 @@ public class DomainTest {
 
     private Location createLocation(String country){
         return Location.builder().
+                address("Test street").
+                city("Test City").
             state("Test State").
             country(country).
-            address("Test street").
-            city("Test City").
             zipCode(00000).
             latitude(10F).
             longitude(-10F).
@@ -361,7 +361,7 @@ public class DomainTest {
         Location location, List<Network> networks
     ){
         return Switch.builder().
-            switchId(Id.withUuid("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
+            switchId(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
             vendor(Vendor.CISCO).
             model(Model.XYZ0004).
             ip(IP.fromAddress("20.0.0.100")).

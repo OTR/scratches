@@ -27,7 +27,7 @@ public abstract sealed class Router
     }
 
     public static Predicate<Equipment> getCountryPredicate(Location location) {
-        return p -> p.location.country().equals(location.country());
+        return p -> p.location.getCountry().equals(location.getCountry());
     }
 
     public Router(

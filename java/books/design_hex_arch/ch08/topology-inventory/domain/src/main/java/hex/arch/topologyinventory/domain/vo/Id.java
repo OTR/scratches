@@ -17,7 +17,7 @@ public class Id {
         this.uuid = uuid;
     }
 
-    public static Id withUuid(String id) {
+    public static Id withId(String id) {
         return new Id(UUID.fromString(id));
     }
 
