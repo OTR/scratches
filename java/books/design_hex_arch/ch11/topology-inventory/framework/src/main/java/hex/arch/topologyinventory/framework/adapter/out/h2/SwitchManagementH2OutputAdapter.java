@@ -13,6 +13,10 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
+import javax.enterprise.context.ApplicationScoped;
+
+
+@ApplicationScoped
 public class SwitchManagementH2OutputAdapter implements SwitchManagementOutputPort {
 
     private static SwitchManagementH2OutputAdapter instance;

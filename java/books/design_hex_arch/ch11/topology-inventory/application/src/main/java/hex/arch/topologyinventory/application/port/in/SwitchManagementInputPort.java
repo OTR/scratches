@@ -14,11 +14,13 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.SwitchType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
-import lombok.NoArgsConstructor;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
-
+@ApplicationScoped
 public class SwitchManagementInputPort implements SwitchManagementUseCase {
 
+    @Inject
     private SwitchManagementOutputPort outputPort;
 
     public SwitchManagementInputPort() {}
@@ -57,11 +59,6 @@ public class SwitchManagementInputPort implements SwitchManagementUseCase {
     ) {
         edgeRouter.removeSwitch(networkSwitch);
         return edgeRouter;
-    }
-
-    @Override
-    public void setOutputPort(SwitchManagementOutputPort outputPort) {
-        this.outputPort = outputPort;
     }
 
 }

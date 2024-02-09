@@ -14,18 +14,15 @@ import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.SwitchType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
+import javax.inject.Inject;
+
 public class SwitchManagementGenericInputAdapter {
 
-    private RouterManagementUseCase routerUseCase;
-    private SwitchManagementUseCase switchUseCase;
+    @Inject
+    RouterManagementUseCase routerUseCase;
 
-    public SwitchManagementGenericInputAdapter(
-        RouterManagementUseCase routerUseCase,
-        SwitchManagementUseCase switchUseCase
-    ) {
-        this.routerUseCase = routerUseCase;
-        this.switchUseCase = switchUseCase;
-    }
+    @Inject
+    SwitchManagementUseCase switchUseCase;
 
     /**
      * GET /switch/retrieve/{id}
