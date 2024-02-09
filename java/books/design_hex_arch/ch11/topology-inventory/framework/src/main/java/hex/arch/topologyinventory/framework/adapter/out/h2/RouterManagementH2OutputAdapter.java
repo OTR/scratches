@@ -11,6 +11,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class RouterManagementH2OutputAdapter implements RouterManagementOutputPort {
 
     private static RouterManagementH2OutputAdapter instance;

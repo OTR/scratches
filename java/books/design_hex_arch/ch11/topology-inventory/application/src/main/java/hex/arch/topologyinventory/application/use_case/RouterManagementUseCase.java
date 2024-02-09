@@ -1,6 +1,5 @@
 package hex.arch.topologyinventory.application.use_case;
 
-import hex.arch.topologyinventory.application.port.out.RouterManagementOutputPort;
 import hex.arch.topologyinventory.domain.entity.CoreRouter;
 import hex.arch.topologyinventory.domain.entity.Router;
 import hex.arch.topologyinventory.domain.vo.IP;
@@ -30,7 +29,5 @@ public interface RouterManagementUseCase {
     Router retrieveRouter(Id id);
 
     Router persistRouter(Router router);
-
-    void setOutputPort(RouterManagementOutputPort outputPort);
 
 }

@@ -5,6 +5,8 @@ module framework {
 
     requires static lombok;
     requires jakarta.persistence;
+    requires jakarta.enterprise.cdi.api;
+    requires jakarta.inject.api;
     requires org.eclipse.persistence.core;
 
     uses hex.arch.topologyinventory.application.use_case.RouterManagementUseCase;

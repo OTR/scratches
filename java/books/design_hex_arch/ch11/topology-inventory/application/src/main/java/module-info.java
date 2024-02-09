@@ -1,6 +1,8 @@
 module application {
     requires domain;
     requires static lombok;
+    requires jakarta.enterprise.cdi.api;
+    requires jakarta.inject.api;
 
     provides hex.arch.topologyinventory.application.use_case.RouterManagementUseCase
         with hex.arch.topologyinventory.application.port.in.RouterManagementInputPort;

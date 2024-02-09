@@ -11,9 +11,14 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+@ApplicationScoped
 public class RouterManagementGenericInputAdapter {
 
-    private RouterManagementUseCase useCase;
+    @Inject
+    RouterManagementUseCase useCase;
 
     public RouterManagementGenericInputAdapter(RouterManagementUseCase useCase) {
         this.useCase = useCase;

@@ -13,9 +13,15 @@ import hex.arch.topologyinventory.domain.vo.Model;
 import hex.arch.topologyinventory.domain.vo.RouterType;
 import hex.arch.topologyinventory.domain.vo.Vendor;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+
+@ApplicationScoped
 public class RouterManagementInputPort implements RouterManagementUseCase {
 
-    private RouterManagementOutputPort outputPort;
+    @Inject
+    RouterManagementOutputPort outputPort;
 
     public RouterManagementInputPort() {}
 
@@ -65,13 +71,6 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
     @Override
     public Router persistRouter(Router router) {
         return outputPort.persistRouter(router);
-    }
-
-    @Override
-    public void setOutputPort(
-        RouterManagementOutputPort outputPort
-    ) {
-        this.outputPort = outputPort;
     }
 
 }

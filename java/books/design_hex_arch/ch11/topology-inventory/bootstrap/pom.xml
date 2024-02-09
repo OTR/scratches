@@ -50,6 +50,12 @@
     </dependency>
 
     <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>context</artifactId>
+      <version>3.0.0-M3</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>org.eclipse.persistence.jpa</artifactId>
       <version>3.0.1</version>
