@@ -10,12 +10,17 @@ import hex.arch.topologyinventory.domain.vo.Id;
 import hex.arch.topologyinventory.domain.vo.IP;
 import hex.arch.topologyinventory.domain.vo.Network;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import java.util.function.Predicate;
 
+@ApplicationScoped
 public class NetworkManagementInputPort
     implements NetworkManagementUseCase {
 
-    private RouterManagementOutputPort outputPort;
+    @Inject
+    RouterManagementOutputPort outputPort;
 
     public NetworkManagementInputPort() {
     }
@@ -62,11 +67,6 @@ public class NetworkManagementInputPort
         return switchToRemoveNetwork.removeNetworkFromSwitch(network)
             ? switchToRemoveNetwork
             : null;
-    }
-
-    @Override
-    public void setOutputPort(RouterManagementOutputPort outputPort) {
-        this.outputPort = outputPort;
     }
 
 }
