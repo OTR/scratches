@@ -13,14 +13,9 @@
         
         <properties>
             <property name="jakarta.persistence.jdbc.driver"
-                      value="org.postgresql.Driver"/>
+                      value="org.h2.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:postgresql://localhost:5432/slug_dev_db"/>
-            <property name="jakarta.persistence.jdbc.user" value="slug_dev"/>
-            <property name="jakarta.persistence.jdbc.password" value="slug_dev"/>
-<!--            <property name="jakarta.persistence.sql-load-script-source"-->
-<!--                      value="slugs.sql" />-->
-            <property name="hibernate.hbm2ddl.import_files" value="slugs.sql"/>
+                      value="jdbc:h2:file:/tmp/.app_data/slug;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS slugs\;RUNSCRIPT FROM 'classpath:slugs.sql'"/>
             <property name="hibernate.connection.autocommit" value="true"/>
         </properties>
     </persistence-unit>

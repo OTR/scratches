@@ -112,3 +112,27 @@ spring.datasource.username=slug_dev_user
 spring.datasource.password=slug_dev_passwd
 ```
 
+# 10. Option 
+
+Define Environment Variables:
+
+Add environment variables to your `~/.bashrc` file
+to hold your database credentials:
+
+```shell
+export SLUG_DB_USER=slug_dev_user
+export SLUG_DB_PASSWORD=slug_dev_passwd 
+```
+
+Modify your `persistence.xml` to reference these environment variables:
+
+```xml
+<persistence-unit name="myPersistenceUnit">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <properties>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydatabase" />
+        <property name="javax.persistence.jdbc.user" value="${env.SLUG_DB_USER}" />
+        <property name="javax.persistence.jdbc.password" value="${env.SLUG_DB_PASSWORD}" />
+    </properties>
+</persistence-unit>
+```
