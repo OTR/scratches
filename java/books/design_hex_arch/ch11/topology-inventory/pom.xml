@@ -23,16 +23,30 @@
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <quarkus.platform.version>3.7.1</quarkus.platform.version>
-    <jandex.version>1.2.3</jandex.version>
+<!--    <quarkus.platform.version>3.7.1</quarkus.platform.version>-->
+<!--    <jandex.version>1.2.3</jandex.version>-->
 
     <quarkus.package.type>uber-jar</quarkus.package.type>
+
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
+    <cucumber.version>6.10.4</cucumber.version>
+    <junit-jupiter.version>5.7.2</junit-jupiter.version>
+    <lombok.version>1.18.20</lombok.version>
+    <mockito.version>3.10.0</mockito.version>
+    <quarkus-plugin.version>2.2.1.Final</quarkus-plugin.version>
+    <quarkus.platform.version>2.2.1.Final</quarkus.platform.version>
+    <surefire-plugin.version>2.22.1</surefire-plugin.version>
+    <testcontainers.version>1.15.3</testcontainers.version>
+    <jandex.version>1.0.7</jandex.version>
+
   </properties>
 
 
-  <!-- Quarkus related -->
+
   <dependencyManagement>
     <dependencies>
+
+      <!-- Quarkus related -->
       <dependency>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-universe-bom</artifactId>
@@ -40,6 +54,24 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- Include all Hexagons -->
+      <dependency>
+        <groupId>hex.arch</groupId>
+        <artifactId>domain</artifactId>
+        <version>0.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>hex.arch</groupId>
+        <artifactId>application</artifactId>
+        <version>0.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>hex.arch</groupId>
+        <artifactId>framework</artifactId>
+        <version>0.0.1</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -50,57 +82,40 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.28</version>
+<!--      <version>1.18.28</version>-->
+      <version>${lombok.version}</version>
     </dependency>
-        
-    <!-- JUnit 4 -->
+
+    <!-- Quarkus related -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.1</version>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
 
-    <!-- Ch 10 -->
-  <dependency>
-    <groupId>io.quarkus</groupId>
-    <artifactId>quarkus-arc</artifactId>
-  </dependency>
-  <dependency>
-    <groupId>io.quarkus</groupId>
-    <artifactId>quarkus-junit5</artifactId>
-  </dependency>
-  <dependency>
-    <groupId>jakarta.validation</groupId>
-    <artifactId>jakarta.validation-api</artifactId>
-  </dependency>
-  <dependency>
-    <groupId>jakarta.enterprise</groupId>
-    <artifactId>jakarta.enterprise.cdi-api</artifactId>
-  </dependency>
-  <dependency>
-    <groupId>org.glassfish</groupId>
-    <artifactId>jakarta.el</artifactId>
-    <version>3.0.3</version>
-  </dependency>
-  <dependency>
-    <groupId>jakarta.el</groupId>
-    <artifactId>jakarta.el-api</artifactId>
-    <version>3.0.3</version>
-  </dependency>
-  <dependency>
-    <groupId>io.quarkus</groupId>
-    <artifactId>quarkus-hibernate-validator</artifactId>
-  </dependency>
-  <dependency>
-    <groupId>io.quarkus</groupId>
-    <artifactId>quarkus-smallrye-openapi</artifactId>
-  </dependency>
-      
   </dependencies>
           
   <build>
     <plugins>
+
+      <!-- Quarkus plugin -->
+      <plugin>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${quarkus-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-code</goal>
+              <goal>generate-code-tests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
       <!-- To discover CDI Beans -->
       <plugin>
@@ -113,10 +128,34 @@
             <goals>
               <goal>jandex</goal>
             </goals>
+            <phase>compile</phase>
           </execution>
         </executions>
+        <configuration>
+          <fileSets>
+            <fileSet>
+              <directory>${project.build.directory}/generated-classes/foo</directory>
+            </fileSet>
+            <fileSet>
+              <directory>${project.build.directory}/generated-classes/bar</directory>
+            </fileSet>
+          </fileSets>
+        </configuration>
       </plugin>
-            
+
+      <!-- Surefire Plugin -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <extensions>true</extensions>
+        <configuration>
+          <systemPropertyVariables>
+            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+
+      <!-- Maven Compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -131,7 +170,8 @@
             <path>
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok</artifactId>
-              <version>1.18.28</version>
+<!--              <version>1.18.28</version>-->
+              <version>${lombok.version}</version>
             </path>
           </annotationProcessorPaths>
         </configuration>
