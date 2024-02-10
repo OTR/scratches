@@ -17,12 +17,13 @@ public class BinaryFileInputPort implements RetrieveBinaryFileUseCase {
 
     @Override
     public BinaryFile retrieveBinaryFile(String uuId) {
-        var binaryFile = binaryFileOutputPort.retrieveBinaryFileById();
+        BinaryFile binaryFile = binaryFileOutputPort
+            .retrieveBinaryFileById(uuId);
         return null;
     }
 
     public boolean storeBinaryFile(BinaryFile binaryFile) {
-        var result = binaryFileOutputPort.storeBinaryFile(binaryFile);
+        boolean result = binaryFileOutputPort.storeBinaryFile(binaryFile);
         return result;
     }
 
