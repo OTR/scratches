@@ -21,9 +21,11 @@ public class HtmlChapterInputAdapter {
     public void loadHtmlFromFilePath(String filePath) {
         String contents = readTextFile(filePath);
         Chapter chapter = HtmlEpubMapper.toDomain(contents);
-        chapter.getChildren().stream()
-            .map(Subtitle01::getTitle)
-            .forEach(System.out::println);
+        if (chapter != null) {
+            chapter.getChildren().stream()
+                .map(Subtitle01::getTitle)
+                .forEach(System.out::println);
+        }
     }
 
      private String readTextFile(String filePath) {
