@@ -2,8 +2,10 @@ package otr.elib.framework.adapter.in.file.mapper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
+
 import otr.elib.framework.exception.NoChapterOrdinalFoundException;
 
 import java.lang.reflect.InvocationTargetException;
@@ -11,7 +13,6 @@ import java.lang.reflect.Method;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-
 
 public class PacktHtmlEpubMapperTest {
 

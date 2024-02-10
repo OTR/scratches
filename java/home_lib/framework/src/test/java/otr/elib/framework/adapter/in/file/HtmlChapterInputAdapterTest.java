@@ -1,12 +1,12 @@
 package otr.elib.framework.adapter.in.file;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 
 import otr.elib.application.use_case.HtmlChapterUseCase;
 import otr.elib.domain.entity.Chapter;
 import otr.elib.framework.exception.FileNotFoundAppException;
+
 
 import java.io.File;
 
@@ -56,9 +56,9 @@ public class HtmlChapterInputAdapterTest {
 
     private String getAbsolutePathOfResource(String fileName) {
         String filePath = new File(getClass()
-                .getClassLoader()
-                .getResource(fileName)
-                .getFile())
+            .getClassLoader()
+            .getResource(fileName)
+            .getFile())
             .getAbsolutePath();
         return filePath;
     }
