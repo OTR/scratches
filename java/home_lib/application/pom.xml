@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>otr.elib</groupId>
-    <artifactId>domian</artifactId>
+    <artifactId>application</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

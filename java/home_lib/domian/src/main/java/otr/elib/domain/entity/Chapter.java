@@ -9,4 +9,8 @@ public class Chapter {
     private String chapterTitle;
     private List<Subtitle01> children;
 
+    public List<Subtitle01> getChildren() {
+        return children;
+    }
+
 }
