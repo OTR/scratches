@@ -17,6 +17,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+
+    <junit4.version>4.13.2</junit4.version>
+    <slf4j-api.version>2.0.7</slf4j-api.version>
+    <slf4j-tinylog.version>2.6.2</slf4j-tinylog.version>
+    <tinylog-impl.version>2.6.2</tinylog-impl.version>
+    <h2-driver.version>2.2.224</h2-driver.version>
+    <cucumber-java.version>7.15.0</cucumber-java.version>
+    <jpa.version>3.1.0</jpa.version>
+    <lombok.version>1.18.28</lombok.version>
   </properties>
 
   <dependencies>
@@ -25,7 +34,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.2</version>
+      <version>${junit4.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -33,49 +42,50 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>2.0.7</version>
+      <version>${slf4j-api.version}</version>
     </dependency>
 
     <!-- SL4J binding that uses tinylog -->
     <dependency>
       <groupId>org.tinylog</groupId>
       <artifactId>slf4j-tinylog</artifactId>
-      <version>2.6.2</version>
+      <version>${slf4j-tinylog.version}</version>
     </dependency>
 
     <!-- Tinylog native logging implementation -->
     <dependency>
       <groupId>org.tinylog</groupId>
       <artifactId>tinylog-impl</artifactId>
-      <version>2.6.2</version>
+      <version>${tinylog-impl.version}</version>
     </dependency>
 
     <!-- H2 Database -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>2.2.224</version>
+      <version>${h2-driver.version}</version>
     </dependency>
 
     <!-- Cucumber -->
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
-      <version>7.15.0</version> <scope>test</scope>
+      <version>${cucumber-java.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <!-- Jakarta JPA -->
     <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
-      <version>3.1.0</version>
+      <version>${jpa.version}</version>
     </dependency>
 
     <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.28</version>
+      <version>${lombok.version}</version>
     </dependency>
 
     <!-- eclipse plugin -->
