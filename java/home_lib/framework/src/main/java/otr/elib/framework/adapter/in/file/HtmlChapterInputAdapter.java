@@ -8,7 +8,8 @@ import java.io.IOException;
 import otr.elib.application.use_case.HtmlChapterUseCase;
 import otr.elib.domain.entity.Chapter;
 import otr.elib.domain.entity.Subtitle01;
-import otr.elib.framework.adapter.in.file.mapper.HtmlEpubMapper;
+import otr.elib.framework.adapter.in.file.mapper.PacktHtmlEpubMapper;
+import otr.elib.framework.exception.FileNotFoundAppException;
 
 public class HtmlChapterInputAdapter {
 
@@ -18,14 +19,16 @@ public class HtmlChapterInputAdapter {
         this.useCase = useCase;
     }
 
-    public void loadHtmlFromFilePath(String filePath) {
+    public Chapter loadHtmlFromFilePath(String filePath) {
         String contents = readTextFile(filePath);
-        Chapter chapter = HtmlEpubMapper.toDomain(contents);
+        Chapter chapter = PacktHtmlEpubMapper.toDomain(contents);
         if (chapter != null) {
             chapter.getChildren().stream()
                 .map(Subtitle01::getTitle)
                 .forEach(System.out::println);
         }
+
+        return chapter;
     }
 
      private String readTextFile(String filePath) {
@@ -42,7 +45,7 @@ public class HtmlChapterInputAdapter {
             return sb.toString();
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new FileNotFoundAppException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
