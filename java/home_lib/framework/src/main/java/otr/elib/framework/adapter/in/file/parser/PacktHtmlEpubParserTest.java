@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
-import otr.elib.framework.exception.NoChapterOrdinalFoundException;
+import otr.elib.framework.exception.ParseChapterOrdinalFromTitleException;
 
 import java.io.File;
 import java.util.List;
@@ -18,6 +18,7 @@ import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
     .getChapterOrdinalFromBody;
 import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
     .getChapterOrdinalFromTitle;
+import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser.getChapterTitleFromBody;
 import static otr.elib.framework.common.FileUtil.getAbsPathOfAppData;
 import static otr.elib.framework.common.FileUtil.readTextFromFile;
 import static otr.elib.framework.common.FileUtil.saveTextToFile;
@@ -68,8 +69,8 @@ public class PacktHtmlEpubParserTest {
         Document input1 = Jsoup.parse("<title>Chapter 01</title>");
         Document input2 = Jsoup.parse("<title>B1991X11</title>");
         Document input3 = Jsoup.parse("<title>101</title>");
-        Class<NoChapterOrdinalFoundException> expected
-            = NoChapterOrdinalFoundException.class;
+        Class<ParseChapterOrdinalFromTitleException> expected
+            = ParseChapterOrdinalFromTitleException.class;
 
         // WHEN
         ThrowingRunnable target1 = () -> getChapterOrdinalFromTitle(input1);
@@ -85,10 +86,10 @@ public class PacktHtmlEpubParserTest {
     @Test
     public void provideValidHtml_savesSeparateHtmlFilesOnDisk() {
         // GIVEN
-        final Document inputDoc = getDocument();
+        final Document inputDocument = getDocument();
 
         // WHEN
-        List<Document> docs = extractSubtitlesAsSeparateHtml(inputDoc);
+        List<Document> docs = extractSubtitlesAsSeparateHtml(inputDocument);
         for (int i = 0; i < docs.size(); i++) {
             Document document = docs.get(i);
             String patched = document.outerHtml();
@@ -103,26 +104,39 @@ public class PacktHtmlEpubParserTest {
     }
 
     @Test
-    public void provideValidHtml_matchesChapterOrdinalFromBody() {
+    public void provideValidHtml_parsesCorrectChapterOrdinalFromBody() {
         // GIVEN
-        final Document inputDoc = getDocument();
+        final Document inputDocument = getDocument();
         int expected = 1;
 
         // WHEN
-        int actual = getChapterOrdinalFromBody(inputDoc);
+        int actual = getChapterOrdinalFromBody(inputDocument);
 
         // THEN
         assertEquals(expected, actual);
     }
 
     @Test
-    public void provideValidHtml_matchesChapterOrdinalFromTitle() {
+    public void provideValidHtml_parsesCorrectChapterOrdinalFromTitle() {
         // GIVEN
-        final Document inputDoc = getDocument();
+        final Document inputDocument = getDocument();
         int expected = 1;
 
         // WHEN
-        int actual = getChapterOrdinalFromTitle(inputDoc);
+        int actual = getChapterOrdinalFromTitle(inputDocument);
+
+        // THEN
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void provideValidHtml_parsesCorrectChapterTitleFromBody() {
+        // GIVEN
+        final Document inputDocument = getDocument();
+        String expected = "Maintainability";
+
+        // WHEN
+        String actual = getChapterTitleFromBody(inputDocument);
 
         // THEN
         assertEquals(expected, actual);

@@ -1,14 +1,15 @@
 package otr.elib.framework.adapter.in.file.parser;
 
-import org.jsoup.nodes.Document;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import otr.elib.domain.entity.Chapter;
 import otr.elib.domain.entity.Subtitle01;
 import otr.elib.domain.exception.BaseAppException;
-import otr.elib.framework.exception.NoChapterOrdinalFoundException;
+import otr.elib.framework.exception.ParseChapterOrdinalFromBodyException;
+import otr.elib.framework.exception.ParseChapterOrdinalFromTitleException;
+import otr.elib.framework.exception.ParseChapterTitleFromBodyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,15 +68,14 @@ public class PacktHtmlEpubParser {
     }
 
     private static Document fillUpDocWithChildren(
-        final Document document,
-        List<Element> group
+        final Document document, List<Element> children
     ) {
         final Document filledDoc = document.clone();
         final Element emptyContainer = filledDoc
             .select(CONTAINER_FOR_SUBTITLES).first();
         requireNonNull(emptyContainer);
 //            group.add(getHighLightJsSnippet()); // TODO: Inject HighLightJs
-        emptyContainer.appendChildren(group);
+        emptyContainer.appendChildren(children);
         return filledDoc;
     }
 
@@ -88,7 +88,7 @@ public class PacktHtmlEpubParser {
         if (ordinalMatcher.find()) {
             return Integer.parseInt(ordinalMatcher.group(1));
         } else {
-            throw new NoChapterOrdinalFoundException(title);
+            throw new ParseChapterOrdinalFromTitleException(title);
         }
     }
 
@@ -100,16 +100,22 @@ public class PacktHtmlEpubParser {
         try {
             return Integer.parseInt(h1WithChapterOrdinal.text().strip());
         } catch (NumberFormatException e) {
-            throw new BaseAppException(e);
+            throw new ParseChapterOrdinalFromBodyException(e);
         }
     }
 
-    private static String getChapterTitleFromBody(final Document document) {
+    static String getChapterTitleFromBody(final Document document) {
         Elements children = extractContainerChildren(document);
         List<List<Element>> groups = breakParagraphsIntoGroups(children);
         Element h1WithChapterTitle = groups.get(1).get(0);
 
-        return h1WithChapterTitle.text();
+        String chapterTitle = h1WithChapterTitle.text().strip();
+
+        if (chapterTitle.isEmpty()) {
+            throw new ParseChapterTitleFromBodyException();
+        }
+
+        return chapterTitle;
     }
 
     private static Elements extractContainerChildren(final Document document) {
