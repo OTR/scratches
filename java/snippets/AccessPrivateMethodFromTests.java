@@ -1,4 +1,4 @@
-package otr.elib.framework.adapter.in.file.mapper;
+package otr.elib.framework.adapter.in.file.parser;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-public class PacktHtmlEpubMapperTest {
+public class AccessPrivateMethodFromTests {
 
     /**
      * positive test case for PacktHtmlEpubMapper::extractChapterOrdinal
@@ -64,7 +64,7 @@ public class PacktHtmlEpubMapperTest {
      */
     private static int reflectedMethod(Document input) {
         try {
-            Method method = PacktHtmlEpubMapper
+            Method method = PacktHtmlEpubParser
                 .class
                 .getDeclaredMethod("extractChapterOrdinal", Document.class);
             method.setAccessible(true);

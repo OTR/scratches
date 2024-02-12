@@ -6,11 +6,11 @@ import org.jsoup.nodes.Document;
 import otr.elib.application.use_case.HtmlChapterUseCase;
 import otr.elib.domain.entity.Chapter;
 import otr.elib.domain.entity.Subtitle01;
-import otr.elib.framework.adapter.in.file.mapper.PacktHtmlEpubMapper;
+import otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser;
 
 import java.util.List;
 
-import static otr.elib.framework.adapter.in.file.mapper.PacktHtmlEpubMapper
+import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
     .extractSubtitlesAsSeparateHtml;
 import static otr.elib.framework.common.FileUtil.getAbsPathOfAppData;
 import static otr.elib.framework.common.FileUtil.readTextFromFile;
@@ -26,7 +26,7 @@ public class HtmlChapterInputAdapter {
 
     public static Chapter loadHtmlFromFilePath(String filePath) {
         String contents = readTextFromFile(filePath);
-        Chapter chapter = PacktHtmlEpubMapper.toDomain(contents);
+        Chapter chapter = PacktHtmlEpubParser.toDomain(contents);
         if (chapter != null) {
             chapter.getChildren().stream()
                 .map(Subtitle01::getTitle)
