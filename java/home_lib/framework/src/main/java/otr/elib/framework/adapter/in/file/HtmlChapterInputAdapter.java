@@ -1,11 +1,20 @@
 package otr.elib.framework.adapter.in.file;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import otr.elib.application.use_case.HtmlChapterUseCase;
 import otr.elib.domain.entity.Chapter;
 import otr.elib.domain.entity.Subtitle01;
 import otr.elib.framework.adapter.in.file.mapper.PacktHtmlEpubMapper;
 
-import static otr.elib.framework.common.FileUtil.readTextFile;
+import java.util.List;
+
+import static otr.elib.framework.adapter.in.file.mapper.PacktHtmlEpubMapper
+    .extractSubtitlesAsSeparateHtml;
+import static otr.elib.framework.common.FileUtil.getAbsPathOfAppData;
+import static otr.elib.framework.common.FileUtil.readTextFromFile;
+import static otr.elib.framework.common.FileUtil.saveTextToFile;
 
 public class HtmlChapterInputAdapter {
 
@@ -15,8 +24,8 @@ public class HtmlChapterInputAdapter {
         this.useCase = useCase;
     }
 
-    public Chapter loadHtmlFromFilePath(String filePath) {
-        String contents = readTextFile(filePath);
+    public static Chapter loadHtmlFromFilePath(String filePath) {
+        String contents = readTextFromFile(filePath);
         Chapter chapter = PacktHtmlEpubMapper.toDomain(contents);
         if (chapter != null) {
             chapter.getChildren().stream()
@@ -27,5 +36,18 @@ public class HtmlChapterInputAdapter {
         return chapter;
     }
 
+    public static void splitHtmlFromFIlePath(String filePath) {
+        String htmlSource = readTextFromFile(filePath);
+        Document doc = Jsoup.parse(htmlSource);
+        List<Document> docs = extractSubtitlesAsSeparateHtml(doc);
+        for (int i = 0; i < docs.size(); i++) {
+            Document document = docs.get(i);
+            String patched = document.outerHtml();
+            saveTextToFile(
+                patched,
+                getAbsPathOfAppData(i + ".html")
+            );
+        }
+    }
 
 }

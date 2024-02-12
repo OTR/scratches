@@ -7,11 +7,12 @@ import otr.elib.application.use_case.HtmlChapterUseCase;
 import otr.elib.domain.entity.Chapter;
 import otr.elib.framework.exception.FileNotFoundAppException;
 
-
 import java.io.File;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
+import static otr.elib.framework.adapter.in.file.HtmlChapterInputAdapter
+    .loadHtmlFromFilePath;
 
 public class HtmlChapterInputAdapterTest {
 
@@ -23,14 +24,14 @@ public class HtmlChapterInputAdapterTest {
         // GIVEN
         HtmlChapterUseCase useCase = null;
         HtmlChapterInputAdapter htmlIA = new HtmlChapterInputAdapter(useCase);
-        String fileName = "B19916_01.xhtml";
+        String fileName = "B19916_01.xhtml"; // FIXME: Provide a test data to git
         String filePath = getAbsolutePathOfResource(fileName);
         filePath = filePath.replace("B19916_01", "404");
 
         // WHEN
         String finalFilePath = filePath;
         ThrowingRunnable targetMethod = () ->
-            htmlIA.loadHtmlFromFilePath(finalFilePath);
+            loadHtmlFromFilePath(finalFilePath);
 
         // THEN
         assertThrows(
@@ -42,13 +43,11 @@ public class HtmlChapterInputAdapterTest {
     @Test
     public void provideExistingFilePath_returnsValidChapter() {
         // GIVEN
-        HtmlChapterUseCase useCase = null;
-        HtmlChapterInputAdapter htmlIA = new HtmlChapterInputAdapter(useCase);
         String fileName = "B19916_01.xhtml";
         String filePath = getAbsolutePathOfResource(fileName);
 
         // WHEN
-        Chapter chapter = htmlIA.loadHtmlFromFilePath(filePath);
+        Chapter chapter = loadHtmlFromFilePath(filePath);
 
         // THEN
         assertNotNull(chapter);

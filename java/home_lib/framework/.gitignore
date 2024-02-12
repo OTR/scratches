@@ -1,3 +1,7 @@
 
 # Test Input Data
+src/main/resources/*.xhtml
+src/main/resources/*.html
+
 src/test/resources/*.xhtml
+src/test/resources/*.html
