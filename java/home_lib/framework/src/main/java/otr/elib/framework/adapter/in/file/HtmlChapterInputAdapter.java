@@ -6,12 +6,14 @@ import org.jsoup.nodes.Document;
 import otr.elib.application.use_case.HtmlChapterUseCase;
 import otr.elib.domain.entity.Chapter;
 import otr.elib.domain.entity.Subtitle01;
+import otr.elib.framework.adapter.in.file.parser.ChapterParsingResponse;
 import otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser;
+import otr.elib.framework.adapter.in.file.parser.SubtitleFile;
 
 import java.util.List;
 
 import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
-    .extractSubtitlesAsSeparateHtml;
+    .prepareParsingResponse;
 import static otr.elib.framework.common.FileUtil.getAbsPathOfAppData;
 import static otr.elib.framework.common.FileUtil.readTextFromFile;
 import static otr.elib.framework.common.FileUtil.saveTextToFile;
@@ -39,13 +41,14 @@ public class HtmlChapterInputAdapter {
     public static void splitHtmlFromFIlePath(String filePath) {
         String htmlSource = readTextFromFile(filePath);
         Document doc = Jsoup.parse(htmlSource);
-        List<Document> docs = extractSubtitlesAsSeparateHtml(doc);
-        for (int i = 0; i < docs.size(); i++) {
-            Document document = docs.get(i);
-            String patched = document.outerHtml();
+        ChapterParsingResponse response = prepareParsingResponse(doc);
+        List<SubtitleFile> subtitles = response.subtitles();
+        for (SubtitleFile subtitle : subtitles) {
+            String patched = subtitle.fileContent();
+            String filename = subtitle.filename();
             saveTextToFile(
                 patched,
-                getAbsPathOfAppData(i + ".html")
+                getAbsPathOfAppData(filename)
             );
         }
     }

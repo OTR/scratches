@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
-    .extractSubtitlesAsSeparateHtml;
+    .splitIntoSubtitleDocs;
 import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
     .getChapterOrdinalFromBody;
 import static otr.elib.framework.adapter.in.file.parser.PacktHtmlEpubParser
@@ -89,7 +89,7 @@ public class PacktHtmlEpubParserTest {
         final Document inputDocument = getDocument();
 
         // WHEN
-        List<Document> docs = extractSubtitlesAsSeparateHtml(inputDocument);
+        List<Document> docs = splitIntoSubtitleDocs(inputDocument);
         for (int i = 0; i < docs.size(); i++) {
             Document document = docs.get(i);
             String patched = document.outerHtml();

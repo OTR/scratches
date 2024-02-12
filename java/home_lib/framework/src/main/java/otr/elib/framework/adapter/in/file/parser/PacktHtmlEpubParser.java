@@ -29,9 +29,7 @@ public class PacktHtmlEpubParser {
 
     public static Chapter toDomain(String contents) {
         final Document document = Jsoup.parse(contents);
-        int ordinalFromTitle = getChapterOrdinalFromTitle(document);
-        int ordinalFromBody = getChapterOrdinalFromBody(document);
-        doubleCheckOrdinal(ordinalFromBody, ordinalFromTitle);
+        int ordinal = getChapterOrdinal(document);
         String title = getChapterTitleFromBody(document);
 
         throw new BaseAppException("Not Implemented yet!");
@@ -52,7 +50,7 @@ public class PacktHtmlEpubParser {
     }
 
     // TODO: make in private again
-    public static List<Document> extractSubtitlesAsSeparateHtml(final Document document) {
+    public static List<Document> splitIntoSubtitleDocs(final Document document) {
         Elements children = extractContainerChildren(document);
         List<List<Element>> groups = breakParagraphsIntoGroups(children);
         groups.remove(0);
@@ -65,6 +63,30 @@ public class PacktHtmlEpubParser {
         }
 
         return independentDocs;
+    }
+
+    public static ChapterParsingResponse prepareParsingResponse(final Document document) {
+        List<Document> subtitles = splitIntoSubtitleDocs(document);
+        int chapterOrdinal = getChapterOrdinal(document);
+        List<SubtitleFile> preparedSubtitles = new ArrayList<>();
+
+        String noTitle = "";
+
+        for (int i = 0; i < subtitles.size(); i++) {
+            Document subtitle = subtitles.get(i);
+            preparedSubtitles.add(
+                new SubtitleFile(
+                    "%02d.html".formatted(i + 1),
+                    noTitle,
+                    subtitle.outerHtml()
+                )
+            );
+        }
+
+        return new ChapterParsingResponse(
+            "ch%02d".formatted(chapterOrdinal),
+            preparedSubtitles
+        );
     }
 
     private static Document fillUpDocWithChildren(
@@ -155,6 +177,14 @@ public class PacktHtmlEpubParser {
         }
 
         return groups;
+    }
+
+    private static int getChapterOrdinal(final Document document) {
+        int ordinalFromTitle = getChapterOrdinalFromTitle(document);
+        int ordinalFromBody = getChapterOrdinalFromBody(document);
+        doubleCheckOrdinal(ordinalFromBody, ordinalFromTitle);
+
+        return ordinalFromBody;
     }
 
 }
