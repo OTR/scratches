@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<th:block th:replace="fragments/header"/>
+<body>
+<th:block th:replace="fragments/navbar"/>
+<div class="container">
+    <div class="row">
+        <div class="col-12 p-1">
+<!-- Actual content starts here -->
+    <form method="POST"
+               th:action="${@environment.getProperty('path.get_new_text')}"
+               th:object="${textEntity}">
+        <p><label for="id">id</label></p>
+        <p><input id="id" name="id" type="text"/></p>
+
+        <p><label for="unformattedText">unfromattedText</label></p>
+        <p><input id="unformattedText" name="unformattedText" type="text"
+                  th:field="*{unformattedText}"/></p>
+
+        <p><label for="stageOneText">stageOneText</label></p>
+        <p><input id="stageOneText" name="stageOneText" type="text" th:field="*{stageOneText}"/></p>
+
+        <p><label for="handFormattedText">handFormattedText</label></p>
+        <p><input id="handFormattedText" name="handFormattedText" type="text"
+            th:field="*{handFormattedText}"/></p>
+
+        <p><label for="posted">posted?</label></p>
+        <p><input id="posted" name="posted" type="checkbox" th:field="*{posted}"/></p>
+
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+<!-- Actual content ends here -->
+            </div>
+        </div>
+</div>
+<th:block th:replace="fragments/footer"/>
+</body>
+</html>
